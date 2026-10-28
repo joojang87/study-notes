@@ -1,0 +1,417 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>구루병 진단 마인드맵</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: left-to-right radiograph-style tree — root → 9 branches → items → details; stacks vertically on phones */
+:root {
+  --bg: #f2f4f6;
+  --surface: #ffffff;
+  --ink: #18212b;
+  --muted: #5b6776;
+  --line: #b8c2cd;
+  --root-bg: #1d2a38;
+  --root-fg: #f4f7fa;
+  --chip-eb: #1f6f5c; --chip-eb-bg: #dcefe9;
+  --chip-cb: #7a5a12; --chip-cb-bg: #f5ead0;
+  --chip-pp: #6b4a8a; --chip-pp-bg: #ece3f4;
+  --b1: #4a6fa5; --b2: #3f8a7a; --b3: #5c6b7d; --b4: #b0623a; --b5: #a5813a;
+  --b6: #3d7fae; --b7: #8a5a9c; --b8: #b04a5e; --b9: #4f7f3a;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11161c; --surface: #19212a; --ink: #e5eaf0; --muted: #9ba8b7; --line: #3b4756;
+    --root-bg: #dfe7ef; --root-fg: #121a22;
+    --chip-eb: #8fd6c1; --chip-eb-bg: #173a32;
+    --chip-cb: #e6c477; --chip-cb-bg: #3a3017;
+    --chip-pp: #cdb2e6; --chip-pp-bg: #2f2440;
+    --b1: #7fa3d6; --b2: #6cc1ad; --b3: #9aa9bb; --b4: #e0915f; --b5: #d6b36a;
+    --b6: #6fb2df; --b7: #bd8fd0; --b8: #e07a8e; --b9: #8fbf6f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11161c; --surface: #19212a; --ink: #e5eaf0; --muted: #9ba8b7; --line: #3b4756;
+  --root-bg: #dfe7ef; --root-fg: #121a22;
+  --chip-eb: #8fd6c1; --chip-eb-bg: #173a32;
+  --chip-cb: #e6c477; --chip-cb-bg: #3a3017;
+  --chip-pp: #cdb2e6; --chip-pp-bg: #2f2440;
+  --b1: #7fa3d6; --b2: #6cc1ad; --b3: #9aa9bb; --b4: #e0915f; --b5: #d6b36a;
+  --b6: #6fb2df; --b7: #bd8fd0; --b8: #e07a8e; --b9: #8fbf6f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 14px; line-height: 1.5;
+}
+.wrap {
+  max-width: 1400px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+}
+header { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: flex-end; justify-content: space-between; margin-bottom: 22px; }
+header .ttl { min-width: 0; }
+h1 { font-size: 24px; font-weight: 700; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+.cite { color: var(--muted); font-size: 13px; margin: 0; }
+.cite a { color: inherit; }
+.tools { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 12.5px; color: var(--muted); align-items: center; }
+.legend span.item { display: inline-flex; gap: 6px; align-items: center; }
+.btns { display: flex; gap: 8px; }
+button.ctl {
+  font: 500 13px var(--font-body); color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; cursor: pointer;
+}
+button.ctl:hover { border-color: var(--muted); }
+button:focus-visible { outline: 2px solid var(--b6); outline-offset: 2px; }
+
+.chip {
+  display: inline-block; font: 500 10.5px/1 var(--font-mono); letter-spacing: 0.04em;
+  padding: 3px 5px 2px; border-radius: 4px; vertical-align: 1px; white-space: nowrap;
+}
+.chip.EB { color: var(--chip-eb); background: var(--chip-eb-bg); }
+.chip.CB { color: var(--chip-cb); background: var(--chip-cb-bg); }
+.chip.PP { color: var(--chip-pp); background: var(--chip-pp-bg); }
+.sn { font: 500 11px var(--font-mono); color: var(--muted); white-space: nowrap; }
+
+.stage { overflow-x: auto; padding-bottom: 8px; }
+.tree { min-width: max-content; }
+
+/* ---------- node ---------- */
+.node { position: relative; display: flex; align-items: center; }
+.label { flex: none; position: relative; text-align: left; }
+.label.btn { cursor: pointer; }
+button.label { font: inherit; color: inherit; background: none; border: 0; padding: 0; }
+
+.lv0 > .label {
+  background: var(--root-bg); color: var(--root-fg);
+  padding: 14px 18px; border-radius: 10px; max-width: 200px;
+}
+.lv0 > .label b { display: block; font-size: 17px; line-height: 1.3; }
+.lv0 > .label small { display: block; font-size: 11.5px; opacity: .75; margin-top: 4px; }
+
+.lv1 > .label {
+  background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--c);
+  border-radius: 7px; padding: 8px 12px; width: 190px; font-weight: 600; font-size: 14.5px;
+}
+.lv1 > .label .sub { display: block; font-weight: 400; font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+.lv2 > .label {
+  padding: 4px 8px; border-radius: 5px; width: 230px; font-weight: 500;
+  background: color-mix(in srgb, var(--c) 11%, transparent);
+}
+.lv3 > .label, .leaf > .label { max-width: 380px; padding: 3px 4px; font-size: 13.5px; }
+.leaf > .label { max-width: 400px; }
+.lv2.leaf > .label { width: auto; max-width: 400px; }
+
+.label .cnt { font: 500 11px var(--font-mono); color: var(--muted); margin-left: 6px; }
+.lv0 .label .cnt { color: inherit; opacity: .7; }
+.label .meta { white-space: nowrap; }
+
+/* ---------- connectors: desktop horizontal ---------- */
+.kids { position: relative; display: flex; flex-direction: column; padding-left: 40px; }
+.kids::before { content: ""; position: absolute; left: 0; top: 50%; width: 20px; border-top: 1.5px solid var(--lc, var(--line)); }
+.kids > .node { padding-block: 3px; }
+.kids > .node::before { content: ""; position: absolute; left: -20px; top: 50%; width: 20px; border-top: 1.5px solid var(--lc, var(--line)); }
+.kids > .node::after { content: ""; position: absolute; left: -20px; top: 0; bottom: 0; border-left: 1.5px solid var(--lc, var(--line)); }
+.kids > .node:first-child::after { top: 50%; }
+.kids > .node:last-child::after { bottom: 50%; }
+.kids > .node:only-child::after { display: none; }
+.lv1 > .kids, .lv2 > .kids { --lc: color-mix(in srgb, var(--c) 55%, var(--line)); }
+.lv1 { --lc: var(--line); }
+.lv0 > .kids > .lv1 { padding-block: 9px; }
+
+.node.collapsed > .kids { display: none; }
+
+/* ---------- phones: vertical outline ---------- */
+@media (max-width: 860px) {
+  .tree { min-width: 0; }
+  .node { flex-direction: column; align-items: stretch; }
+  .lv0 > .label { max-width: none; }
+  .lv1 > .label, .lv2 > .label { width: auto; }
+  .lv3 > .label, .leaf > .label, .lv2.leaf > .label { max-width: none; }
+  .kids { padding-left: 22px; margin-top: 4px; }
+  .kids::before { display: none; }
+  .kids > .node::before { left: -13px; top: 1.15em; width: 11px; }
+  .kids > .node::after { left: -13px; top: -4px; bottom: 0; }
+  .kids > .node:first-child::after { top: -4px; }
+  .kids > .node:last-child::after, .kids > .node:only-child::after { display: block; bottom: auto; height: calc(1.15em + 7px); }
+  .lv1 > .kids > .node::before, .lv2 > .kids > .node::before { top: 0.95em; }
+  .lv1 > .kids > .node:last-child::after, .lv2 > .kids > .node:last-child::after { height: calc(0.95em + 7px); }
+  .lv0 > .kids > .node::before { top: 1.45em; }
+  .lv0 > .kids > .node:last-child::after { height: calc(1.45em + 13px); }
+}
+
+footer { margin-top: 28px; color: var(--muted); font-size: 12.5px; max-width: 72ch; }
+footer p { margin: 0 0 6px; }
+@media (prefers-reduced-motion: no-preference) {
+  .kids { animation: none; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="ttl">
+      <h1>구루병 진단 접근 마인드맵</h1>
+      <p class="cite">Roy A, et al. Endocrine Society of Bengal 합의문. <i>Ann Pediatr Endocrinol Metab</i> 2024;29(5):284-307. <a href="https://doi.org/10.6065/apem.2448044.022" target="_blank" rel="noopener">doi:10.6065/apem.2448044.022</a></p>
+    </div>
+    <div class="tools">
+      <div class="legend" aria-label="근거 등급">
+        <span class="item"><span class="chip EB">EB</span>근거 기반</span>
+        <span class="item"><span class="chip CB">CB</span>합의 기반</span>
+        <span class="item"><span class="chip PP">PP</span>실무 지침</span>
+        <span class="item"><span class="sn">§5.1</span>합의문 번호</span>
+      </div>
+      <div class="btns">
+        <button class="ctl" id="btn-expand" type="button">모두 펼치기</button>
+        <button class="ctl" id="btn-collapse" type="button">큰 가지만 보기</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="stage"><div class="tree" id="tree"></div></div>
+
+  <footer>
+    <p>논문 본문과 합의문 문항을 근거로 정리했습니다. 수치와 근거 등급은 원문 표기를 따랐습니다. 가지 이름을 누르면 접고 펼 수 있습니다.</p>
+    <p>PTH 100 pg/mL 기준은 인도 단일 후향 연구에서 제안된 값이고, 비타민 D 6만 IU 주 1회 요법은 원문이 권고한 용량입니다. 국내 적용 시 측정법과 제형을 함께 확인하세요.</p>
+  </footer>
+</div>
+
+<script>
+const T = (t, o = {}) => Object.assign({ t }, o);
+const DATA = T('구루병 진단 접근', { sub: 'ESB 합의문 · 13개 항목', c: [
+  T('분류와 배경', { sub: '시작 지점에 따른 구분', col: 'b1', c: [
+    T('칼슘결핍성: 장 칼슘 흡수 결함이 시작점'),
+    T('인결핍성: 인산뇨가 시작점', { c: [
+      T('FGF23 의존성 (XLH, ADHR, ARHR, TIO 등)'),
+      T('FGF23 비의존성 (HHRH, Fanconi, Dent 등)')
+    ]}),
+    T('가장 흔한 원인은 영양성 구루병 (아프리카·중동·아시아 유병률 10–70%)'),
+    T('Resistant rickets: 통상 비타민 D 용량에 반응 없음 → 비영양성 원인 시사')
+  ]}),
+  T('임상 평가', { sub: '§1 · §3 · §4', col: 'b2', c: [
+    T('나이별 변형 양상', { g: 'EB', s: '§1', c: [
+      T('영아: 두개로, 전두 돌출, 대천문 확대'),
+      T('기는 시기: 상지 침범'),
+      T('2세 이전 활동성: 내반슬'),
+      T('2–3세 이후: 외반슬, windswept 변형'),
+      T('손목·발목 확대, double malleoli, rachitic rosary, Harrison sulcus')
+    ]}),
+    T('병력', { g: 'EB', s: '§3', c: [
+      T('식이, 일광 노출, 가족력, 흡수장애 증상'),
+      T('CYP3A4 유도제 (rifampin, phenytoin) → 칼슘결핍성 위험'),
+      T('저칼슘 증상 (테타니, 경련) → 칼슘결핍성'),
+      T('다뇨·신결석·혈뇨 → dRTA, HHRH, Dent병, PHPT'),
+      T('난청: XLH·ARHR-1 전음성, dRTA 감각신경성')
+    ]}),
+    T('진찰', { g: 'CB', s: '§4', c: [
+      T('2–11세 정상: 과관절간 거리 ≤8 cm, 대퇴과간 거리 <3 cm, 외반 ≤12°'),
+      T('Chvostek·Trousseau 징후 → 칼슘결핍성'),
+      T('탈모 → VDDR-2A'),
+      T('"coast of Maine" 밀크커피반점 → McCune-Albright'),
+      T('선상 모반 → 표피 모반 증후군'),
+      T('우식 없는 치근단 농양 → XLH·ARHR-1 / 유치 조기 탈락 → 저인산효소증')
+    ]})
+  ]}),
+  T('영상 검사', { sub: '§2', col: 'b3', c: [
+    T('손목·무릎·발목 X선으로 확진', { s: '§2', c: [
+      T('초기: 예비석회화대 확대, 경계선 소실'),
+      T('진행: fraying, cupping, splaying, 성장판 확대'),
+      T('손목은 척골 쪽이 더 뚜렷')
+    ]}),
+    T('원인 단서', { g: 'EB', s: '§2.1', c: [
+      T('얇은 피질, 골막하 미란 → 칼슘결핍성 (이차성 부갑상선항진증)'),
+      T('두꺼운 피질, enthesopathy → XLH, ARHR')
+    ]}),
+    T('구루병 모방질환', { g: 'CB', s: '§2.2', c: [
+      T('Blount병, 골간단 연골이형성증, 진행성 가성류마티스 이형성증'),
+      T('점액다당류증, 점액지질증 II형 (ALP 높음)'),
+      T('Jansen형 골간단 연골이형성증 (고칼슘·저인산)'),
+      T('대부분 생화학 검사 정상')
+    ]}),
+    T('Thacher 중증도 점수는 연구용으로만', { g: 'PP', s: '§2.3' })
+  ]}),
+  T('1차 혈액검사', { sub: '§5 · 전원, 아침 공복', col: 'b4', c: [
+    T('칼슘', { c: [
+      T('이온화칼슘 우선', { g: 'EB', s: '§5.1' }),
+      T('불가하면 총칼슘으로 대체', { g: 'CB', s: '§5.2' }),
+      T('알부민 보정 칼슘은 쓰지 않음', { g: 'EB', s: '§5.3' }),
+      T('고칼슘혈증 → PHPT, Jansen형, 저인산효소증, ARHR-2')
+    ]}),
+    T('인 (Pi)', { c: [
+      T('공복 측정, 연령별 기준치', { g: 'EB', s: '§5.4' }),
+      T('영양성 25–33%, VDDR-1A 25%, VDDR-2A 42%는 정상 가능'),
+      T('심한 저칼슘 → 근위세관 PTH 저항으로 Pi 정상·높음 가능')
+    ]}),
+    T('ALP', { c: [
+      T('총 ALP로 충분, 골특이 ALP 불필요', { g: 'CB', s: '§5.5' }),
+      T('연령·성별·측정법별 기준치', { g: 'EB', s: '§5.6' }),
+      T('인결핍성 400–800, 칼슘결핍성 최대 ~2,000 IU/L'),
+      T('정상이면 모방질환, RTA, 가성저인산효소증, 심한 영양결핍 고려')
+    ]}),
+    T('25OHD', { c: [
+      T('<12 ng/mL일 때만 비타민 D 결핍 단독 원인 고려', { g: 'EB', s: '§5.7' }),
+      T('치료 전 >12 ng/mL이면 다른 원인', { g: 'CB', s: '§5.8' }),
+      T('<12여도 다른 원인 배제 못함', { g: 'PP', s: '§5.9' })
+    ]}),
+    T('PTH', { c: [
+      T('칼슘결핍성 감별의 핵심 검사', { g: 'EB', s: '§5.12' }),
+      T('EDTA 혈장, 2세대 intact PTH 측정법', { g: 'EB', s: '§5.13' }),
+      T('참고 cutoff 100 pg/mL (인도 후향 연구)'),
+      T('PTH 억제 + 저Pi → HHRH, Jansen형')
+    ]}),
+    T('크레아티닌: Schwartz eGFR로 평가', { g: 'EB', s: '§5.14' }),
+    T('칼륨: 저칼륨혈증이면 RTA 시사', { g: 'PP', s: '§5.15' })
+  ]}),
+  T('비타민 D 치료와 반응 판정', { sub: '§5.10 · §5.11', col: 'b5', c: [
+    T('25OHD <20 ng/mL이면 먼저 치료 후 평가', { g: 'CB', s: '§5.10', c: [
+      T('콜레칼시페롤 6만 IU 주 1회 × 12주'),
+      T('원소 칼슘 ≥500 mg/일 병용')
+    ]}),
+    T('반응 시간 경과', { c: [
+      T('Pi 상승 4–8일'),
+      T('X선 치유선 1–3주'),
+      T('Ca·Pi 정상화, PTH 감소 ~3주'),
+      T('영상 완전 회복 24주, ALP 정상화는 수개월')
+    ]}),
+    T('12주 후 치유선·Pi 정상화 없음 → resistant, 원인 재평가'),
+    T('치유선이 생겨도 RTA 등 비영양성 원인 배제 못함', { g: 'PP', s: '§5.11' }),
+    T('경구 치료에도 25OHD 지속 저하 → 흡수장애, VDDR-1B, VDDR-3')
+  ]}),
+  T('소변 검사·인산뇨', { sub: '§6 · resistant 전원', col: 'b6', c: [
+    T('혈청과 같은 시점에 spot 소변 Ca·Pi·Cr', { s: '§6' }),
+    T('지표 선택', { c: [
+      T('UPi/UCr, FEPO₄, TRP, TP/GFR로 평가', { g: 'EB', s: '§6.1' }),
+      T('TmP/GFR 대신 TP/GFR 사용', { g: 'CB', s: '§6.2' }),
+      T('TP/GFR = SPi − (UPi × SCr ÷ UCr)', { g: 'EB', s: '§6.3' }),
+      T('Bijvoet 노모그램·Kenny-Glenn 식은 소아에 부적합', { g: 'EB', s: '§6.3' }),
+      T('공복 아침 혈청 + 두 번째 소변, 비공복도 허용', { g: 'EB', s: '§6.4' })
+    ]}),
+    T('해석 (연령별 기준치)', { g: 'CB', s: '§6.5', c: [
+      T('저Pi + TRP >0.95 → 신장 소실 배제', { g: 'CB', s: '§6.6' }),
+      T('TRP ≤0.95 또는 TP/GFR 저하 → 신장 소실 시사', { g: 'CB', s: '§6.7' }),
+      T('중증 저Pi에서 UPi/UCr 저하 → 비신성 원인 시사', { g: 'CB', s: '§6.8' }),
+      T('중증 저Pi에서 TRP 0.8–0.95도 신장 소실 가능, UPi/UCr 높으면 확정', { g: 'CB', s: '§6.9' }),
+      T('장기 저Pi는 이차성 세관 기능장애 → 인산 6주 보충 후 재평가', { g: 'CB', s: '§6.10' })
+    ]}),
+    T('소변 Ca/Cr', { g: 'CB', s: '§6.11', c: [
+      T('연령별 기준치로 해석', { g: 'EB', s: '§6.12' }),
+      T('낮음·정상 하한 → FGF23 매개 또는 칼슘결핍성'),
+      T('고칼슘뇨 → HHRH, NaPi-IIa·NHERF1 결함, RTA, Fanconi'),
+      T('고칼슘뇨 정의: 24시간 소변 칼슘 >4 mg/kg')
+    ]})
+  ]}),
+  T('혈액가스·세관병증', { sub: '§7 · §8', col: 'b7', c: [
+    T('ABG가 원칙, VBG로 대체 가능', { g: 'CB', s: '§7.1' }),
+    T('대사성 산증 → RTA 또는 신성 구루병', { g: 'CB', s: '§7.2' }),
+    T('고염소성 정상 AG 산증 → RTA', { g: 'EB', s: '§7.3', c: [
+      T('산증 중 소변 pH >5.3 → dRTA'),
+      T('소변 pH <5.3 → pRTA')
+    ]}),
+    T('CKD: eGFR 20–40 정상 AG, <15–20 고 AG', { g: 'EB', s: '§7.4' }),
+    T('산증 동반 시 소변 당·요산·아미노산·β2MG·알부민 → Fanconi 평가', { g: 'EB', s: '§8' })
+  ]}),
+  T('2차 검사', { sub: '§9 – §11', col: 'b8', c: [
+    T('1,25(OH)₂D', { g: 'EB', s: '§9', c: [
+      T('대상: resistant 칼슘결핍성 + 25OHD >20 ng/mL'),
+      T('칼슘결핍성에서 높음 → 칼슘 결핍, VDDR-2A/2B'),
+      T('칼슘결핍성에서 낮음 → VDDR-1A (정상일 수도 있음)'),
+      T('인결핍성에서 높음 → FGF23 비의존성'),
+      T('인결핍성에서 낮음·정상 → FGF23 의존성')
+    ]}),
+    T('FGF23', { s: '§10', c: [
+      T('일상 측정 불필요', { g: 'CB', s: '§10.1' }),
+      T('intact FGF23, 측정법별 기준치', { g: 'EB', s: '§10.2' }),
+      T('저Pi에서 정상·높음 = 부적절 정상 → FGF23 매개'),
+      T('인산·calcitriol 1–2주 중단 후, 아침 공복 측정'),
+      T('철 결핍은 C-terminal 측정법 위양성')
+    ]}),
+    T('대체 지표: 고칼슘뇨 + 1,25(OH)₂D 상승 → FGF23 활성 낮음', { g: 'PP', s: '§11' })
+  ]}),
+  T('유전검사·TIO', { sub: '§12 · §13', col: 'b9', c: [
+    T('일상 진단에 불필요, 비영양성 확진 목적', { s: '§12' }),
+    T('FGF23 매개 인결핍성 → PHEX 단일유전자 먼저', { g: 'EB', s: '§12.1' }),
+    T('PHEX 음성 → 임상 엑솜', { g: 'CB', s: '§12.2' }),
+    T('비영양성 칼슘결핍성, FGF23 비의존 인결핍성 → 임상 엑솜', { g: 'CB', s: '§12.3' }),
+    T('burosumab은 XLH·TIO만 승인 → 사용 고려 시 유전 확진'),
+    T('TIO: 소아 극히 드묾, 유전 원인 없을 때만 영상', { g: 'CB', s: '§13', c: [
+      T('SSTR PET (⁶⁸Ga-DOTATATE 등), FDG-PET'),
+      T('치아 농양·이른 발병은 TIO보다 XLH 시사')
+    ]})
+  ]})
+]});
+
+const root = document.getElementById('tree');
+let uid = 0;
+function countLeaves(n) { return n.c ? n.c.reduce((a, k) => a + countLeaves(k), 0) : 1; }
+
+function build(n, lv, col) {
+  const el = document.createElement('div');
+  const has = !!(n.c && n.c.length);
+  el.className = 'node lv' + Math.min(lv, 3) + (has ? '' : ' leaf');
+  const c = n.col || col;
+  if (c) el.style.setProperty('--c', 'var(--' + c + ')');
+
+  const lab = document.createElement(has && lv > 0 ? 'button' : 'div');
+  lab.className = 'label' + (has && lv > 0 ? ' btn' : '');
+  if (has && lv > 0) { lab.type = 'button'; lab.id = 'n' + (++uid); lab.setAttribute('aria-expanded', 'true'); }
+
+  if (lv === 0) {
+    lab.innerHTML = '<b></b><small></small>';
+    lab.querySelector('b').textContent = n.t;
+    lab.querySelector('small').textContent = n.sub;
+  } else {
+    const txt = document.createElement('span');
+    txt.textContent = n.t;
+    lab.appendChild(txt);
+    if (n.g || n.s) {
+      const m = document.createElement('span');
+      m.className = 'meta';
+      m.innerHTML = ' ' + (n.g ? '<span class="chip ' + n.g + '">' + n.g + '</span>' : '') + (n.s ? ' <span class="sn">' + n.s + '</span>' : '');
+      lab.appendChild(m);
+    }
+    if (lv === 1 && n.sub) {
+      const s = document.createElement('span');
+      s.className = 'sub'; s.textContent = n.sub; lab.appendChild(s);
+    }
+    if (has) {
+      const k = document.createElement('span');
+      k.className = 'cnt'; k.hidden = true; k.textContent = '+' + countLeaves(n);
+      lab.appendChild(k);
+    }
+  }
+  el.appendChild(lab);
+
+  if (has) {
+    const kids = document.createElement('div');
+    kids.className = 'kids';
+    n.c.forEach(ch => kids.appendChild(build(ch, lv + 1, c)));
+    el.appendChild(kids);
+    if (lv > 0) lab.addEventListener('click', () => setCollapsed(el, !el.classList.contains('collapsed')));
+  }
+  return el;
+}
+function setCollapsed(el, v) {
+  el.classList.toggle('collapsed', v);
+  const lab = el.querySelector(':scope > .label');
+  if (lab.tagName === 'BUTTON') lab.setAttribute('aria-expanded', String(!v));
+  const cnt = lab.querySelector(':scope > .cnt');
+  if (cnt) cnt.hidden = !v;
+}
+root.appendChild(build(DATA, 0));
+
+document.getElementById('btn-expand').addEventListener('click', () => {
+  root.querySelectorAll('.node').forEach(n => { if (n.querySelector(':scope > .kids') && !n.classList.contains('lv0')) setCollapsed(n, false); });
+});
+document.getElementById('btn-collapse').addEventListener('click', () => {
+  root.querySelectorAll('.lv1').forEach(n => setCollapsed(n, true));
+});
+</script>
+
+</body></html>
