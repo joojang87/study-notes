@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>유전대사질환 강의록 · Study Notes</title>
+<meta name="description" content="의대생 강의용 유전대사질환 강의록 — 총론, 아미노산·유기산·요소회로·지방산·탄수화물·리소좀·퍼옥시좀·금속·포르피린 대사 이상">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 왼쪽 고정 목차 + 본문(최대 820px). 모바일은 목차가 위로 접힘. 각 절에 ★핵심/참고 배지, '핵심만 보기'로 .more 블록 숨김 */
+:root{
+  --bg:#f2f4f6; --surface:#ffffff; --surface2:#e9edf1; --ink:#18212b; --muted:#5b6776; --line:#d3dae2;
+  --accent:#3d7fae; --accent-soft:#e1edf6; --key:#1f6f5c; --key-bg:#dcefe9; --pit:#8a4b12; --pit-bg:#fbeedd; --star:#b45309;
+  --font-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11161c; --surface:#19212a; --surface2:#222c37; --ink:#e5eaf0; --muted:#9ba8b7; --line:#2e3946;
+  --accent:#6fb2df; --accent-soft:#1c3142; --key:#8fd6c1; --key-bg:#173a32; --pit:#f2c48a; --pit-bg:#3a2a17; --star:#f2b04b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11161c; --surface:#19212a; --surface2:#222c37; --ink:#e5eaf0; --muted:#9ba8b7; --line:#2e3946;
+  --accent:#6fb2df; --accent-soft:#1c3142; --key:#8fd6c1; --key-bg:#173a32; --pit:#f2c48a; --pit-bg:#3a2a17; --star:#f2b04b; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 var(--font-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.layout{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;padding-block:32px 80px}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr);gap:16px}}
+nav.toc{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;font-size:14px;line-height:1.5}
+@media (max-width:900px){nav.toc{position:static;max-height:none}}
+nav.toc details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+nav.toc summary{font-weight:700;cursor:pointer}
+nav.toc ol{list-style:none;margin:8px 0 0;padding:0}
+nav.toc li{margin:2px 0}
+nav.toc a{color:var(--muted);text-decoration:none;display:block;padding:2px 6px;border-radius:6px}
+nav.toc a:hover,nav.toc a.on{color:var(--ink);background:var(--accent-soft)}
+nav.toc .sub a{padding-left:18px;font-size:13px}
+.ctrl{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.btn{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;text-align:center;text-decoration:none}
+.btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--star);outline-offset:2px}
+main{min-width:0;max-width:820px}
+header.cover{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px 28px 24px;margin-bottom:28px}
+.eyebrow{font:600 12px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:2rem;line-height:1.25;margin:6px 0 8px;letter-spacing:-.015em;text-wrap:balance}
+h2{font-size:1.5rem;line-height:1.3;margin:56px 0 12px;padding-top:12px;border-top:2px solid var(--ink);letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:1.2rem;margin:36px 0 8px;text-wrap:balance}
+h4{font-size:1.02rem;margin:22px 0 6px;color:var(--accent)}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 12px;padding-left:1.3em}
+li{margin:3px 0}
+.badge{font:600 11px var(--font-mono);letter-spacing:.04em;border-radius:5px;padding:2px 7px;vertical-align:4px;margin-left:8px;white-space:nowrap}
+.b-core{background:var(--star);color:var(--bg)}
+.b-ref{background:var(--surface2);color:var(--muted)}
+.box{border-radius:10px;padding:12px 16px;margin:14px 0}
+.key{background:var(--key-bg);border-left:4px solid var(--key)}
+.key b:first-child{color:var(--key)}
+.pit{background:var(--pit-bg);border-left:4px solid var(--pit)}
+.pit b:first-child{color:var(--pit)}
+.note{background:var(--surface2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.chips span{font-size:.86rem;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--ink);border:1px solid var(--line)}
+.src{font:500 12.5px var(--font-mono);color:var(--muted);margin:-4px 0 14px}
+.tbl{overflow-x:auto;margin:12px 0 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.5}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--surface2);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.flow{display:grid;gap:8px;margin:14px 0}
+.flow .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.flow .n{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.9rem}
+.flow .n b{display:block;color:var(--accent)}
+.flow .arrow{text-align:center;color:var(--muted);font-size:.9rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 20px 10px;margin:18px 0}
+.plan{counter-reset:s}
+.plan li{list-style:none;position:relative;padding-left:64px;margin:6px 0}
+.plan li span{position:absolute;left:0;top:1px;font:600 12px var(--font-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+footer{margin-top:64px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+a{color:var(--accent)}
+body.core-only .more{display:none}
+@media print{nav.toc{display:none}.layout{display:block}body{background:#fff;color:#000}.more{display:block!important}h2{break-before:page}}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc" aria-label="목차">
+  <details open>
+    <summary>목차</summary>
+    <ol id="tocList">
+      <li><a href="#plan">강의 동선 제안</a></li>
+      <li><a href="#s1">1. 총론</a></li>
+      <li class="sub"><a href="#s1-mech">병태생리·유전</a></li>
+      <li class="sub"><a href="#s1-clin">임상 양상</a></li>
+      <li class="sub"><a href="#s1-dx">진단 접근</a></li>
+      <li class="sub"><a href="#s1-tx">치료 원칙</a></li>
+      <li class="sub"><a href="#s1-nbs">신생아 선별검사</a></li>
+      <li><a href="#s2">2. 아미노산 대사 이상</a></li>
+      <li><a href="#s3">3. 유기산혈증</a></li>
+      <li><a href="#s4">4. 요소회로 이상</a></li>
+      <li><a href="#s5">5. 지방산 산화·퍼옥시좀</a></li>
+      <li><a href="#s6">6. 지질단백 대사 이상</a></li>
+      <li><a href="#s7">7. 탄수화물 대사 이상</a></li>
+      <li class="sub"><a href="#s7-hypo">공복 저혈당 감별</a></li>
+      <li><a href="#s8">8. 리소좀 축적 질환</a></li>
+      <li><a href="#s9">9. 퓨린·금속·포르피린</a></li>
+      <li><a href="#s10">10. 한눈에 보는 키워드</a></li>
+      <li><a href="#refs">참고문헌</a></li>
+    </ol>
+  </details>
+  <div class="ctrl">
+    <button class="btn" id="coreBtn" aria-pressed="false">★ 핵심만 보기</button>
+    <a class="btn" href="https://joojang87.github.io/study-notes/pediatrics/iem-keyword-map.html">키워드 마인드맵으로 복습</a>
+  </div>
+</nav>
+
+<main>
+<header class="cover">
+  <div class="eyebrow">소아청소년과 · 3학년 성장과 발달</div>
+  <h1>유전대사질환 강의록</h1>
+  <p>건양대학교병원 소아청소년과 오준석</p>
+  <p style="margin:0;color:var(--muted)">이 강의록은 교과서 내용을 빠짐없이 담은 상세본입니다. <b>★ 핵심</b> 표시가 30분 강의 범위이고, <b>참고</b> 표시는 깊이 공부할 학생을 위한 내용입니다. 왼쪽의 "핵심만 보기"를 누르면 세부 설명이 접힙니다. 모든 내용에 근거 쪽수를 달았습니다(홍창의 = 홍창의 소아과학 12판).</p>
+</header>
+
+<section id="goals">
+  <h3 style="margin-top:0">학습 목표</h3>
+  <ol>
+    <li>신생아·영아가 기면, 구토, 경련, 의식 저하로 왔을 때 유전대사질환을 감별 진단에 넣을 수 있다.</li>
+    <li>암모니아, 혈액가스·음이온차, 혈당, 젖산, 케톤으로 질환군(요소회로·유기산·아미노산·지방산·탄수화물)을 구분할 수 있다.</li>
+    <li>급성 대사 위기의 초기 치료 원칙을 말할 수 있다.</li>
+    <li>신생아 선별검사의 원리와 대상 질환, 한계를 설명할 수 있다.</li>
+    <li>대표 질환(PKU, MSUD, 호모시스틴뇨증, OTC 결핍, 유기산혈증, 당원병, 갈락토스혈증, 지방산 산화 장애, 리소좀 축적 질환, 윌슨병 등)을 키워드로 떠올릴 수 있다.</li>
+  </ol>
+  <p class="src">연계 국시 평가목표: 9 구역/구토, 25 발달지연, 27 발작, 51 신생아 진찰(신생아 선별검사), 68 의식변화/혼수</p>
+</section>
+
+<section id="plan">
+  <h2>강의 동선 제안 (30분)</h2>
+  <p>아래는 한 가지 예시입니다. 강의 뒤 키워드 마인드맵과 셀프 퀴즈로 복습하는 흐름을 전제로 했습니다.</p>
+  <ol class="plan">
+    <li><span>0–3분</span>도입 사례: "생후 3일, 잘 먹던 아기가 축 처진다" — 패혈증만 생각하면 놓치는 질환</li>
+    <li><span>3–10분</span>총론: 의심 상황, 암모니아→혈액가스·음이온차 알고리즘, 급성기 치료 원칙</li>
+    <li><span>10–13분</span>신생아 선별검사: 원리, "갑·부·오·빠·가·마", MS/MS의 한계</li>
+    <li><span>13–22분</span>각론 핵심: PKU·MSUD·호모시스틴뇨증 → 유기산혈증 vs 요소회로(OTC) → 당원병 I형·갈락토스혈증 → 지방산 산화 장애</li>
+    <li><span>22–27분</span>리소좀·퍼옥시좀·금속: 체리 반점, X-연관 질환 묶음, 윌슨·멘케스</li>
+    <li><span>27–30분</span>키워드 총정리(냄새·머리카락·눈·소변) → 마인드맵 복습 안내</li>
+  </ol>
+</section>
+
+<!-- ============ 1. 총론 ============ -->
+<section id="s1">
+<h2>1. 총론 <span class="badge b-core">★ 핵심</span></h2>
+
+<h3 id="s1-mech">1-1. 정의와 병태생리</h3>
+<p>유전대사질환(inborn errors of metabolism)은 20세기 초 Garrod가 처음 쓴 개념으로, <b>특정 유전자의 돌연변이로 그 유전자의 산물인 단백질이 바뀌어 생기는 질환</b>을 말합니다. 그 단백질은 효소, 수용체, 수송 단백, 세포막, 구조 단백 등 다양합니다. 현재 약 700여 종이 알려져 있습니다.</p>
+<p>효소 하나가 고장 나면 두 가지 방향으로 문제가 생깁니다.</p>
+<ul>
+  <li><b>유해한 물질이 쌓이는 경우</b>: 기질과 그 대사산물이 축적되어 독성을 냄 (예: PKU의 페닐알라닌, 요소회로 이상의 암모니아)</li>
+  <li><b>꼭 필요한 물질을 만들지 못하는 경우</b>: 최종 산물이 부족해짐 (예: 당원병 I형에서 공복 시 포도당)</li>
+</ul>
+<p>그래서 치료 방법도 원인에 따라 다릅니다. 쌓이는 물질은 섭취를 줄이거나 배출을 늘리고, 부족한 물질은 보충합니다.</p>
+<p class="src">홍창의 9장 p.170, 그림 9-1</p>
+
+<div class="more">
+<h4>그림 9-1: 대사 장애가 생기는 6가지 기전</h4>
+<div class="tbl"><table>
+<tr><th>번호</th><th>기전</th><th>예</th></tr>
+<tr><td>①</td><td>물질이 한 구획에서 다른 구획으로 옮겨지는 수송체 이상</td><td>HHH 증후군(오르니틴 수송), 리신뇨성 단백 불내증</td></tr>
+<tr><td>②</td><td>B → C 전환 효소 결핍</td><td>대부분의 효소 결핍 질환</td></tr>
+<tr><td>③</td><td>B가 쌓여 다른 경로(B → D)로 흘러감</td><td>PKU에서 phenylpyruvate 생성</td></tr>
+<tr><td>④</td><td>조효소와 결합하지 못하거나 조효소 합성 장애</td><td>BH4 결핍증, 비타민 B12 반응형 MMA</td></tr>
+<tr><td>⑤</td><td>최종 산물 C 결핍으로 음성 되먹임이 사라짐</td><td>선천 부신 과형성증(코르티솔 결핍 → ACTH 증가)</td></tr>
+<tr><td>⑥</td><td>쌓인 D가 다른 반응(E → F)을 2차로 방해</td><td>유기산혈증에서 요소회로 억제 → 고암모니아</td></tr>
+</table></div>
+<p class="src">홍창의 9장 그림 9-1 (예시는 같은 장 각론에서 연결)</p>
+</div>
+
+<h4>유전 양식과 유전적 이질성</h4>
+<ul>
+  <li>대부분(약 70%)이 <b>상염색체 열성</b>. 부모는 정상이어도 형제자매에게 생길 수 있다.</li>
+  <li>예외인 <b>X-연관</b>: OTC 결핍, 헌터 증후군(MPS II), 파브리병, 레쉬-니한 증후군, X-연관 부신백질이영양증, 멘케스병, 일부 당원병 IX형.</li>
+  <li><b>미토콘드리아 DNA</b> 변이는 모계 유전. <b>상염색체 우성</b>은 급성 간헐 포르피린증, 가족성 고콜레스테롤혈증 등.</li>
+  <li><b>대립유전자 이질성</b>: 같은 효소 결핍이라도 변이 종류(미스센스, 넌센스, 틀이동, 스플라이싱 변이 등)에 따라 임상형이 다르다. 예: 고셔병 1·2·3형, 고전적 PKU와 경한 고페닐알라닌혈증.</li>
+  <li><b>유전자좌 이질성</b>: 서로 다른 유전자 이상이 같은 질환을 만든다. 예: 고페닐알라닌혈증(PAH 결핍 또는 BH4 결핍), 호모시스틴뇨증, 메틸말론산혈증.</li>
+</ul>
+<div class="box note"><b>수업용 비유</b> (강의록 슬라이드 4): "대한사람, 대한으로 길이 보전하세"에서 글자 하나가 바뀌면(미스센스) 뜻이 조금 달라지고, 중간에 마침표가 찍히면(넌센스) 문장이 끊기고, 띄어쓰기가 한 칸 밀리면(틀이동) 뒤 문장 전체가 엉망이 된다.</div>
+<p class="src">홍창의 9장 p.170–171, 표 9-1</p>
+
+<h3 id="s1-clin">1-2. 임상 양상: 언제 의심하나</h3>
+<div class="box key"><b>핵심</b> 출생 때는 정상이다가, <b>수유를 시작하고 2~3일 뒤</b> 원인 모를 기면, 수유 거부, 구토, 경련이 생기면 의심한다. 증상이 비특이적이라 <b>신생아 패혈증과 똑같아 보이거나 실제로 함께</b> 온다.</div>
+<p>교과서가 꼽는 유전대사질환의 특징은 다음과 같습니다.</p>
+<ol>
+  <li>나이에 따라 잘 생기는 질환이 다르다.</li>
+  <li>대부분(70%) 상염색체 열성이라 부모는 정상이어도 형제자매에게 생긴다.</li>
+  <li>여러 장기를 함께 침범한다.</li>
+  <li>같은 질환이라도 유전형, 남은 효소 활성에 따라 증상 정도가 다양하다.</li>
+  <li>증상이 비특이적이라 특정 질환을 의심할 단서(clue)를 찾아야 한다.</li>
+  <li>대부분 기형을 동반하지 않는다(예외: Smith-Lemli-Opitz 증후군, Lowe 증후군 등).</li>
+</ol>
+
+<h4>신생아기</h4>
+<p>신생아기에 급성 뇌병증으로 오는 대표 질환은 유기산혈증(메틸말론산혈증 등), 요소회로 이상(OTC 결핍), 아미노산 대사 장애(단풍당뇨증), 갈락토스혈증, 비케톤성 고글리신혈증입니다.</p>
+
+<h4>신생아기 이후</h4>
+<p>효소가 조금 남아 있거나 늦게 발현하면 감염, 발열, 금식 같은 <b>대사 스트레스 때 반복해서</b> 증상이 나타납니다.</p>
+<ul>
+  <li>원인 모를 지적 장애, 의식 변화, 발달 지연·퇴행, 경련, 운동실조, 정신 증상</li>
+  <li>급성 질환 때의 특이한 냄새</li>
+  <li>간헐적으로 반복되는 원인 모를 구토, 산증, 케톤혈증이 없는 저혈당</li>
+  <li>간비대, 비장비대, 골격 변화</li>
+  <li>신결석, 요로결석</li>
+  <li>백내장, 망막 색소 변성, 청력 장애</li>
+  <li>혈전증</li>
+  <li>선천 기형, 이상한 얼굴 모양</li>
+</ul>
+
+<h4>병력 청취에서 놓치지 말 것</h4>
+<div class="tbl"><table>
+<tr><th>항목</th><th>확인할 내용</th></tr>
+<tr><td>산전력</td><td>이전 유산·사산, 임신 초기 감염, 약물 복용</td></tr>
+<tr><td>출생력</td><td>분만 시 뇌손상, 체중, 재태 기간, 수유 진행과 동반 증상</td></tr>
+<tr><td>가족력</td><td>원인 모르게 사망한 형제, 근친결혼, 3대 가계도</td></tr>
+<tr><td>발달력</td><td>지적 장애, 경련, 발달 이정표</td></tr>
+<tr><td>증상</td><td>반복되는 산증·저혈당, 수유 관련 구토, 의식 변화, 경련, 특이한 냄새, 간비대, 고암모니아혈증, 백혈구·혈소판 감소</td></tr>
+</table></div>
+<p class="pit box"><b>주의</b> 가족 중 비슷한 환자가 있다고 해서 반드시 유전성은 아니므로 섣부른 유전 상담은 피하고, 낙인(stigmatization)이 생기지 않게 조심한다.</p>
+<p class="src">홍창의 9장 p.170–173</p>
+
+<h3 id="s1-dx">1-3. 진단 접근</h3>
+<h4>초기 검사</h4>
+<ol>
+  <li><b>소변</b>: 냄새(뚜껑 닫은 병을 잠시 두었다 열어서 맡는다), pH, 케톤, 환원당(Benedict), 염화제이철, DNPH, nitroprusside 검사, 소변 유기산 분석</li>
+  <li><b>혈액</b>: CBC, 혈액가스·전해질(음이온차), 혈당, <b>암모니아</b>, 젖산·피루브산, Ca/Mg, 요산, 혈장 아미노산, acylcarnitine. 말초혈액 도말에서 림프구 공포</li>
+  <li><b>치료 시작 전 소변·혈장·뇌척수액을 냉장 보관</b>한다(나중에 진단 검사를 할 수 있도록).</li>
+  <li>그 밖에 초음파, 뇌파, 뇌 MRI, 뇌척수액 검사</li>
+</ol>
+<p class="src">홍창의 9장 p.173</p>
+
+<h4>그림 9-2: 신생아 급성기 감별 알고리즘</h4>
+<div class="flow" aria-label="신생아 유전대사질환 진단 알고리즘">
+  <div class="n"><b>임상 증상</b>식욕 부진, 구토, 기면, 포도당·칼슘으로 좋아지지 않는 경련, 혼수 → 패혈증과 함께 유전대사질환 감별</div>
+  <div class="arrow">↓ 혈중 암모니아 측정</div>
+  <div class="row">
+    <div class="n"><b>암모니아 상승</b>→ 혈액가스 측정</div>
+    <div class="n"><b>암모니아 정상</b>→ 혈액가스 측정</div>
+  </div>
+  <div class="arrow">↓</div>
+  <div class="row">
+    <div class="n"><b>pH·음이온차 정상</b>요소회로 이상</div>
+    <div class="n"><b>음이온차 상승 산증</b>유기산혈증, 젖산혈증 (암모니아 상승·정상 모두 가능)</div>
+    <div class="n"><b>암모니아 정상 + 음이온차 정상</b>아미노산 대사 장애, 갈락토스혈증</div>
+  </div>
+</div>
+<p class="src">홍창의 9장 그림 9-2 (p.172)</p>
+
+<div class="tbl"><table>
+<caption style="text-align:left;padding:8px 10px;font-weight:600">표 9-2. 급성 뇌병증을 일으키는 질환군의 생화학 소견</caption>
+<tr><th></th><th>요소회로 이상</th><th>단풍당뇨증</th><th>유기산혈증</th><th>지방산 산화 장애</th><th>호흡연쇄 이상</th></tr>
+<tr><td>대사 산증</td><td>−</td><td>±</td><td>+++</td><td>±</td><td>++</td></tr>
+<tr><td>혈당</td><td>정상</td><td>정상/↓</td><td>↓↓</td><td>↓↓↓</td><td>정상</td></tr>
+<tr><td>소변 케톤</td><td>−</td><td>↑↑</td><td>↑↑</td><td>−</td><td>↑</td></tr>
+<tr><td>암모니아</td><td>↑↑↑</td><td>정상</td><td>↑↑</td><td>↑</td><td>정상</td></tr>
+<tr><td>젖산</td><td>정상</td><td>정상</td><td>↑</td><td>±</td><td>↑↑↑</td></tr>
+<tr><td>간기능</td><td>정상/↑</td><td>정상</td><td>정상</td><td>↑↑</td><td>정상</td></tr>
+<tr><td>혈장 carnitine</td><td>정상</td><td>정상</td><td>↓↓↓</td><td>↓↓</td><td>정상</td></tr>
+<tr><td>혈장 아미노산</td><td>비정상</td><td>BCAA↑</td><td>glycine↑</td><td>±</td><td>alanine↑</td></tr>
+<tr><td>소변 유기산</td><td>정상</td><td>비정상</td><td>유기산↑</td><td>dicarboxylic acid↑</td><td>β-hydroxybutyrate↑</td></tr>
+</table></div>
+<p class="src">홍창의 9장 표 9-2 (p.173)</p>
+
+<div class="box key"><b>외우는 법</b> "암모니아만 높고 산증 없으면 요소회로, 산증·케톤·암모니아가 다 있으면 유기산, 저혈당인데 케톤이 없으면 지방산 산화."</div>
+
+<div class="more">
+<h4>확진</h4>
+<p>아미노산, 탄수화물, 유기산처럼 쌓이는 물질은 혈액과 소변에서 증가한 물질과 그 중간 대산산물의 배설을 확인해 진단합니다(예: PKU에서 혈중 페닐알라닌 증가와 소변 phenylpyruvic acid). 고분자가 쌓이는 당원병·지질 축적병은 조직 생검으로 병리 조직을 보거나 쌓인 물질을 분석하고, 백혈구·섬유모세포에서 효소 결함을 증명합니다(예: 고셔병의 glucocerebrosidase 활성 저하). 최근에는 유전자 검사로 확진하는 경우가 늘었습니다.</p>
+<h4>산전 진단</h4>
+<p>치료가 불가능하거나 예후가 나쁜 질환은 출생 전 진단을 고려합니다. 임신 10~12주 융모막 채취, 13~15주 이후 양수 세포로 효소 측정이나 DNA 분석을 하고, 착상 전 진단도 가능합니다. 메틸말론산혈증처럼 태아의 대사산물이 모체 소변으로 나와 산전에 진단하는 경우도 있습니다.</p>
+<p class="src">홍창의 9장 p.173–174</p>
+</div>
+
+<h3 id="s1-tx">1-4. 치료 원칙</h3>
+<div class="box key"><b>급성 대사 위기의 초기 치료</b>
+<ol style="margin:6px 0 0">
+  <li>원인이 밝혀질 때까지 <b>수유(단백 섭취) 중단</b></li>
+  <li>젖산혈증이 심한 경우를 빼고 <b>10% 포도당 수액과 지방</b>으로 충분한 열량 공급 (이화작용 억제)</li>
+  <li><b>Shot-gun therapy</b>: 복합 수용성 비타민(조효소) 대량 투여</li>
+  <li>동반 감염을 의심하면 항균제</li>
+  <li>고암모니아혈증이나 대사 산증이 심하면 <b>혈액 투석</b>(복막 투석보다 효과적)</li>
+</ol></div>
+<p class="src">홍창의 9장 p.174</p>
+
+<h4>장기 치료 전략 (표 9-3)</h4>
+<div class="tbl"><table>
+<tr><th>전략</th><th>예</th></tr>
+<tr><td>전구물질 제한(식이)</td><td>PKU 저페닐알라닌식, MSUD 류신·이소류신·발린 제한식, 호모시스틴뇨증 저메티오닌·시스틴 첨가식, 고암모니아혈증 저단백식, 갈락토스혈증 무유당식, 윌슨병 저구리식</td></tr>
+<tr><td>결손 물질 보충</td><td>갑상샘호르몬 합성 장애에 L-thyroxine, 21-hydroxylase 결핍에 hydrocortisone·mineralocorticoid, 당원병 I형에 생옥수수 전분</td></tr>
+<tr><td>축적 물질 제거</td><td>윌슨병 D-penicillamine, 가족성 고콜레스테롤혈증 cholestyramine, 요소회로 이상 sodium benzoate·phenylbutyrate</td></tr>
+<tr><td>효소 보충요법</td><td>고셔병, 파브리병, 헐러 증후군, 헌터 증후군, 폼페병 등 (정맥 효소는 혈관-뇌 장벽을 통과하지 못해 신경 증상은 개선하지 못함)</td></tr>
+<tr><td>조효소 보충</td><td>호모시스틴뇨증 pyridoxine(B6), 메틸말론산혈증 cobalamin(B12), 젖산혈증 thiamine·riboflavin, 일부 PKU BH4</td></tr>
+<tr><td>유전자 치료</td><td>ADA 결핍 (사람에서 처음 시행된 유전자 치료)</td></tr>
+<tr><td>장기 이식</td><td>간이식: 윌슨병, 당원병 I형, 요소회로 이상, 티로신혈증 I형 / 조혈모세포 이식: 부신백질이영양증, 헐러 증후군 / 신장 이식: 시스틴증</td></tr>
+<tr><td>저분자 치료</td><td>고셔병 기질 감소 요법, 파브리병 화학적 샤페론</td></tr>
+<tr><td>발증 유발 약물 회피</td><td>G6PD 결핍의 sulfa제, 급성 간헐 포르피린증의 barbiturate</td></tr>
+</table></div>
+<p class="src">홍창의 9장 표 9-3, 9-4, p.174–176</p>
+
+<div class="more">
+<h4>유전대사질환 환자의 임신 (모성 PKU)</h4>
+<p>조기 치료로 정상 성장한 여성 환자가 임신하면, 태아가 환아가 아니더라도 모체에 쌓인 대사산물이 태반을 넘어 태아에게 장애를 줍니다. 대표적인 예가 <b>모성 PKU</b>로, 소두증, 선천 심장 기형, 저체중, 지적 장애가 생깁니다. 임신 전부터 엄격한 저페닐알라닌식을 해야 합니다.</p>
+<p class="src">홍창의 9장 p.176, 178</p>
+</div>
+
+<h3 id="s1-nbs">1-5. 신생아 선별검사</h3>
+<h4>선별검사 대상이 되는 조건</h4>
+<ul>
+  <li>방치하면 비가역적 뇌손상을 일으키지만 <b>조기에 발견해 치료하면 장애를 막을 수 있다</b>.</li>
+  <li>증상만으로는 조기 진단이 어렵다.</li>
+  <li>빈도가 비교적 높고, 효율적이며 경제적인 선별 방법이 있다.</li>
+</ul>
+<h4>방법</h4>
+<ul>
+  <li>생후 3~7일(수유 시작 후)에 발뒤꿈치를 찔러 여과지에 혈액을 적셔 말린 뒤 검사실로 보낸다.</li>
+  <li>예전에는 PKU·호모시스틴뇨증·단풍당뇨증은 세균을 이용한 Guthrie 검사, 갈락토스혈증은 Paigen·Beutler 법을 썼고, 최근에는 효소 비색법을 쓴다.</li>
+  <li><b>탠덤질량분석(MS/MS)</b>으로 아미노산 대사 장애, 유기산 대사 장애, 요소회로 이상 일부, 지방산 산화 장애를 한 번에 선별한다.</li>
+</ul>
+<div class="box pit"><b>함정</b> MS/MS로 <b>못 잡는</b> 질환: 갈락토스혈증, 선천 갑상샘저하증, 선천 부신 과형성증. 이들은 별도 검사가 필요하다.</div>
+<div class="box key"><b>암기법 "갑·부·오·빠·가·마"</b> (강의록 슬라이드 9): <b>갑</b>상샘저하증, <b>부</b>신피질과형성증, 호모시스틴뇨증(<b>오</b>), 페닐케톤뇨증(<b>빠</b>), <b>갈</b>락토스혈증(가), 단풍당뇨증(메이플시럽뇨증, <b>마</b>)</div>
+<p>국내에서는 2018년 10월부터 MS/MS를 포함한 신생아 선천성대사이상검사(50여 종)에 건강보험이 적용되었습니다.</p>
+<p class="src">홍창의 9장 p.176; 뉴시스 2018.8.2 (보건복지부 발표)</p>
+</section>
+
+<!-- ============ 2. 아미노산 ============ -->
+<section id="s2">
+<h2>2. 아미노산 대사 이상</h2>
+
+<h3>2-1. 페닐케톤뇨증 (PKU) <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>쥐오줌(곰팡이) 냄새</span><span>담갈색 모발·흰 피부</span><span>습진</span><span>지능 저하·경련</span><span>염화제이철 녹색</span><span>모성 PKU</span></div>
+<p><b>병인</b>: 페닐알라닌을 티로신으로 바꾸는 <b>phenylalanine hydroxylase(PAH)</b> 활성이 선천적으로 떨어져 페닐알라닌과 그 대사산물이 쌓입니다. 상염색체 열성. 빈도는 미국 1/14,000, 일본 1/75,000, 한국 약 1/51,000.</p>
+<p><b>증상</b>: 영아기에는 구토, 습진, <b>담갈색 모발과 흰 피부</b>(티로신이 부족해 멜라닌을 덜 만듦)가 특징입니다. 뒤집기·걷기·말하기가 늦고, 일부는 경련을 하며, 땀과 소변에서 <b>쥐오줌 냄새</b>가 납니다. 생후 1년까지 치료하지 않으면 IQ가 50 이하로 떨어지지만, <b>생후 1개월 안에 치료를 시작하면 이런 증상이 나타나지 않습니다.</b></p>
+<p><b>검사</b>: 고전형은 혈중 페닐알라닌이 20 mg/dL 이상. 소변의 phenylpyruvic acid에 10% 염화제이철을 떨어뜨리면 초록색이 되지만 신생아기에는 자주 음성이라 선별검사는 혈액으로 합니다. 고전형 일부는 BH4에 반응하므로 BH4 부하 검사를 합니다.</p>
+<div class="more">
+<div class="tbl"><table>
+<tr><th>분류</th><th>혈중 페닐알라닌(치료 전)</th></tr>
+<tr><td>정상</td><td class="num">&lt; 2 mg/dL</td></tr>
+<tr><td>양성 고페닐알라닌혈증</td><td class="num">4–20 mg/dL</td></tr>
+<tr><td>고전적 PKU</td><td class="num">지속적으로 ≥ 20 mg/dL</td></tr>
+</table></div>
+<p class="src">홍창의 9장 p.177 (정상 상한은 4 mg/dL 미만으로 기술)</p>
+</div>
+<p><b>치료</b>: 선별검사에서 페닐알라닌이 10 mg/dL 이상이면 즉시 저페닐알라닌 특수 분유를 먹이고, 혈중 농도를 2~6 mg/dL로 유지합니다. 식이 요법은 평생 유지하는 것이 바람직합니다. BH4 반응형은 BH4(Kuvan)를 함께 씁니다. 페닐알라닌을 너무 제한하면 성장 장애, 빈혈, 저단백혈증이 오므로 주의합니다.</p>
+<div class="more">
+<div class="tbl"><table>
+<tr><th>연령</th><th>목표 혈중 페닐알라닌 (mg/dL)</th></tr>
+<tr><td>영아기~유아기 전반</td><td class="num">2–4</td></tr>
+<tr><td>유아기 후반~초등학생 전반</td><td class="num">3–6</td></tr>
+<tr><td>초등학생 후반</td><td class="num">3–8</td></tr>
+<tr><td>중학생 후반</td><td class="num">3–10</td></tr>
+<tr><td>고등학생 이후</td><td class="num">3–15</td></tr>
+</table></div>
+<p class="src">홍창의 9장 표 9-6 (p.178)</p>
+<div class="box note"><b>최신 가이드라인과 비교</b> 유럽 PKU 가이드라인(2017)은 치료 전 페닐알라닌이 360 µmol/L(약 6 mg/dL)를 넘으면 치료하고, 0~12세와 임신부는 120–360 µmol/L(약 2–6 mg/dL), 12세 이후는 120–600 µmol/L(약 2–10 mg/dL)를 목표로 권고합니다. 단위 환산: 페닐알라닌 1 mg/dL ≈ 60.5 µmol/L.</div>
+<p class="src">van Spronsen FJ, et al. Lancet Diabetes Endocrinol 2017</p>
+</div>
+<p><b>모성 PKU</b>: 임신부가 저페닐알라닌식을 하지 않으면 태아에게 저출생체중, 소두증, 심기형, 지적 장애가 생깁니다. 임신 전부터 출산까지 혈중 페닐알라닌을 6 mg/dL 이하로 유지해야 합니다.</p>
+<p class="src">홍창의 9장 p.176–178, 그림 9-3, 표 9-5, 9-6</p>
+
+<h3>2-2. BH4 결핍증 <span class="badge b-ref">참고</span></h3>
+<p>Guthrie 검사로 PKU를 진단하고 저페닐알라닌 분유로 치료했는데도 <b>경련과 지능 장애가 생기는</b> 경우입니다. PAH는 정상이고, 조효소 BH4를 만드는 효소(dihydropteridine reductase, 6-pyruvoyltetrahydropterin synthase 등)가 결핍되어 있습니다. BH4는 티로신·트립토판 수산화효소의 조효소이기도 해서 <b>도파민과 세로토닌</b>도 못 만듭니다. 국내 고페닐알라닌혈증의 약 10%를 차지합니다. 소변 BH4가 현저히 감소하고, BH4를 주면 혈중 페닐알라닌이 떨어집니다. L-dopa, 5-hydroxytryptophan, BH4로 치료합니다.</p>
+<p class="src">홍창의 9장 p.178</p>
+
+<h3>2-3. 티로신혈증 <span class="badge b-ref">참고</span></h3>
+<p><b>I형(간신장형)</b>: fumarylacetoacetate hydrolase(FAH) 결핍. 급성형은 생후 6개월 안에 발열, 구토, 설사, 간비대, 황달, 출혈 경향, 양배추 냄새를 보이고 2세 전에 간부전으로 사망합니다. 만성형은 신세뇨관 장애(Fanconi 유사)와 비타민 D 저항 구루병이 진행하고 10세 전에 간부전이나 간암으로 사망할 수 있습니다. 혈중·소변 <b>succinylacetone</b>이 증가합니다. 저페닐알라닌·저티로신식과 <b>NTBC(nitisinone)</b>로 치료하고, 간이식이 효과적입니다.</p>
+<p><b>II형(눈피부형, Richner-Hanhart)</b>: tyrosine aminotransferase 결핍. <b>각막 궤양(혼탁), 손발바닥 각화증, 지적 장애</b>가 주증상입니다. 혈중 티로신이 20–50 mg/dL로 매우 높습니다.</p>
+<p class="src">홍창의 9장 p.178–179</p>
+
+<h3>2-4. 알캅톤뇨증 <span class="badge b-ref">참고</span></h3>
+<div class="chips"><span>소변을 두면 검게 변함</span><span>기저귀 얼룩</span><span>귀 연골 청회색</span><span>관절염</span></div>
+<p>Homogentisic acid dioxygenase 결핍(상염색체 열성). 쌓인 homogentisic acid가 산화되어 결체 조직에 검게 침착합니다(조직 갈변증, ochronosis). 소아기에는 <b>소변을 두면 검게 변하는 것</b>(알칼리를 넣으면 더 빨리) 외에 증상이 거의 없고, 20세 이후 귀 연골이 청회색으로 변하며 성인에서 관절염, 심장 판막 석회화가 옵니다. homogentisic acid는 환원성이 있어 소변 당 검사가 양성으로 나와 당뇨와 혼동될 수 있습니다. 혈청 아미노산은 정상입니다. 저페닐알라닌·저티로신식과 nitisinone을 씁니다.</p>
+<p class="src">홍창의 9장 p.179–180</p>
+
+<div class="more">
+<h3>2-5. 백색증 <span class="badge b-ref">참고</span></h3>
+<p>멜라닌 색소 형성 장애(상염색체 열성). 전신 백색증은 피부가 우유처럼 희고 모발이 황백색, 홍채가 투명한 붉은색이며 눈부심과 안진이 있습니다. Tyrosinase 음성형이 더 심합니다. 눈 백색증은 눈의 색소만 없습니다. 햇빛을 피하고 자외선 차단제를 씁니다.</p>
+<p class="src">홍창의 9장 p.179</p>
+</div>
+
+<h3>2-6. 단풍당뇨증 (MSUD) <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>단풍당밀(달콤한) 냄새</span><span>생후 3~5일 수유 곤란</span><span>경련·혼수</span><span>Leu·Ile·Val↑</span><span>DNPH 양성</span></div>
+<p>분지쇄 아미노산(<b>류신, 이소류신, 발린</b>)의 α-keto산을 분해하는 branched-chain α-ketoacid dehydrogenase 결핍(상염색체 열성). 분지쇄 아미노산과 α-keto산이 쌓여 심한 신경 증상이 생깁니다.</p>
+<p><b>증상</b>: 생후 3~5일부터 수유 곤란, 구토, Moro 반사 소실, 경련, 호흡 장애, 발육 장애, 기면, 혼수, 경직과 반궁 긴장. 치료하지 않으면 생후 수주에서 수개월 안에 사망합니다.</p>
+<p><b>검사</b>: 소변에 dinitrophenylhydrazine(DNPH)을 넣으면 황색 침전. 소변에서 <b>단풍 당밀(maple syrup)과 비슷한 달콤한 냄새</b>. 혈장·소변 류신·이소류신·발린 증가. MS/MS로 류신을 측정해 선별합니다.</p>
+<p><b>치료</b>: 생후 일찍 저류신·저이소류신·저발린 분유. 중증에서는 쌓인 아미노산과 α-keto산을 없애기 위해 혈액 투석. 일부는 <b>티아민(B1) 반응형</b>입니다.</p>
+<p class="src">홍창의 9장 p.180–181, 그림 9-4, 표 9-7</p>
+
+<h3>2-7. 호모시스틴뇨증 <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>수정체 탈구</span><span>마르판 유사 체형</span><span>혈전색전증</span><span>지능 저하</span><span>안면 발적</span><span>가는 모발</span><span>B6 반응형</span></div>
+<p><b>Cystathionine β-synthase</b> 결핍(상염색체 열성, 21번 염색체). 비타민 B6 의존형과 비의존형이 있습니다.</p>
+<p><b>증상</b>: 지능 장애, 경련, 보행 장애 같은 신경 증상, <b>수정체 탈구</b>, 근시, 백내장 같은 눈 증상, 골다공증, 안면 발적, 가늘고 숱이 적은 모발. <b>혈전 경향</b>이 강해 사망 원인이 됩니다. 가장 흔한 증상은 지능 장애와 눈 증상이고, 사지와 체간이 길고 심잡음, 수정체 탈구가 있어 <b>마르판 증후군과 감별</b>해야 합니다.</p>
+<p><b>검사</b>: 탠덤 매스로 신생아 선별. 소변 nitroprusside 반응 양성, 혈중 methionine·homocysteine 증가, cystine 매우 낮음, 소변 homocystine 증가.</p>
+<p><b>치료</b>: 먼저 <b>비타민 B6를 대량(200–1,000 mg/일)</b> 투여합니다. 혈중 methionine이 정상이 되고 소변 homocysteine이 사라지면 B6를 계속합니다. 효과가 없으면 cystine을 첨가한 저methionine식과 betaine으로 치료합니다.</p>
+<p class="src">홍창의 9장 p.182–183, 그림 9-5</p>
+
+<div class="more">
+<h3>2-8. 비케톤성 고글리신혈증 <span class="badge b-ref">참고</span></h3>
+<p>Glycine cleavage enzyme 결핍. 생후 수일 안에 경련(특히 근간대 경련), 기면, 딸꾹질, 무호흡이 나타나 대부분 신생아기에 사망하고, 살아남아도 심한 정신 운동 발달 지연이 남습니다. 혈중·소변·뇌척수액 glycine 증가와 혈장 serine 감소로 진단합니다. 케톤증과 산증이 없다는 점이 케톤성 고글리신혈증(유기산혈증)과 다릅니다. 효과적인 치료는 없고, 경한 형에서 strychnine, diazepam, dextromethorphan이 시도됩니다.</p>
+<p class="src">홍창의 9장 p.181–182, 표 9-7</p>
+</div>
+</section>
+
+<!-- ============ 3. 유기산혈증 ============ -->
+<section id="s3">
+<h2>3. 유기산혈증</h2>
+<div class="box key"><b>공통 패턴</b> 신생아기 구토·기면·혼수 + <b>음이온차 증가 대사 산증</b> + <b>케톤증</b> + 고암모니아혈증 + 호중구·혈소판 감소, 저혈당. 혈장 carnitine이 크게 감소한다. 소변 유기산 분석과 acylcarnitine으로 진단한다.</div>
+<p class="src">홍창의 9장 표 9-2, p.181</p>
+<div class="tbl"><table>
+<tr><th>질환</th><th>결핍 효소</th><th>키워드</th><th>치료 포인트</th></tr>
+<tr><td><b>이소발레르산혈증</b> ★</td><td>Isovaleryl-CoA dehydrogenase (류신 대사)</td><td><b>땀에 젖은 발 냄새</b>, 케톤산증, 기면·경련</td><td>저단백식 + glycine(250 mg/kg/일) + carnitine(100 mg/kg/일)</td></tr>
+<tr><td><b>프로피온산혈증</b></td><td>Propionyl-CoA carboxylase</td><td>케톤성 고글리신혈증, 케톤증, 산증, 고암모니아, 호중구·혈소판 감소, 감염에 약함</td><td>포도당·알칼리, 저Ile·Val·Met·Thr식, L-carnitine, metronidazole(장내 세균의 propionate 생성 억제), 일부 biotin</td></tr>
+<tr><td><b>메틸말론산혈증</b> ★</td><td>Methylmalonyl-CoA mutase 등</td><td>케톤증, 산증, 범혈구 감소, 고암모니아, 저혈당, 고글리신혈증. 높은 이마, 삼각형 입 모양</td><td><b>비타민 B12 반응형</b>은 B12(1–2 mg/일) 대량 투여. 저단백·고탄수화물식, L-carnitine. 간·신장 이식</td></tr>
+</table></div>
+<p class="src">홍창의 9장 p.181–182, 그림 9-4, 표 9-7</p>
+<div class="more">
+<p>분지쇄 아미노산 중 발린·이소류신·메티오닌·트레오닌은 propionyl-CoA → methylmalonyl-CoA → succinyl-CoA를 거쳐 TCA 회로로 들어갑니다. 이 경로가 막히면 프로피온산혈증, 메틸말론산혈증이 됩니다. 이 대사산물이 요소회로 효소(NAGS)를 억제해 2차 고암모니아혈증이 생기므로, 유기산혈증인데 암모니아가 올라 요소회로 이상과 헷갈리기 쉽습니다. 산증과 케톤증이 함께 있으면 유기산혈증을 먼저 생각합니다.</p>
+<p class="src">홍창의 9장 그림 9-4; 요소회로 억제 기전은 그림 9-1 ⑥의 일반 원리에 대한 설명(추론 포함)</p>
+<h4>여러 카복실레이스 결핍증</h4>
+<p>Propionyl-CoA carboxylase 등 여러 카복실레이스의 조효소는 바이오틴입니다. Holocarboxylase synthetase나 biotinidase가 결핍되면 이 효소들이 동시에 결핍되어 피부 발진, 젖산혈증, 탈모증, 경련, 근무력증이 나타납니다. 다량의 바이오틴(5–20 mg/일)으로 치료합니다.</p>
+<p class="src">홍창의 9장 p.206</p>
+</div>
+</section>
+
+<!-- ============ 4. 요소회로 ============ -->
+<section id="s4">
+<h2>4. 요소회로 이상</h2>
+<p>아미노산이 분해되며 나오는 질소(암모니아)는 간의 요소회로에서 요소로 바뀌어 배설됩니다. 회로의 효소 하나라도 결핍되면 <b>고암모니아혈증</b>이 생깁니다. 요소회로의 앞부분(NAGS, CPS1, OTC)은 미토콘드리아, 뒷부분(ASS, ASL, arginase)은 세포질에 있습니다.</p>
+<p class="src">홍창의 9장 그림 9-6</p>
+
+<h3>4-1. OTC 결핍증 <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>요소회로 중 유일한 X-연관</span><span>가장 흔한 요소회로 이상</span><span>남아 생후 1~2주 혼수</span><span>산증 없는 고암모니아</span><span>소변 orotic acid↑</span></div>
+<p>요소회로 이상 중 <b>유일하게 반성(X-연관) 유전</b>하며 가장 흔합니다(7만~10만 명당 1명). 남아는 생후 1~2주에 기면, 경련, 호흡 장애로 사망하는 경우가 많고, 여아(보인자)는 영유아·학령기에 발병합니다.</p>
+<p><b>검사</b>: 혈액·뇌척수액 <b>암모니아가 현저히 증가</b>, 혈장 glutamine·aspartic acid·alanine 증가, <b>citrulline 감소</b>. OTC 결핍에서는 carbamoyl phosphate가 쌓여 피리미딘 합성으로 빠지므로 <b>소변 orotic acid가 증가</b>하고, 이것으로 CPS 결핍(orotic acid 정상·감소)과 감별합니다.</p>
+<p class="src">홍창의 9장 p.183, 표 9-9, 그림 9-6</p>
+
+<h3>4-2. 그 밖의 요소회로 이상 <span class="badge b-ref">참고</span></h3>
+<div class="tbl"><table>
+<tr><th>질환</th><th>유전</th><th>특징</th><th>감별 소견</th></tr>
+<tr><td>NAGS 결핍</td><td>AR</td><td>신생아기부터 반복 고암모니아</td><td><b>carglumic acid(Carbaglu)</b>를 먹으면 정상 생활 가능</td></tr>
+<tr><td>CPS1 결핍</td><td>AR</td><td>신생아기 구토·경련·혼수</td><td>citrulline 감소, <b>orotic acid 증가 없음</b></td></tr>
+<tr><td>Citrulline혈증(ASS 결핍)</td><td>AR</td><td>신생아형·영유아형</td><td>혈장 citrulline 크게 증가</td></tr>
+<tr><td>Argininosuccinic aciduria(ASL 결핍)</td><td>AR</td><td>모발이 잘 부서짐(<b>trichorrhexis nodosa</b>)</td><td>소변 argininosuccinic acid 증가</td></tr>
+<tr><td>고아르기닌혈증(arginase 결핍)</td><td>AR</td><td>경련, 발달 지연, <b>경직성 마비</b>, 고암모니아는 경함</td><td>arginine 증가 → <b>arginine 금기</b></td></tr>
+<tr><td>HHH 증후군</td><td>AR</td><td>오르니틴이 미토콘드리아로 못 들어감</td><td>혈중 ornithine, 소변 homocitrulline 증가</td></tr>
+<tr><td>리신뇨성 단백 불내증</td><td>AR</td><td>장·신장에서 lysine·arginine·ornithine 흡수 장애, 간비장비대, 골다공증</td><td>소변 lysine 증가, 혈중 이 아미노산들 감소</td></tr>
+</table></div>
+<p class="src">홍창의 9장 p.183–187, 표 9-9</p>
+
+<h3>4-3. 고암모니아혈증 치료 <span class="badge b-core">★ 핵심</span></h3>
+<div class="tbl"><table>
+<tr><th>단계</th><th>내용</th></tr>
+<tr><td>암모니아 제거</td><td><b>혈액 투석</b>: 암모니아 &gt;350 µmol/L면 준비, <b>&gt;500 µmol/L면 응급 시행</b><br>질소 제거제: sodium benzoate, sodium phenylacetate/phenylbutyrate 정주<br>Arginine 또는 citrulline 정주</td></tr>
+<tr><td>암모니아 생성 억제</td><td>24시간 단백 제한 후 재도입, 10–25% 포도당 중심 정맥 영양(필요하면 인슐린), 지방 2–3 g/kg/일 → 이화작용 억제<br>NAGS 결핍·일부 CPS 결핍: carglumic acid</td></tr>
+<tr><td>그 밖에</td><td>수분·전해질 교정, 동반 감염과 유발 인자 제거</td></tr>
+<tr><td>유지기</td><td>저단백식(영아 1.2–1.5 g/kg/일), 필수 아미노산 보충, sodium benzoate·phenylbutyrate 경구, <b>CPS·OTC 결핍은 citrulline, ASS·ASL 결핍은 arginine</b>, 간이식</td></tr>
+</table></div>
+<p class="src">홍창의 9장 표 9-8 (p.185); Häberle J, et al. J Inherit Metab Dis 2019 (같은 원칙)</p>
+<div class="box pit"><b>함정</b> 고암모니아 = 요소회로만은 아니다. 유기산혈증, 지방산 산화 장애에서도 암모니아가 오른다. 혈액가스·음이온차·케톤을 같이 봐야 한다.</div>
+</section>
+
+<!-- ============ 5. 지방산 산화 ============ -->
+<section id="s5">
+<h2>5. 지방산 산화 장애와 퍼옥시좀 질환</h2>
+<h3>5-1. 미토콘드리아 지방산 β-산화 장애 <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>금식·감염 때 저케톤성 저혈당</span><span>Reye 증후군 유사</span><span>영아 급사</span><span>carnitine 감소</span><span>acylcarnitine 이상</span></div>
+<p>금식하면 몸은 지방산을 태워 에너지와 케톤을 만듭니다. 장쇄 지방산은 carnitine과 결합해 미토콘드리아 안으로 들어가(carnitine 회로), 4단계 β-산화로 acetyl-CoA가 되고, 간에서 케톤체가 됩니다. 이 과정의 효소·조효소 결핍으로 생기는 질환은 모두 상염색체 열성이며, 합쳐서 1만 명당 1명 정도입니다. 백인은 <b>MCAD 결핍</b>이 가장 흔하고, 한국인은 <b>VLCAD 결핍, MTP 결핍</b>이 비교적 흔합니다.</p>
+<p><b>임상 증상</b></p>
+<ol>
+  <li>반복되는 <b>Reye 증후군 유사 증상</b> (가족력이 흔함)</li>
+  <li>근육 약화, 심근병증, 근육통, 미오글로빈뇨, 횡문근 융해</li>
+  <li>금식·감염·스트레스로 유발되는 혼수, 의식 변화, 저혈당, 간기능 변화</li>
+  <li>영아 급사 증후군의 드문 원인</li>
+</ol>
+<p><b>검사</b>: <b>저혈당인데 소변 케톤이 음성(hypoketosis)</b>인 점이 Reye 증후군과의 중요한 감별점입니다. 간기능 이상, 고암모니아혈증, 고뇨산혈증, CK 상승, 소변 dicarboxylic aciduria, 혈장 carnitine 감소. <b>탠덤 매스로 acylcarnitine</b>을 보는 것이 가장 유용하고, 섬유모세포·근육 효소 분석이나 유전자 분석으로 확진합니다.</p>
+<div class="more">
+<div class="tbl"><table>
+<tr><th>질환</th><th>Acylcarnitine 상승 지표</th><th>소변 유기산</th></tr>
+<tr><td>SCAD 결핍</td><td>C4</td><td>ethylmalonic, methylsuccinic</td></tr>
+<tr><td>MCAD 결핍</td><td><b>C6, C8, C10:1</b></td><td>suberic, hexanoylglycine</td></tr>
+<tr><td>VLCAD 결핍</td><td>C14:1, C14:2, C14</td><td>non-ketotic dicarboxylic</td></tr>
+<tr><td>LCHAD(TFP) 결핍</td><td>C16-OH, C18:1-OH</td><td>non-ketotic dicarboxylic, 3-hydroxydicarboxylic</td></tr>
+<tr><td>전신 carnitine 결핍</td><td>C0(유리 carnitine) 크게 감소</td><td>non-ketotic dicarboxylic</td></tr>
+<tr><td>CPT1 결핍</td><td>C0 증가(C0/[C16+C18] 상승)</td><td>non-ketotic dicarboxylic</td></tr>
+<tr><td>CPT2·translocase 결핍</td><td>C16, C18, C18:1, C18:2</td><td>non-ketotic dicarboxylic</td></tr>
+</table></div>
+<p class="src">홍창의 9장 표 9-10 (p.188)</p>
+</div>
+<p><b>치료</b>: ① 충분한 열량 공급 ② 대량의 수용성 비타민 정주 ③ carnitine 투여 ④ <b>금식 피하기</b>.</p>
+<p class="src">홍창의 9장 p.187–188, 그림 9-7</p>
+
+<h3>5-2. 퍼옥시좀 질환 <span class="badge b-ref">참고</span></h3>
+<p>퍼옥시좀은 극장쇄 지방산(VLCFA)의 β-산화, plasmalogen 합성, phytanic acid 분해 등을 합니다. 퍼옥시좀이 아예 안 만들어지는 군(젤웨거 증후군 등)과 기능 하나만 없는 군(X-연관 부신백질이영양증, Refsum병 등)으로 나뉩니다.</p>
+<h4>젤웨거 증후군 (뇌간신 증후군)</h4>
+<p>신생아 초기 심한 근긴장 저하, 높은 이마, 넓은 대천문, 얼굴 중부 형성 저하, 백내장, 관절 구축, 간비대, <b>점상 연골 석회화</b>를 보이는 치명적인 질환. 혈장 VLCFA 증가, plasmalogen 감소. 상염색체 열성.</p>
+<h4>X-연관 부신백질이영양증 (X-ALD) <span class="badge b-core">★ 핵심</span></h4>
+<div class="chips"><span>5~12세 남아 행동 변화·학업 저하</span><span>시력·청력 저하</span><span>부신기능 부전·색소침착</span><span>VLCFA(C26)↑</span><span>MRI 후두부 백질</span></div>
+<p>초기 발육은 정상이다가 5~12세 사이에 증상이 나타납니다. 부신 기능 부전보다 신경 증상이 먼저 오는 경우가 많고, 비정상적 행동, 주의력 산만, 보행 장애, 기억력 감퇴, 시력 소실, 구음 장애, 연하 곤란, 경련이 계속 악화해 6개월~10년 사이에 식물인간 상태가 되어 사망합니다. 일부에서 부신 기능 부전, 간헐적 구토, 멜라닌 피부증이 나타납니다. 뇌 CT·MRI에서 측뇌실 후두부 주위 백질 병변이 앞쪽으로 진행하는 것이 특징이고, 혈장·섬유모세포의 VLCFA(특히 C26)가 증가합니다. 성인형은 척수병증(부신척수신경병증)이나 드물게 부신 기능 부족만으로 옵니다. 조혈모세포 이식이 치료 선택지입니다.</p>
+<div class="more">
+<h4>Refsum병</h4>
+<p>Phytanic acid 분해 효소 결핍(상염색체 열성). 조화운동불능, 다발 신경염, 색소 망막염, 청력 감퇴, 야맹증. 뇌척수액 단백 증가. 엽록소를 먹는 동물의 고기, 유제품을 제한해 phytanic acid 섭취를 줄입니다.</p>
+</div>
+<p class="src">홍창의 9장 p.187–189, 표 9-3</p>
+</section>
+
+<!-- ============ 6. 지질단백 ============ -->
+<section id="s6">
+<h2>6. 지질단백 대사 이상</h2>
+<h3>6-1. 가족성 고콜레스테롤혈증 (FH) <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>소아기에 가장 흔한 고지질단백혈증</span><span>상염색체 우성</span><span>LDL ≥200 mg/dL</span><span>아킬레스건 황색종</span><span>조기 관상동맥질환 가족력</span></div>
+<p><b>LDL 수용체 돌연변이</b>로 생기며 소아기에 가장 흔한 고지질단백혈증입니다. 상염색체 우성이고 이형 접합자는 약 1/500. 이형 접합은 LDL이 정상의 2~3배, <b>동형 접합은 4~6배</b>로 훨씬 심합니다.</p>
+<p><b>임상</b>: 주된 임상 발현은 관상동맥 경화증(대개 30~40대 이후). 건, 특히 아킬레스건의 황색종, 눈꺼풀 황색판종, 각막 노인환이 보입니다. 진단은 총콜레스테롤 250 mg/dL 이상(소아), LDL 200 mg/dL 이상일 때 가능합니다.</p>
+<p><b>치료</b>: 콜레스테롤이 낮은 식사(전체 칼로리의 30% 이하를 지방으로), 식이만으로는 정상화가 어려워 cholestyramine·colestipol 같은 담즙산 결합 수지를 쓰고, <b>10세 이상에서는 HMG-CoA reductase 억제제(statin)</b>를 씁니다. 간이식이 근본 치료가 될 수 있습니다.</p>
+<div class="more">
+<p><b>고지혈증 기준(소아)</b>: 고콜레스테롤혈증 200 mg/dL(LDL &gt;110), 고중성지방혈증은 10세 전 100 mg/dL, 10대 125–150 mg/dL. 1세 이후 흔한 2차 원인은 당원병, 담도 폐쇄, 갑상샘저하증, 당뇨병, 신증후군입니다. LDL = 총콜레스테롤 − (HDL + 중성지방/5).</p>
+<div class="tbl"><table>
+<tr><th>질환</th><th>유전자</th><th>빈도</th><th>LDL 상승</th></tr>
+<tr><td>FH 이형 접합</td><td>LDLR</td><td class="num">1/500</td><td>3배</td></tr>
+<tr><td>FH 동형 접합</td><td>LDLR</td><td class="num">1/1,000,000</td><td>5배</td></tr>
+<tr><td>Familial ligand-defective apoB</td><td>APOB</td><td class="num">1/1,000</td><td>2배</td></tr>
+<tr><td>FH3</td><td>PCSK9</td><td class="num">1/2,500</td><td>3배</td></tr>
+<tr><td>상염색체 열성 고콜레스테롤혈증</td><td>ARH</td><td class="num">&lt;1/5,000,000</td><td>4배</td></tr>
+<tr><td>Sitosterolemia</td><td>ABCG5/ABCG8</td><td class="num">&lt;1/5,000,000</td><td>1–5배</td></tr>
+</table></div>
+<p class="src">홍창의 9장 p.189–191, 표 9-11, 9-12</p>
+<h3>6-2. 그 밖의 지질 대사 질환 <span class="badge b-ref">참고</span></h3>
+<ul>
+  <li><b>가족성 복합 고지질혈증</b>: 가장 흔한 지질 대사 질환(1/100). 황색종은 없음.</li>
+  <li><b>Tangier병</b>: HDL이 거의 없음, 주황색으로 커진 편도, 비장비대, 말초 신경염.</li>
+  <li><b>무베타 지질단백혈증(Bassen-Kornzweig)</b>: apoB 결핍, 지방 흡수 장애, 극상적혈구증, 색소 망막염, 조화운동불능.</li>
+  <li><b>Smith-Lemli-Opitz 증후군</b>: 7-dehydrocholesterol-Δ7-reductase 결핍, 저콜레스테롤혈증, 소두증, 합지증, 성분화 이상.</li>
+</ul>
+<p class="src">홍창의 9장 p.191–193</p>
+</div>
+</section>
+
+<!-- ============ 7. 탄수화물 ============ -->
+<section id="s7">
+<h2>7. 탄수화물 대사 이상</h2>
+<h3 id="s7-hypo">7-1. 혈당 조절과 공복 저혈당 감별 <span class="badge b-core">★ 핵심</span></h3>
+<p>식후에는 인슐린이 포도당을 글리코겐과 지방으로 저장합니다. 금식하면 순서대로 ① 간 글리코겐 분해 ② 포도당신생합성(젖산·아미노산·글리세롤에서) ③ 지방 분해 → 지방산 산화 → 케톤 생성이 일어나고, 글루카곤·에피네프린·코티솔·성장호르몬이 이를 돕습니다. 어느 단계가 막혔는지는 <b>저혈당 순간에 채취한 혈액(critical sample)</b>의 유리지방산, 케톤(β-hydroxybutyrate), 젖산으로 알 수 있습니다.</p>
+<div class="tbl"><table>
+<tr><th>패턴</th><th>막힌 단계</th><th>대표 질환</th></tr>
+<tr><td>유리지방산↓, 케톤↓, 산증 없음</td><td>인슐린 과다로 지방 분해 억제</td><td>선천 고인슐린혈증, 일과성 신생아 저혈당</td></tr>
+<tr><td>유리지방산↑, 케톤↓</td><td>지방산 산화·케톤 생성</td><td>MCAD 결핍 등 지방산 산화 장애</td></tr>
+<tr><td>젖산↑ (산증)</td><td>포도당신생합성</td><td><b>당원병 I형</b>, FBPase 결핍, 에탄올</td></tr>
+<tr><td>케톤↑ (산증)</td><td>글리코겐 저장·분해</td><td><b>당원병 III·VI·IX형</b>, 글리코겐 합성효소 결핍, 케톤성 저혈당, GH·코티솔 결핍</td></tr>
+</table></div>
+<p class="src">Sperling Pediatric Endocrinology 5판, 23장 그림 23.6 (p.909), 원출처 Thornton PS, et al. J Pediatr 2015</p>
+<div class="box pit"><b>함정</b> "당원병이면 케톤이 안 오른다"는 틀린 말이다. 당원병 I형은 젖산이 오르는 것이 특징이고, III·VI·IX형은 젖산·요산은 정상이면서 <b>케톤성 저혈당</b>을 보인다.</div>
+<p class="src">Sperling 5판 23장 p.919; Kishnani PS, et al. Genet Med 2019 (GSD VI·IX)</p>
+
+<h3>7-2. 당원병 Ia형 (von Gierke병) <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>공복 저혈당 + 젖산산증</span><span>고요산혈증·고지혈증</span><span>큰 간·인형 얼굴</span><span>큰 신장</span><span>코피·멍</span><span>글루카곤 무반응</span></div>
+<p><b>Glucose-6-phosphatase</b> 결핍(Ia) 또는 glucose-6-phosphate translocase 결핍(Ib). 상염색체 열성. 간에서 마지막 단계인 G6P → 포도당이 막혀 글리코겐 분해와 포도당신생합성이 모두 안 되므로, 금식하면 곧바로 저혈당이 옵니다.</p>
+<p><b>증상</b>: 신생아기 저혈당과 젖산산증으로 오기도 하지만, 대개 <b>3~4개월에 간이 커지거나 저혈당 경련</b>으로 옵니다. 지방 침착으로 얼굴이 통통한 <b>인형 얼굴(doll-like face)</b>, 가는 사지와 작은 키, 매우 큰 간과 커진 신장. 혈소판 기능 저하로 코피와 멍. 저혈당·젖산 산증은 금식 즉시, 고요산혈증은 늦게 나타나 사춘기 전후 통풍이 생길 수 있습니다. 혈장이 우유처럼 보일 정도로 중성지방이 높습니다.</p>
+<p><b>Ib형</b>: 호중구 감소와 기능 저하로 반복 감염, 구강·장점막 궤양, <b>염증성 장질환</b>.</p>
+<p><b>합병증</b>: 20~30대 간선종(드물게 악성), 국소 사구체 경화증, 단백뇨, 만성 신부전, 폐동맥 고혈압, 골다공증.</p>
+<p><b>진단</b>: 특징적 임상 소견과 젖산·요산·지질 증가. 글루카곤이나 에피네프린을 주어도 혈당은 오르지 않고 젖산만 현저히 오릅니다. 한국인은 G6PC c.648G&gt;T 변이가 85% 이상이라 <b>유전자 검사로 간생검 없이</b> 진단할 수 있습니다.</p>
+<p><b>치료</b>: 간에 글리코겐이 쌓이지 않게 하면서 충분한 에너지로 저혈당을 막는 것. 잦은 식사, 야간 지속 비위관 포도당, <b>생옥수수 전분(uncooked cornstarch)</b>: 2세 미만 1.6 g/kg 4시간마다, 이후 1.75–2.5 g/kg 6시간마다. 과당·갈락토스 제한, allopurinol, 고지혈증에 statin, 미세알부민뇨에 ACE 억제제. Ib형은 G-CSF. 수술 때는 젖산이 든 Ringer 용액 대신 10% 포도당. 간이식.</p>
+<p class="src">홍창의 9장 p.199–200; Kishnani PS, et al. Genet Med 2014 (ACMG)</p>
+
+<h3>7-3. 그 밖의 당원병 <span class="badge b-ref">참고</span></h3>
+<div class="tbl"><table>
+<tr><th>형</th><th>결핍 효소</th><th>핵심 특징</th></tr>
+<tr><td>III형 (Cori/Forbes)</td><td>가지 제거 효소</td><td>I형과 비슷하나 신장은 정상, <b>젖산·요산 정상</b>, 케톤성 저혈당. 나이 들면 간비대·저혈당 호전. 근육형(IIIa)은 근병증·심근비대. 고단백식</td></tr>
+<tr><td>IV형 (Andersen)</td><td>가지치기 효소</td><td>18개월 전 간비장비대 → 간경화, 5세 전 사망. 간이식</td></tr>
+<tr><td>VI형 (Hers)</td><td>간 인산화효소</td><td>I형보다 훨씬 가벼움, 젖산·요산 정상, 사춘기에 거의 정상</td></tr>
+<tr><td>IX형</td><td>인산화효소 활성화효소</td><td>가장 흔한 형 중 하나. 흔한 아형은 <b>X-연관</b>(Xp22). 간비대·성장 지연, 나이 들면 정상</td></tr>
+<tr><td><b>II형 (폼페병)</b> ★</td><td>리소좀 산성 α-glucosidase</td><td>영아형: <b>처진 아기 + 큰 혀 + 비대 심근병증</b>, 간비대, 심전도 큰 QRS·짧은 PR, 2세 전 심부전 사망. 지발형: 근위 근력 저하, 호흡부전. CK 상승. <b>효소 대체요법</b>(영아형은 진단 즉시). 신생아 선별 가능</td></tr>
+<tr><td>V형 (McArdle)</td><td>근육 인산화효소</td><td>운동 시 근육통·경련, 운동 후 미오글로빈뇨, <b>second wind</b> 현상. 운동 전 포도당·과당</td></tr>
+<tr><td>VII형 (Tarui)</td><td>근육 phosphofructokinase</td><td>V형과 비슷, 용혈 동반</td></tr>
+</table></div>
+<p class="src">홍창의 9장 p.200–202; Sperling 5판 23장 p.919</p>
+
+<h3>7-4. 갈락토스혈증 <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>젖 먹은 뒤 구토·황달</span><span>간비대·저혈당·경련</span><span>백내장</span><span>대장균 패혈증</span><span>소변 환원당 양성</span></div>
+<p>갈락토스는 유당(포도당 + 갈락토스)의 구성 성분입니다. 가장 흔하고 전형적인 형은 <b>galactose-1-phosphate uridyl transferase(GALT) 결핍</b>으로, 상염색체 열성이며 한국에서는 매우 드뭅니다.</p>
+<p><b>증상</b>: 수유 후 황달, 간비대, 구토, 저혈당, 경련, 늘어짐, 보챔, 잘 먹지 못함, 체중 증가 불량, 아미노산뇨, <b>백내장</b>, 초자체 출혈, 간기능 악화, 간경화, 복수, 비장비대, 지능 저하. <b>대장균 패혈증</b>이 잘 동반되어 패혈증 진단이 먼저 나오는 경우가 많습니다. 갈락토스가 높은데 효소 결핍이 없으면 문맥-전신 혈관 단락을 확인합니다.</p>
+<p><b>치료</b>: 신생아 선별로 조기 진단·치료되어 예후가 좋아졌습니다. 식사에서 갈락토스(유당)를 빼면 성장 장애, 신기능·간기능이 좋아지고 백내장도 좋아집니다. 그러나 장기적으로 여성은 난소 기능 부전, 발달·언어 장애, 학업 지연이 생길 수 있습니다.</p>
+<div class="more">
+<p><b>갈락토키네이스 결핍</b>: 갈락토스와 갈락티톨이 쌓이지만 전신 증상 없이 <b>백내장만</b> 문제가 됩니다.</p>
+<p><b>UDP-galactose 4-epimerase(GALE) 결핍</b>: 가벼운 형은 선별검사에서 우연히 발견되며 치료가 필요 없고, 심한 형은 전이효소 결핍과 비슷하며 근긴장 저하, 청력 소실이 동반됩니다.</p>
+</div>
+<p class="src">홍창의 9장 p.202–203; Welling L, et al. J Inherit Metab Dis 2017</p>
+
+<h3>7-5. 과당 대사 이상 <span class="badge b-ref">참고</span></h3>
+<p><b>유전성 과당 불내증 (aldolase B 결핍)</b>: 과당-1-인산이 쌓여 독성을 냅니다. 과당이나 설탕이 든 음식(이유식, 과일)을 먹기 시작하면 황달, 간비대, 구토, 늘어짐, 보챔, 경련이 생기고 저혈당, 응고 시간 연장, 저알부민혈증, 빌리루빈·간효소 상승이 옵니다. 계속되면 간부전, 신부전으로 사망합니다. 소변 환원당이 나오고, 환자는 <b>단 음식을 싫어합니다</b>. 경정맥 부하 검사는 위험하므로 하지 않습니다. 과당·설탕·sorbitol을 완전히 빼는 것이 치료입니다.</p>
+<p><b>양성 과당뇨 (과당 효소 결핍)</b>: 과당이 소변으로 나가기만 하며 증상이 없습니다. Clinitest·Benedict 검사에 양성.</p>
+<p><b>과당-1,6-이인산화효소(FBPase) 결핍</b>: 포도당신생합성 장애. 감염·장염으로 먹지 못할 때 심한 산혈증, 저혈당, 빠른 호흡, 경련, 혼수. 저혈당·젖산혈증·고요산혈증·대사 산증. 유전성 과당 불내증과 달리 단 음식을 싫어하지 않고 신세뇨관·간기능은 정상입니다.</p>
+<p class="src">홍창의 9장 p.203, 205</p>
+
+<div class="more">
+<h3>7-6. 젖산혈증을 일으키는 질환 <span class="badge b-ref">참고</span></h3>
+<p>음이온차가 증가한 설명되지 않는 대사 산증이면 혈중 젖산·피루브산, 뇌척수액 젖산·피루브산, acylcarnitine, 소변 유기산을 반드시 검사합니다. 젖산은 산소 공급이 차단되어도 오르므로 반드시 혈압대를 풀고 2~3분 기다려 채혈합니다. <b>젖산/피루브산 비</b>가 감별에 중요합니다.</p>
+<ul>
+  <li><b>비가 정상(젖산·피루브산 모두 상승)</b>: 포도당신생합성 이상(당원병 I형, FBPase 결핍, PEPCK 결핍), 피루브산 탈수소효소 복합체(PDHC) 결핍, 피루브산 카복실레이스 결핍</li>
+  <li><b>비가 상승</b>: 미토콘드리아 호흡연쇄 이상, 피루브산 카복실레이스 결핍 B형, 조직 저산소증</li>
+</ul>
+<p><b>PDHC 결핍</b>: 뇌가 포도당 에너지에 의존해 중추신경 증상이 심합니다. 신생아형은 심한 젖산혈증, 뇌 낭성 병변, 뇌량 무형성증, Leigh병 같은 기저핵 병변. 늦게 시작하면 탄수화물을 많이 먹은 뒤 조화운동불능이 옵니다. 케톤 생성 식이와 dichloroacetate.</p>
+<p><b>미토콘드리아 호흡연쇄 이상</b>: 호흡연쇄 효소의 15~20%만 mtDNA에서 만들어지며, 이 경우 <b>모계 유전</b>합니다. 신경·근육 증상(발달 지연, 경련, 근긴장 저하, 사지 약화, 안검하수, 시신경 위축, 망막 변성), 심근병증, 신세뇨관 장애, 간부전, 성장 장애. MELAS, MERRF, LHON, Kearns-Sayre, NARP 등. 근생검 ragged red fiber.</p>
+<p><b>Leigh병(아급성 괴사성 뇌척수병증)</b>: 기저핵·뇌간·대뇌 겉질의 탈수초, 신경아교증, 괴사, 모세혈관 증식. 원인은 호흡연쇄 이상(특히 cytochrome c oxidase 결핍), PDHC 결핍, 피루브산 카복실레이스 결핍 등.</p>
+<p class="src">홍창의 9장 p.203–206, 그림 9-10</p>
+</div>
+</section>
+
+<!-- ============ 8. 리소좀 ============ -->
+<section id="s8">
+<h2>8. 리소좀 축적 질환</h2>
+<div class="box key"><b>언제 의심하나</b> 영아기에 성장 장애나 중추신경계 이상이 있을 때 반드시 스핑고지질 침착 질환을 감별에 넣고, 간비대·비장비대가 있으면 가능성이 더 높다. <b>체리 반점(cherry red spot)</b>이 중요한 감별 지표다.</div>
+<p class="src">홍창의 9장 p.193</p>
+
+<h3>8-1. 스핑고지질 침착 질환</h3>
+<div class="tbl"><table>
+<tr><th>질환</th><th>결핍 효소 (유전)</th><th>키워드</th></tr>
+<tr><td><b>고셔병</b> ★</td><td>Glucocerebrosidase (AR)</td><td>가장 흔한 지질 축적 질환. 거대 비장 &gt; 간비대, 범혈구 감소, 뼈 통증·Erlenmeyer flask 변형, 골수 Gaucher 세포</td></tr>
+<tr><td>니만-피크병 A·B</td><td>Sphingomyelinase (AR)</td><td>A형: 간비장비대 + 체리 반점 + 발달 퇴행, 3세 전 사망. B형: 간비장비대, 신경 손상 없음</td></tr>
+<tr><td>니만-피크병 C</td><td>NPC 유전자 (AR)</td><td>신생아 황달 지연 후 진행성 조화운동불능, <b>수직 안구운동 마비</b>, 경련. miglustat</td></tr>
+<tr><td><b>테이-삭스병</b> ★</td><td>Hexosaminidase A (AR)</td><td>아쉬케나지 유대인. 4~5개월 이후 발달 퇴행, <b>소리에 깜짝 놀라는 반응</b>, 체리 반점, 큰 머리, <b>간비장비대 없음</b>. 4세경 사망</td></tr>
+<tr><td>Sandhoff병</td><td>Hexosaminidase A·B (AR)</td><td>테이-삭스와 같은 신경 증상 + 체리 반점 + <b>간비장비대</b></td></tr>
+<tr><td>GM1 gangliosidosis</td><td>β-galactosidase (AR)</td><td>거친 얼굴, 다발성 골이형성, 절반에서 체리 반점</td></tr>
+<tr><td>Krabbe병</td><td>Galactocerebrosidase (AR)</td><td>보챔·과민, 구토, 강직, globoid cell, 2세 전 사망. 조혈모세포 이식</td></tr>
+<tr><td>이염색 백질이영양증</td><td>Arylsulfatase A (AR)</td><td>영아 후기형이 가장 흔함. 2세경 보행 장애 → 근긴장 저하 → 강직, 소변 metachromatic granule</td></tr>
+<tr><td><b>파브리병</b> ★</td><td>α-galactosidase A (<b>X-연관</b>)</td><td>유일한 X-연관 지질 축적 질환. 10대 손발 작열통, 땀이 안 남, 혈관각화종, 각막 혼탁, 단백뇨 → 30~40대 신부전, 심근병증, 뇌졸중. 효소 대체요법, 샤페론</td></tr>
+<tr><td>Farber병</td><td>Acid ceramidase (AR)</td><td>쉰 목소리, 관절 부종·통증, 피하 결절</td></tr>
+</table></div>
+<p class="src">홍창의 9장 p.193–197, 그림 9-8, 표 9-13</p>
+<div class="box note"><b>체리 반점이 보이는 질환</b>: 테이-삭스병, Sandhoff병, 니만-피크병 A형, GM1 gangliosidosis(일부). 이 중 <b>간비장비대가 없는 것은 테이-삭스</b>.</div>
+
+<h3>8-2. 고셔병 <span class="badge b-core">★ 핵심</span></h3>
+<p>β-glucosidase 결핍으로 그물내피계에 glucocerebroside가 쌓입니다(상염색체 열성, 1번 염색체).</p>
+<div class="tbl"><table>
+<tr><th></th><th>1형 (비신경형)</th><th>2형 (급성 신경형)</th><th>3형 (만성 신경형)</th></tr>
+<tr><td>발병</td><td>소아기~성인</td><td>영아기</td><td>소아기</td></tr>
+<tr><td>비장비대·간비대</td><td>+ → +++</td><td>++</td><td>+ → +++</td></tr>
+<tr><td>골격 침범</td><td>− → +++</td><td>−</td><td>++ → +++</td></tr>
+<tr><td>중추신경 침범</td><td>−</td><td>+++</td><td>+ → +++</td></tr>
+<tr><td>수명</td><td>6~80세</td><td>~2세</td><td>2~60세</td></tr>
+</table></div>
+<p>1형은 가장 흔하며 비장비대로 시작해 점차 커집니다. 혈소판 감소, 빈혈, 뼈 침범(대퇴골 하단부 Erlenmeyer flask 변형, 골괴사), 성장 지연. <b>1형은 효소 대체요법(imiglucerase, 2주 간격 정맥 주사)</b>으로 간비장비대·혈액 소견·성장이 좋아집니다. <b>정맥 효소는 혈관-뇌 장벽을 넘지 못하므로 2·3형의 신경 증상은 개선되지 않습니다.</b> 한국인 환자의 2/3가 2·3형입니다. 1형에는 기질 감소 요법(eliglustat)도 씁니다.</p>
+<p class="src">홍창의 9장 p.193–195, 표 9-14</p>
+
+<h3>8-3. 점액다당류증 (MPS)</h3>
+<p>Glycosaminoglycan을 분해하는 리소좀 효소 결핍. <b>만성 진행성 경과, 거친 얼굴, 관절 강직, 간비장비대, 저신장, 신경학적 퇴화</b>가 있으면 의심합니다. 11개 효소 결핍으로 7종류가 있으며 헌터 증후군만 X-연관입니다.</p>
+<div class="tbl"><table>
+<tr><th>형</th><th>이름</th><th>결핍 효소·유전</th><th>핵심 특징</th></tr>
+<tr><td>MPS I</td><td><b>헐러</b> ★</td><td>α-L-iduronidase, AR</td><td>출생 시 정상 → 6~18개월 성장 지연, 12~24개월 지적 장애. 거친 얼굴, <b>각막 혼탁</b>, 큰 혀, 간비장비대, 탈장, 잦은 중이염, 심장 판막, 다발성 골이형성(J자 터키안장, 노 모양 갈비뼈). 조혈모세포 이식 + 효소 대체요법</td></tr>
+<tr><td>MPS I</td><td>샤이에</td><td>α-L-iduronidase, AR</td><td>관절 강직, 대동맥 판막, 각막 혼탁, 지능 정상, 손목굴 증후군</td></tr>
+<tr><td>MPS II</td><td><b>헌터</b> ★</td><td>Iduronate 2-sulfatase, <b>X-연관</b></td><td>대부분 남아. 헐러와 비슷하나 <b>각막 혼탁 없음</b>, 견갑부·팔 <b>조약돌 피부(pebbling)</b>. 국내에 흔한 형. 효소 대체요법</td></tr>
+<tr><td>MPS III</td><td>산필리포</td><td>4가지 효소, AR</td><td>신체 변화는 경미하나 2~6세 <b>심한 과잉행동·수면장애</b>, 빠른 지능 퇴행. 소변 heparan sulfate만</td></tr>
+<tr><td>MPS IV</td><td>모르키오</td><td>Galactose 6-sulfatase 등, AR</td><td><b>지능 정상</b>, 심한 골격 이상·저신장, 치돌기 형성 저하 → <b>환축추 아탈구</b>, 각막 혼탁. keratan sulfate</td></tr>
+<tr><td>MPS VI</td><td>마로토-라미</td><td>Arylsulfatase B, AR</td><td>헐러와 비슷하나 지능 정상</td></tr>
+<tr><td>MPS VII</td><td>슬라이</td><td>β-glucuronidase, AR</td><td>태아 수종으로 나타나기도 함</td></tr>
+</table></div>
+<p>MPS I, II, IV, VI는 효소 대체요법이 가능합니다.</p>
+<p class="src">홍창의 9장 p.209–212, 표 9-15</p>
+</section>
+
+<!-- ============ 9. 퓨린·금속·포르피린 ============ -->
+<section id="s9">
+<h2>9. 퓨린·금속·포르피린 대사 이상</h2>
+<h3>9-1. 레쉬-니한 증후군 <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>자해(입술·손가락)</span><span>무도증·근긴장 이상</span><span>고요산혈증</span><span>X-연관, HPRT 결핍</span></div>
+<p>Hypoxanthine-guanine phosphoribosyltransferase(HPRT) 결핍, X-연관 열성. 출생 시 정상이다가 수개월 뒤 발달 지연, 8~12개월에 무도증, 근육 경직, 12개월 무렵 반사 항진, 지속 발목 클로누스. <b>1세 전후 자해가 시작</b>되어 손가락 절단과 입술 주위 조직 손실이 생기므로 유치 발치가 필요합니다. 공격성도 보입니다. 혈청 요산과 소변 요산/크레아티닌 비가 높습니다. Allopurinol로 신장 합병증은 막지만 신경·행동 증상은 좋아지지 않으며, 조혈모세포 이식도 효과가 없습니다.</p>
+<p class="src">홍창의 9장 p.212–213</p>
+<div class="more">
+<h3>9-2. 그 밖의 퓨린·피리미딘 이상 <span class="badge b-ref">참고</span></h3>
+<ul>
+  <li><b>ADA 결핍</b>: 중증 복합 면역결핍(SCID)의 15%, 상염색체 열성, 갈비뼈 우리(cage) 이상. 조혈모세포 이식, 효소 치료, 유전자 치료.</li>
+  <li><b>Purine nucleoside phosphorylase 결핍</b>: 혈중·소변 요산이 매우 낮고 심한 면역 장애.</li>
+  <li><b>PRPP synthetase 과활성</b>: 요산 결석, 통풍, 영아의 신경 장애와 감각 신경 난청.</li>
+  <li><b>유전성 orotic aciduria</b>: 거대적혈모구 빈혈이 철·엽산·B12에 반응하지 않음. 소변 orotic acid 증가. uridine 투여.</li>
+</ul>
+<p class="src">홍창의 9장 p.213–214</p>
+</div>
+
+<h3>9-3. 윌슨병 <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>원인 모를 간염·간경화</span><span>떨림·구음장애·정신 증상</span><span>Kayser-Fleischer 고리</span><span>쿰스 음성 용혈</span><span>세룰로플라스민 감소</span></div>
+<p><b>ATP7B</b>(13q14.3) 변이로 간세포의 구리가 담즙으로 배설되지 못하는 상염색체 열성 질환. 구리가 간, 뇌, 각막, 신장, 적혈구에 쌓입니다. 빈도 5만~10만 명당 1명, 보인자 90명당 1명. 국내는 R778L 변이가 가장 흔합니다.</p>
+<p><b>증상</b>: 소아에서는 주로 간질환으로, 보통 5세 이후(최근 2~3세 보고도 있음) 무증상 간비대 → 만성 활동 간염 → 간경화. 전격 간부전으로 와서 쿰스 음성 용혈빈혈, 간신 증후군을 동반하기도 합니다. 신경 증상은 대개 15세 이후 손떨림, 연하 곤란, 침흘림, 구음 장애, 근긴장 이상, 보행 장애. 정신 이상, 학교 성적 저하가 첫 증상일 수 있습니다.</p>
+<p><b>진단</b> (4가지 중 2가지 이상이면 확진 가능성이 매우 높음):</p>
+<ol>
+  <li>혈청 세룰로플라스민 &lt;20 mg/dL (소아 환자의 85~95%)</li>
+  <li>24시간 소변 구리 배출량 &gt;100 µg (정상 40 µg 이하)</li>
+  <li>세극등 검사로 <b>K-F 고리</b> (신경 증상이 있으면 거의 모두, 간질환형은 절반)</li>
+  <li>간 조직 구리 &gt;250 µg/g 건조중량</li>
+</ol>
+<p>그 밖에 분자 유전 진단이 점점 1차 진단 수단이 되고 있습니다. 간질환 환자에서 용혈이나 신경 증상이 있거나, 황달에 비해 ALP가 낮거나 정상이면 윌슨병을 생각합니다.</p>
+<p><b>치료</b>: D-penicillamine 또는 trientine(킬레이트), 저구리 식이, 간이식.</p>
+<p class="src">홍창의 13장 p.649–650; 9장 표 9-3, p.175</p>
+
+<h3>9-4. 멘케스병 <span class="badge b-core">★ 핵심</span></h3>
+<div class="chips"><span>꼬이고 잘 부서지는 머리카락</span><span>저체온·근긴장 저하·경련</span><span>혈청 구리·세룰로플라스민↓</span><span>X-연관 ATP7A</span></div>
+<p>Xq13.3의 <b>ATP7A</b> 변이에 의한 X-연관 열성 진행성 신경 퇴행 질환. 장에서 구리 흡수·운반이 안 되어 구리 의존 효소들이 결핍됩니다. 생후 몇 개월 안에 증상이 시작되며 조산 경향, 저체온, 근긴장 저하, 경련. 얼굴이 통통하고 뺨이 처지며 피부 긴장도 저하. <b>무색소의 꼬이고 윤기 없는 잘 부서지는 머리카락</b>(현미경으로 꼬인 모발). 탈장, 골다공증, 심한 지적 장애, 시신경 위축. 혈청 구리와 세룰로플라스민이 낮습니다. 대개 3세 이전 사망. 신생아기에 시작한 copper-histidine 치료가 일부에서 신경학적 변화를 예방합니다.</p>
+<p class="src">홍창의 9장 p.214–215</p>
+
+<div class="more">
+<h3>9-5. 장성 말단 피부염 (아연) <span class="badge b-ref">참고</span></h3>
+<p>아연 흡수 장애, 상염색체 열성. 대개 <b>모유에서 우유로 바꾸는 시기</b>에 입·항문 주위, 팔꿈치, 무릎, 뺨의 수포·습진성 피부 병변, 붉은색 머리카락과 탈모, 광과민성, 결막염, 만성 설사, 성장 지연이 생깁니다. 혈청 아연 저하. 경구 아연으로 빠르게 좋아집니다. 장기 총정맥영양에서도 비슷한 2차 결핍이 생깁니다.</p>
+<p class="src">홍창의 9장 p.215</p>
+
+<h3>9-6. 포르피린증 <span class="badge b-ref">참고</span></h3>
+<p>헴 합성 효소 결핍. 간성(급성 신경 증상)과 조혈성(피부 광과민성)으로 나뉩니다.</p>
+<ul>
+  <li><b>급성 간헐 포르피린증(AIP)</b>: PBG deaminase 결핍, 상염색체 우성, 가장 흔한 유전성 포르피린증. 사춘기 이후, 여성에 많음. 복통(가장 흔함), 구토, 변비, 빈맥, 고혈압, 운동 신경 위주의 말초 신경병증, 호흡근 마비, 불안·경련, 저나트륨혈증(SIADH). <b>피부 증상 없음</b>. 칼로리 섭취 감소, barbiturate, 성 스테로이드, 월경이 악화 요인. 소변 PBG·ALA 증가. 고농도 포도당(300 g/24시간), hemin.</li>
+  <li><b>선천 적혈구조혈 포르피린증(CEP)</b>: 상염색체 열성. 출생 때부터 소변 때문에 기저귀가 분홍~적갈색, 심한 광과민성, 다모증, 탈모, <b>적갈색 치아</b>, 용혈 빈혈, 비장비대. 햇빛 차단, 조혈모세포 이식.</li>
+  <li><b>지연 피부 포르피린증(PCT)</b>: 가장 흔한 피부 포르피린증, 대개 후천성. 햇빛 노출 부위 수포·가피·흉터. 정맥 절개술, hydroxychloroquine.</li>
+  <li><b>적혈구조혈 포르피린증(EPP)</b>: 소아에서 피부 광과민성, 담석. CEP보다 경함.</li>
+</ul>
+<p class="src">홍창의 9장 p.215–217, 그림 9-12</p>
+
+<h3>9-7. 선천성 당화 장애 (CDG) <span class="badge b-ref">참고</span></h3>
+<p>단백·지질에 당사슬을 붙이는 과정의 장애. 신경 증상이 80%에서 있고, 심한 지적 장애, 발달 지연, 소화기 문제, 간병변, 응고 이상. 가장 흔한 PMM2-CDG는 사시, 소뇌 위축, 근긴장 저하, <b>엉덩이 지방 패드·귤껍질 피부</b>, 뒤집힌 유두. 혈청 transferrin 등전점 전기영동으로 진단합니다. MPI-CDG는 mannose 경구 투여로 크게 좋아집니다.</p>
+<p class="src">홍창의 9장 p.206–209</p>
+</div>
+</section>
+
+<!-- ============ 10. 요약 ============ -->
+<section id="s10">
+<h2>10. 한눈에 보는 키워드 <span class="badge b-core">★ 핵심</span></h2>
+<div class="tbl"><table>
+<tr><th>단서</th><th>질환</th></tr>
+<tr><td>쥐오줌·곰팡이 냄새</td><td>페닐케톤뇨증</td></tr>
+<tr><td>단풍당밀(달콤한) 냄새</td><td>단풍당뇨증</td></tr>
+<tr><td>땀에 젖은 발 냄새</td><td>이소발레르산혈증</td></tr>
+<tr><td>양배추 냄새</td><td>티로신혈증 I형</td></tr>
+<tr><td>담갈색 모발·흰 피부</td><td>페닐케톤뇨증</td></tr>
+<tr><td>꼬이고 부서지는 머리카락</td><td>멘케스병</td></tr>
+<tr><td>수정체 탈구 + 마르판 체형 + 혈전</td><td>호모시스틴뇨증</td></tr>
+<tr><td>백내장 + 수유 후 황달 + 대장균 패혈증</td><td>갈락토스혈증</td></tr>
+<tr><td>체리 반점, 간비장비대 없음, 과다 놀람</td><td>테이-삭스병</td></tr>
+<tr><td>K-F 고리 + 간질환 + 신경 증상</td><td>윌슨병</td></tr>
+<tr><td>소변을 두면 검게</td><td>알캅톤뇨증</td></tr>
+<tr><td>분홍·적갈색 기저귀, 적갈색 치아</td><td>선천 적혈구조혈 포르피린증</td></tr>
+<tr><td>고암모니아, 산증 없음, orotic acid↑</td><td>OTC 결핍</td></tr>
+<tr><td>음이온차 산증 + 케톤 + 고암모니아 + 범혈구 감소</td><td>유기산혈증(MMA, PA)</td></tr>
+<tr><td>저혈당 + 젖산↑ + 요산↑ + 중성지방↑ + 큰 간</td><td>당원병 I형</td></tr>
+<tr><td>저케톤성 저혈당, Reye 유사</td><td>지방산 산화 장애(MCAD 등)</td></tr>
+<tr><td>처진 아기 + 큰 혀 + 비대 심근병증</td><td>폼페병</td></tr>
+<tr><td>거대 비장 + 범혈구 감소 + 뼈 통증</td><td>고셔병</td></tr>
+<tr><td>거친 얼굴 + 각막 혼탁 + 지능 퇴행</td><td>헐러 증후군</td></tr>
+<tr><td>거친 얼굴 + 각막 맑음 + 남아</td><td>헌터 증후군</td></tr>
+<tr><td>학령기 남아의 퇴행 + 피부 색소침착</td><td>X-연관 부신백질이영양증</td></tr>
+<tr><td>자해 + 무도증 + 고요산</td><td>레쉬-니한 증후군</td></tr>
+<tr><td>10대 손발 작열통 + 혈관각화종</td><td>파브리병</td></tr>
+<tr><td>LDL ≥200 + 아킬레스건 황색종</td><td>가족성 고콜레스테롤혈증</td></tr>
+</table></div>
+<div class="box key"><b>X-연관 6총사</b> OTC 결핍, 헌터, 파브리, 레쉬-니한, X-ALD, 멘케스 — 대부분 상염색체 열성인 유전대사질환 중 예외.</div>
+<div class="box key"><b>비타민으로 치료하는 질환</b> B6 → 호모시스틴뇨증, B12 → 메틸말론산혈증, B1 → 단풍당뇨증 일부, biotin → 여러 카복실레이스 결핍·프로피온산혈증 일부, BH4 → BH4 결핍증·BH4 반응형 PKU</div>
+<p>복습은 <a href="https://joojang87.github.io/study-notes/pediatrics/iem-keyword-map.html">키워드 마인드맵</a>의 "키워드 → 질환" 색인과 셀프 퀴즈로 하세요.</p>
+</section>
+
+<section id="refs">
+<h2>참고문헌</h2>
+<ol style="font-size:.92rem">
+  <li>대한소아청소년과학회. 홍창의 소아과학 12판. 제9장 유전 대사 질환, p.170–217.</li>
+  <li>같은 책, 제13장 소화기 질환. 윌슨병, p.649–650.</li>
+  <li>Sperling MA, ed. Pediatric Endocrinology, 5th ed. Elsevier; 2021. Chapter 23, Hypoglycemia in Infants and Children, p.909, 919.</li>
+  <li>van Spronsen FJ, et al. Key European guidelines for the diagnosis and management of patients with phenylketonuria. Lancet Diabetes Endocrinol 2017;5:743–756. <a href="https://doi.org/10.1016/S2213-8587(16)30320-5">doi:10.1016/S2213-8587(16)30320-5</a></li>
+  <li>Häberle J, et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. J Inherit Metab Dis 2019;42:1192–1230. <a href="https://doi.org/10.1002/jimd.12100">doi:10.1002/jimd.12100</a></li>
+  <li>Kishnani PS, et al. Diagnosis and management of glycogen storage disease type I: a practice guideline of the ACMG. Genet Med 2014;16:e1. <a href="https://doi.org/10.1038/gim.2014.128">doi:10.1038/gim.2014.128</a></li>
+  <li>Kishnani PS, et al. Glycogen storage disease type III diagnosis and management guidelines. Genet Med 2010;12:446–463. <a href="https://doi.org/10.1097/GIM.0b013e3181e655b6">doi:10.1097/GIM.0b013e3181e655b6</a></li>
+  <li>Kishnani PS, et al. Diagnosis and management of glycogen storage diseases type VI and IX: a clinical practice resource of the ACMG. Genet Med 2019;21:772–789. <a href="https://doi.org/10.1038/s41436-018-0364-2">doi:10.1038/s41436-018-0364-2</a></li>
+  <li>Welling L, et al. International clinical guideline for the management of classical galactosemia. J Inherit Metab Dis 2017;40:171–176. <a href="https://doi.org/10.1007/s10545-016-9990-5">doi:10.1007/s10545-016-9990-5</a></li>
+  <li>Thornton PS, et al. Recommendations from the Pediatric Endocrine Society for evaluation and management of persistent hypoglycemia in neonates, infants, and children. J Pediatr 2015;167:238–245. <a href="https://doi.org/10.1016/j.jpeds.2015.03.057">doi:10.1016/j.jpeds.2015.03.057</a></li>
+  <li>뉴시스. 10월부터 신생아 필수검사 건보 적용 (2018.8.2). <a href="https://www.newsis.com/view/NISX20180802_0000381015">newsis.com</a></li>
+</ol>
+</section>
+
+<footer>
+  이 강의록은 Claude(AI)의 도움을 받아 교과서와 가이드라인을 바탕으로 정리한 학습용 자료입니다. 진료 지침을 대신하지 않으니 진료 판단은 원문을 확인하세요. 환자 정보는 포함하지 않습니다.
+</footer>
+</main>
+</div>
+
+<script>
+(function(){
+  var btn=document.getElementById('coreBtn');
+  function set(on){document.body.classList.toggle('core-only',on);btn.setAttribute('aria-pressed',on);try{localStorage.setItem('iem-core',on?'1':'0');}catch(e){}}
+  btn.addEventListener('click',function(){set(!document.body.classList.contains('core-only'));});
+  try{if(localStorage.getItem('iem-core')==='1')set(true);}catch(e){}
+  var links=[].slice.call(document.querySelectorAll('#tocList a'));
+  var targets=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function spy(){var y=window.scrollY+80,cur=0;targets.forEach(function(t,i){if(t&&t.getBoundingClientRect().top+window.scrollY<=y)cur=i;});links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+})();
+try{if(matchMedia('(max-width: 900px)').matches){document.querySelector('nav details,aside details,details')?.removeAttribute('open')}}catch(e){}
+</script>
+</body>
+</html>
