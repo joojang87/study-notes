@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>유전대사질환 강의 슬라이드 · Study Notes</title>
+<meta name="description" content="유전대사질환 30분 강의용 슬라이드 (홍창의 소아과학 12판 9장 기반)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* 1280×720 고정 슬라이드를 화면 크기에 맞춰 확대·축소. ←/→·스페이스·클릭으로 이동, F 전체화면, O 목록 */
+:root{
+  --bg:#ffffff; --fg:#151c1b; --muted:#56635f; --line:#d3dcd9; --soft:#f1f5f4;
+  --ink:#0f4c47; --ink-soft:#dcedea; --star:#b45309; --red:#b42318; --red-soft:#fdecea; --amber-soft:#fff4e0;
+  --b1:#2f7d5b; --b2:#b4552d; --b3:#7a4fb3; --b4:#b8870b; --b5:#1f6fa8; --b6:#c0436e; --b9:#2a8c94; --b10:#a33a3a;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#fff;color:var(--fg);font-family:var(--font);overflow:hidden}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff}
+#deck{width:1280px;height:720px;position:relative;transform-origin:center center;flex:none}
+.slide{position:absolute;inset:0;padding:48px 64px 56px;display:none;flex-direction:column;background:#fff;overflow:hidden}
+.slide.on{display:flex}
+.slide h1{font-size:46px;line-height:1.2;margin:0 0 6px;letter-spacing:-.01em}
+.slide h2{font-size:38px;line-height:1.25;margin:0 0 22px;letter-spacing:-.01em;padding-bottom:12px;border-bottom:3px solid var(--ink)}
+.slide h2 .tag{font:600 18px var(--mono);color:var(--muted);margin-left:10px;vertical-align:4px}
+.slide h3{font-size:26px;margin:0 0 10px;color:var(--ink)}
+.slide p,.slide li{font-size:26px;line-height:1.5}
+.slide ul{margin:0;padding-left:30px}
+.slide li{margin:4px 0}
+.slide li::marker{color:var(--ink)}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;gap:16px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;flex:1;min-height:0}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.src{position:absolute;left:64px;right:140px;bottom:18px;font:500 15px var(--mono);color:var(--muted)}
+.pg{position:absolute;right:40px;bottom:18px;font:500 15px var(--mono);color:var(--muted)}
+.kw{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 6px}
+.kw span{font-size:22px;font-weight:600;background:var(--ink-soft);color:var(--ink);border-radius:999px;padding:4px 16px}
+.box{border:2px solid var(--line);border-radius:14px;padding:16px 20px;background:#fff}
+.box.ink{border-color:var(--ink);background:var(--ink-soft)}
+.box.warn{border-color:#e0a14a;background:var(--amber-soft)}
+.box.red{border-color:#e7a29b;background:var(--red-soft)}
+.box p,.box li{font-size:24px}
+.big{font-size:30px!important;font-weight:600}
+.star{color:var(--star)}
+.mut{color:var(--muted)}
+b,strong{font-weight:700}
+.hl{background:linear-gradient(transparent 58%,#ffe08a 58%)}
+table{border-collapse:collapse;width:100%;font-size:22px;line-height:1.35}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700}
+td.c,th.c{text-align:center}
+.flow{display:flex;flex-direction:column;align-items:center;gap:10px}
+.node{border:2px solid var(--ink);border-radius:12px;padding:10px 18px;font-size:23px;font-weight:600;background:#fff;text-align:center}
+.node.fill{background:var(--ink);color:#fff}
+.arrow{font-size:26px;color:var(--ink);line-height:1}
+.leaves{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%}
+.leaf{border-radius:12px;padding:12px 14px;text-align:center}
+.leaf .k{font-size:21px;color:var(--muted);font-weight:600}
+.leaf .v{font-size:26px;font-weight:700;margin-top:4px}
+.q{font-size:30px;line-height:1.55;border-left:8px solid var(--ink);padding:14px 24px;background:var(--soft);border-radius:0 14px 14px 0}
+.title-slide{justify-content:center;padding-left:96px}
+.title-slide .eyebrow{font:600 20px var(--mono);color:var(--ink);letter-spacing:.06em}
+.title-slide h1{font-size:64px;margin:12px 0 18px}
+.title-slide .who{font-size:26px;color:var(--muted)}
+.divider{justify-content:center;background:#fff}
+.divider .n{font:600 26px var(--mono);color:var(--ink)}
+.divider h1{font-size:60px;border-left:12px solid var(--ink);padding-left:24px;margin-top:12px}
+.divider p{font-size:28px;color:var(--muted);padding-left:36px}
+.refs li{font-size:19px;line-height:1.45;margin:3px 0}
+.dot{display:inline-block;width:16px;height:16px;border-radius:50%;margin-right:8px;vertical-align:1px}
+/* 진행 막대와 조작 */
+#bar{position:fixed;left:0;bottom:0;height:4px;background:var(--ink);transition:width .2s;z-index:3}
+#nav{position:fixed;right:12px;top:10px;display:flex;gap:6px;z-index:4;opacity:.25;transition:opacity .2s}
+#nav:hover{opacity:1}
+#nav button{font:600 14px var(--font);border:1px solid var(--line);background:#fff;color:var(--fg);border-radius:8px;padding:6px 10px;cursor:pointer}
+#ov{position:fixed;inset:0;background:rgba(255,255,255,.97);z-index:10;display:none;overflow:auto;padding:24px}
+#ov.on{display:block}
+#ov h3{margin:0 0 12px;font-size:20px}
+#ov ol{columns:3;font-size:16px;line-height:1.8;margin:0;padding-left:28px}
+#ov a{color:var(--fg);text-decoration:none}
+#ov a:hover{color:var(--ink);text-decoration:underline}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{overflow:visible;height:auto}
+  #stage{position:static;display:block}
+  #deck{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;break-after:page}
+  #bar,#nav,#ov{display:none!important}
+}
+</style>
+</head>
+<body>
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide title-slide" data-t="표지">
+  <div class="eyebrow">소아청소년과 · 3학년 성장과 발달</div>
+  <h1>유전대사질환</h1>
+  <p class="big" style="margin:0 0 28px;color:var(--ink)">키워드로 떠올리고, 검사로 좁힌다</p>
+  <p class="who">건양대학교병원 소아청소년과 오준석</p>
+  <div class="src">주 교재: 홍창의 소아과학 12판 9장 유전 대사 질환(p.170–217)</div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-t="도입 사례">
+  <h2>생각해 봅시다</h2>
+  <div class="body">
+    <div class="q">생후 3일 남아. 출생 때 건강했고 모유를 잘 먹었다.<br>어제부터 잘 빨지 않고 토하더니, 오늘은 축 처져 깨워도 잘 안 깬다.<br>체온 36.8℃, 혈당 70 mg/dL.</div>
+    <div class="cols" style="margin-top:8px">
+      <div class="box"><h3>대부분 먼저 떠올리는 것</h3><ul><li>신생아 패혈증</li><li>뇌수막염</li><li>저혈당, 저칼슘혈증</li></ul></div>
+      <div class="box ink"><h3>같이 떠올려야 할 것</h3><ul><li><b>유전대사질환</b></li><li>지금 바로 낼 검사 하나는?</li><li class="mut">→ 강의 끝에 다시 봅니다</li></ul></div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 p.172–173</div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-t="학습 목표">
+  <h2>학습 목표</h2>
+  <div class="body">
+    <ul>
+      <li>신생아가 기면·구토·경련·의식 저하로 오면 <b>유전대사질환을 감별에 넣는다</b></li>
+      <li><b>암모니아, 혈액가스·음이온차, 혈당, 젖산, 케톤</b>으로 질환군을 나눈다</li>
+      <li>급성 대사 위기의 <b>초기 치료 원칙</b>을 말한다</li>
+      <li><b>신생아 선별검사</b>의 원리, 대상, 한계를 설명한다</li>
+      <li>대표 질환을 <b>키워드</b>로 떠올린다</li>
+    </ul>
+    <div class="box" style="margin-top:auto"><p style="margin:0;font-size:21px" class="mut">연계 국시 평가목표: 9 구역·구토 · 25 발달지연 · 27 발작 · 51 신생아 진찰(선별검사) · 68 의식변화·혼수</p></div>
+  </div>
+  <div class="src">의사국가시험 평가목표(b5)</div>
+</section>
+
+<!-- 4 -->
+<section class="slide divider" data-t="1부 총론">
+  <div class="n">PART 1</div>
+  <h1>총론</h1>
+  <p>무엇이 고장 나고, 언제 의심하고, 무엇을 검사하나</p>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-t="병태생리">
+  <h2>효소 하나가 고장 나면</h2>
+  <div class="body">
+    <div class="node fill" style="align-self:center;font-size:30px">A → B ─<span style="color:#ffd27a">✕</span>→ C</div>
+    <div class="cols">
+      <div class="box red"><h3>① 쌓여서 독이 된다 (B↑)</h3><ul><li>PKU: 페닐알라닌</li><li>요소회로 이상: 암모니아</li><li>리소좀 질환: 분해 못 한 고분자</li></ul><p style="margin:10px 0 0"><b>치료</b>: 섭취 제한, 배출 증가</p></div>
+      <div class="box ink"><h3>② 모자라서 문제가 된다 (C↓)</h3><ul><li>당원병 I형: 공복 시 포도당</li><li>BH4 결핍: 도파민·세로토닌</li></ul><p style="margin:10px 0 0"><b>치료</b>: 부족한 물질 보충</p></div>
+    </div>
+    <p class="mut" style="margin:0;font-size:22px">약 700여 종. 쌓인 물질이 다른 반응을 2차로 막기도 한다(예: 유기산혈증 → 요소회로 억제 → 고암모니아).</p>
+  </div>
+  <div class="src">홍창의 9장 p.170, 그림 9-1</div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-t="유전 양식">
+  <h2>유전 양식</h2>
+  <div class="body">
+    <div class="box ink"><p class="big" style="margin:0">대부분(약 70%) 상염색체 열성 → 부모는 정상, 형제자매가 환자일 수 있다</p></div>
+    <div class="cols">
+      <div class="box"><h3>X-연관 "6총사"</h3><ul><li>OTC 결핍 <span class="mut">(요소회로)</span></li><li>헌터 증후군 <span class="mut">(MPS II)</span></li><li>파브리병</li><li>레쉬-니한 증후군</li><li>X-연관 부신백질이영양증</li><li>멘케스병</li></ul></div>
+      <div class="box"><h3>그 밖의 예외</h3><ul><li>상염색체 우성: 가족성 고콜레스테롤혈증, 급성 간헐 포르피린증</li><li>모계 유전: 미토콘드리아 DNA 변이</li></ul><p class="mut" style="font-size:21px;margin:12px 0 0">같은 질환도 변이·잔여 효소 활성에 따라 중증도가 다양하다</p></div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 p.170–171</div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-t="언제 의심하나">
+  <h2>언제 의심하나</h2>
+  <div class="body">
+    <div class="box warn"><p class="big" style="margin:0">출생 때 정상 → 수유 2~3일 뒤 기면, 수유 거부, 구토, 경련</p><p style="margin:6px 0 0;font-size:23px">패혈증과 똑같아 보이고, 실제로 함께 오기도 한다</p></div>
+    <div class="cols">
+      <div><h3>신생아기 급성 뇌병증</h3><ul><li>유기산혈증 (MMA, PA)</li><li>요소회로 이상 (OTC 결핍)</li><li>단풍당뇨증</li><li>갈락토스혈증</li><li>비케톤성 고글리신혈증</li></ul></div>
+      <div><h3>그 이후: 대사 스트레스 때 반복</h3><ul><li>감염·발열·금식 때 구토, 의식 변화</li><li>케톤 없는 저혈당, 원인 모를 산증</li><li>발달 지연·퇴행, 경련</li><li>간비대, 특이한 냄새, 백내장</li><li>원인 모르게 사망한 형제, 근친혼</li></ul></div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 p.170–173</div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-t="첫 검사">
+  <h2>무엇을 먼저 검사하나</h2>
+  <div class="body">
+    <div class="cols3">
+      <div class="box ink"><h3>혈액</h3><p style="margin:0;font-size:23px"><b>암모니아</b><br><b>혈액가스·음이온차</b><br><b>혈당</b>, 젖산<br>CBC, 간기능, 요산<br>혈장 아미노산<br>acylcarnitine</p></div>
+      <div class="box ink"><h3>소변</h3><p style="margin:0;font-size:23px"><b>케톤</b><br>냄새<br>환원당(Benedict)<br>염화제이철, DNPH<br>nitroprusside<br>소변 유기산</p></div>
+      <div class="box warn"><h3>잊지 말 것</h3><p style="margin:0;font-size:23px">치료 시작 전<br><b>소변·혈장·뇌척수액</b>을<br>냉장 보관<br><span class="mut">나중에 진단 검사를 할 수 있도록</span></p></div>
+    </div>
+    <p style="margin:6px 0 0" class="big">"패혈증 검사를 낼 때 <span class="hl">암모니아</span>를 같이 낸다"</p>
+  </div>
+  <div class="src">홍창의 9장 p.173</div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-t="진단 알고리즘">
+  <h2>신생아 급성기 감별 알고리즘</h2>
+  <div class="body flow">
+    <div class="node">식욕 부진·구토·기면·포도당/칼슘으로 안 멎는 경련·혼수</div>
+    <div class="arrow">▼ 패혈증 검사와 함께</div>
+    <div class="node fill">혈중 암모니아 + 혈액가스(pH, 음이온차)</div>
+    <div class="arrow">▼</div>
+    <div class="leaves">
+      <div class="leaf box" style="border-color:var(--b3)"><div class="k">암모니아 ↑ · 산증 없음</div><div class="v" style="color:var(--b3)">요소회로 이상</div></div>
+      <div class="leaf box" style="border-color:var(--b2)"><div class="k">음이온차 ↑ 대사 산증</div><div class="v" style="color:var(--b2)">유기산혈증<br>젖산혈증</div><div class="k" style="font-size:18px;margin-top:4px">암모니아 ↑ 또는 정상</div></div>
+      <div class="leaf box" style="border-color:var(--b1)"><div class="k">암모니아·음이온차 정상</div><div class="v" style="color:var(--b1)">아미노산 대사 장애<br>갈락토스혈증</div></div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 그림 9-2 (p.172)</div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-t="질환군별 생화학 소견">
+  <h2>질환군별 생화학 소견</h2>
+  <div class="body">
+    <table>
+      <tr><th></th><th class="c">요소회로</th><th class="c">단풍당뇨증</th><th class="c">유기산혈증</th><th class="c">지방산 산화</th><th class="c">호흡연쇄</th></tr>
+      <tr><th>대사 산증</th><td class="c">−</td><td class="c">±</td><td class="c"><b>+++</b></td><td class="c">±</td><td class="c">++</td></tr>
+      <tr><th>혈당</th><td class="c">정상</td><td class="c">정상/↓</td><td class="c">↓</td><td class="c"><b>↓↓↓</b></td><td class="c">정상</td></tr>
+      <tr><th>소변 케톤</th><td class="c">−</td><td class="c">↑↑</td><td class="c">↑↑</td><td class="c"><b>−</b></td><td class="c">↑</td></tr>
+      <tr><th>암모니아</th><td class="c"><b>↑↑↑</b></td><td class="c">정상</td><td class="c">↑↑</td><td class="c">↑</td><td class="c">정상</td></tr>
+      <tr><th>젖산</th><td class="c">정상</td><td class="c">정상</td><td class="c">↑</td><td class="c">±</td><td class="c"><b>↑↑↑</b></td></tr>
+      <tr><th>진단 검사</th><td class="c">아미노산</td><td class="c">BCAA↑</td><td class="c">소변 유기산</td><td class="c">acylcarnitine</td><td class="c">젖산/피루브산</td></tr>
+    </table>
+    <div class="box ink" style="margin-top:auto"><p style="margin:0;font-size:24px">암모니아만 높고 산증 없으면 <b>요소회로</b> · 산증·케톤·암모니아 다 있으면 <b>유기산</b> · 저혈당인데 케톤 없으면 <b>지방산 산화</b></p></div>
+  </div>
+  <div class="src">홍창의 9장 표 9-2 (p.173)</div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-t="급성기 치료">
+  <h2>급성 대사 위기: 초기 치료</h2>
+  <div class="body">
+    <div class="cols">
+      <div><ul>
+        <li><b>단백 섭취(수유) 중단</b><br><span class="mut" style="font-size:22px">원인이 밝혀질 때까지</span></li>
+        <li><b>10% 포도당 + 지방</b>으로 충분한 열량<br><span class="mut" style="font-size:22px">이화작용 억제 (심한 젖산혈증은 예외)</span></li>
+        <li><b>복합 수용성 비타민</b> 대량 <span class="mut" style="font-size:22px">(shot-gun)</span></li>
+        <li>감염 의심 시 <b>항균제</b></li>
+        <li>고암모니아·심한 산증 → <b>혈액 투석</b><br><span class="mut" style="font-size:22px">복막 투석보다 효과적</span></li>
+      </ul></div>
+      <div class="box ink"><h3>고암모니아혈증</h3><ul style="font-size:23px"><li style="font-size:23px">&gt;350 µmol/L: 투석 준비</li><li style="font-size:23px">&gt;500 µmol/L: <b>응급 투석</b></li><li style="font-size:23px">질소 제거제: sodium benzoate, phenylacetate/phenylbutyrate</li><li style="font-size:23px">arginine 정주</li><li style="font-size:23px">NAGS 결핍: carglumic acid</li></ul></div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 p.174, 표 9-8 (p.185); Häberle J, et al. J Inherit Metab Dis 2019</div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-t="장기 치료 전략">
+  <h2>장기 치료 전략</h2>
+  <div class="body">
+    <table>
+      <tr><th style="width:28%">전략</th><th>예</th></tr>
+      <tr><td><b>전구물질 제한</b></td><td>PKU 저페닐알라닌식 · MSUD 저BCAA식 · 갈락토스혈증 무유당식</td></tr>
+      <tr><td><b>결손 물질 보충</b></td><td>당원병 I형 생옥수수 전분</td></tr>
+      <tr><td><b>축적 물질 제거</b></td><td>윌슨병 D-penicillamine · 요소회로 sodium benzoate</td></tr>
+      <tr><td><b>조효소(비타민)</b></td><td>호모시스틴뇨증 B6 · MMA B12 · MSUD 일부 B1 · 일부 PKU BH4</td></tr>
+      <tr><td><b>효소 대체요법</b></td><td>고셔 · 파브리 · 헐러 · 헌터 · 폼페 <span class="mut">(뇌 장벽 못 넘음)</span></td></tr>
+      <tr><td><b>장기 이식</b></td><td>간: 윌슨, 당원병 I형, 요소회로 · 조혈모세포: X-ALD, 헐러</td></tr>
+      <tr><td><b>유발 약물 회피</b></td><td>급성 간헐 포르피린증 barbiturate · G6PD 결핍 sulfa</td></tr>
+    </table>
+  </div>
+  <div class="src">홍창의 9장 표 9-3, 9-4, p.174–176</div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-t="신생아 선별검사">
+  <h2>신생아 선별검사</h2>
+  <div class="body">
+    <div class="cols">
+      <div><ul>
+        <li><b>생후 3~7일, 수유 시작 후</b> 발뒤꿈치 채혈 → 여과지</li>
+        <li><b>탠덤질량분석(MS/MS)</b>: 아미노산·유기산·지방산 산화·요소회로 일부를 한 번에</li>
+        <li>국내 2018년 10월부터 50여 종 건강보험 적용</li>
+      </ul>
+      <div class="box red" style="margin-top:14px"><p style="margin:0;font-size:23px"><b>MS/MS로 못 잡는 것</b><br>갈락토스혈증 · 선천 갑상샘저하증 · 선천 부신 과형성증 → 별도 검사</p></div></div>
+      <div class="box ink" style="display:flex;flex-direction:column;justify-content:center"><h3>암기: "갑·부·오·빠·가·마"</h3><p style="margin:0;font-size:25px;line-height:1.7"><b>갑</b>상샘저하증<br><b>부</b>신피질과형성증<br>호모시스틴뇨증 (<b>오</b>)<br>페닐케톤뇨증 (<b>빠</b>)<br><b>가</b>락토스혈증<br><b>마</b>이플(단풍)시럽뇨증</p></div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 p.176; 보건복지부 발표(뉴시스 2018.8.2)</div>
+</section>
+
+<!-- 14 -->
+<section class="slide divider" data-t="2부 각론">
+  <div class="n">PART 2</div>
+  <h1>각론</h1>
+  <p>키워드 → 질환 → 확인 검사 → 치료</p>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-t="PKU">
+  <h2><span class="star">★</span> 페닐케톤뇨증 (PKU) <span class="tag">PAH 결핍 · AR</span></h2>
+  <div class="body">
+    <div class="kw"><span>쥐오줌(곰팡이) 냄새</span><span>담갈색 모발·흰 피부</span><span>습진</span><span>지능 저하·경련</span><span>염화제이철 녹색</span></div>
+    <div class="cols">
+      <div><ul>
+        <li>Phe → Tyr 못 바꿈 → Phe 축적, 멜라닌 감소</li>
+        <li>고전형: 혈중 Phe <b>≥ 20 mg/dL</b></li>
+        <li>생후 1년 무치료 → IQ 50 이하<br><b>생후 1개월 안에 치료</b>하면 정상 발달</li>
+        <li>저페닐알라닌 분유, <b>평생 유지</b> 권장. BH4 반응형은 BH4</li>
+      </ul></div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="box warn"><h3>모성 PKU</h3><p style="margin:0;font-size:23px">조절 안 된 임신부 → 태아 소두증, 심기형, 저체중, 지적 장애 (태아가 환아가 아니어도). 임신 전부터 Phe ≤ 6 mg/dL</p></div>
+        <div class="box"><h3>BH4 결핍증</h3><p style="margin:0;font-size:23px">PKU처럼 보이는데 식이 치료에도 경련·지능 저하 → 도파민·세로토닌 결핍. 국내 고Phe혈증의 약 10%</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 p.176–178; van Spronsen FJ, et al. Lancet Diabetes Endocrinol 2017</div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-t="MSUD·호모시스틴뇨증">
+  <h2>단풍당뇨증 · 호모시스틴뇨증</h2>
+  <div class="body cols">
+    <div class="box"><h3><span class="star">★</span> 단풍당뇨증 (MSUD)</h3>
+      <div class="kw"><span>단풍당밀 냄새</span><span>DNPH 황색</span></div>
+      <ul style="font-size:23px">
+        <li style="font-size:23px">BCKD 결핍 → <b>류신·이소류신·발린</b>↑</li>
+        <li style="font-size:23px">생후 3~5일 수유 곤란, 구토, Moro 소실, 경련, 반궁 긴장, 혼수</li>
+        <li style="font-size:23px">저BCAA 분유, 중증은 혈액 투석</li>
+        <li style="font-size:23px">일부 티아민(B1) 반응</li>
+      </ul></div>
+    <div class="box"><h3><span class="star">★</span> 호모시스틴뇨증</h3>
+      <div class="kw"><span>수정체 탈구</span><span>마르판 유사 체형</span><span>혈전</span></div>
+      <ul style="font-size:23px">
+        <li style="font-size:23px">Cystathionine β-synthase 결핍</li>
+        <li style="font-size:23px">지능 저하·경련 + 근시·수정체 탈구 + 골다공증 + <b>혈전색전증</b>(사망 원인)</li>
+        <li style="font-size:23px">Met·homocysteine↑, cystine↓</li>
+        <li style="font-size:23px">먼저 <b>비타민 B6</b> 대량 → 무반응 시 저Met식 + betaine</li>
+      </ul></div>
+  </div>
+  <div class="src">홍창의 9장 p.180–183</div>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-t="유기산 vs 요소회로">
+  <h2>고암모니아 신생아: 유기산혈증 vs 요소회로</h2>
+  <div class="body">
+    <table>
+      <tr><th style="width:24%"></th><th>유기산혈증 <span class="mut">(MMA, PA, IVA)</span></th><th>요소회로 이상 <span class="mut">(OTC 등)</span></th></tr>
+      <tr><td><b>혈액가스</b></td><td><b>음이온차 ↑ 대사 산증</b></td><td>산증 없음</td></tr>
+      <tr><td><b>케톤</b></td><td>↑↑</td><td>−</td></tr>
+      <tr><td><b>암모니아</b></td><td>↑ (2차: 요소회로 억제)</td><td><b>↑↑↑</b></td></tr>
+      <tr><td><b>혈구</b></td><td>호중구·혈소판 감소</td><td>정상</td></tr>
+      <tr><td><b>진단</b></td><td>소변 유기산, acylcarnitine</td><td>혈장 아미노산, 소변 orotic acid</td></tr>
+      <tr><td><b>특이 단서</b></td><td>이소발레르산혈증: <b>땀에 젖은 발 냄새</b><br>MMA: <b>B12</b> 반응형</td><td>OTC: <b>X-연관</b>, orotic acid↑</td></tr>
+    </table>
+    <div class="box red" style="margin-top:auto"><p style="margin:0;font-size:24px"><b>함정</b> 고암모니아 = 요소회로만은 아니다. 혈액가스·음이온차·케톤을 함께 본다.</p></div>
+  </div>
+  <div class="src">홍창의 9장 표 9-2, 9-7, p.181–183</div>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-t="OTC 결핍">
+  <h2><span class="star">★</span> OTC 결핍증 <span class="tag">요소회로 중 가장 흔함 · 유일한 X-연관</span></h2>
+  <div class="body">
+    <div class="kw"><span>남아 생후 1~2주 혼수</span><span>산증 없는 고암모니아</span><span>citrulline↓</span><span>orotic acid↑</span></div>
+    <div class="cols">
+      <div><ul>
+        <li>남아: 생후 1~2주 기면, 경련, 호흡 장애 → 사망 많음</li>
+        <li>여아(보인자): 영유아·학령기에 발병 가능</li>
+        <li>glutamine·alanine↑, citrulline↓</li>
+      </ul></div>
+      <div class="box ink"><h3>OTC vs CPS1 감별</h3><p style="margin:0;font-size:24px">쌓인 carbamoyl phosphate → 피리미딘 합성으로<br>→ <b>소변 orotic acid ↑</b> = OTC 결핍<br><span class="mut">CPS1 결핍은 orotic acid 정상</span></p></div>
+    </div>
+    <div class="box"><p style="margin:0;font-size:23px"><b>유지 치료</b>: 저단백식 + 필수 아미노산, 경구 sodium benzoate·phenylbutyrate, <b>citrulline</b>(OTC·CPS), 간이식</p></div>
+  </div>
+  <div class="src">홍창의 9장 p.183–185, 표 9-8, 9-9</div>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-t="지방산 산화 장애">
+  <h2><span class="star">★</span> 지방산 β-산화 장애 <span class="tag">MCAD · VLCAD · LCHAD …</span></h2>
+  <div class="body">
+    <div class="kw"><span>금식·감염 때</span><span>저케톤성 저혈당</span><span>Reye 증후군 유사</span><span>영아 급사</span></div>
+    <div class="cols">
+      <div><ul>
+        <li>금식하면 지방산을 태워 케톤을 만들어야 하는데 못 만듦</li>
+        <li>저혈당 + 간기능 이상 + 고암모니아 + CK↑</li>
+        <li>근육 약화, 심근병증, 횡문근 융해 <span class="mut">(장쇄형)</span></li>
+        <li>한국인은 VLCAD·MTP 결핍이 비교적 흔함</li>
+      </ul></div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="box ink"><h3>진단</h3><p style="margin:0;font-size:23px"><b>저혈당인데 소변 케톤 음성</b><br>→ <b>혈장 acylcarnitine</b> (MCAD: C6, C8, C10:1)<br>carnitine 감소, 소변 dicarboxylic acid</p></div>
+        <div class="box"><h3>치료</h3><p style="margin:0;font-size:23px"><b>금식 피하기</b>, 충분한 열량, carnitine</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 p.187–188, 표 9-10</div>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-t="공복 저혈당 감별">
+  <h2>공복 저혈당: 저혈당 순간의 피(critical sample)로 감별</h2>
+  <div class="body">
+    <p style="margin:0;font-size:23px">금식하면 ① 글리코겐 분해 → ② 포도당신생합성 → ③ 지방 분해·지방산 산화·케톤 생성</p>
+    <table>
+      <tr><th style="width:32%">저혈당 때 소견</th><th style="width:28%">막힌 단계</th><th>대표 질환</th></tr>
+      <tr><td>유리지방산↓ · 케톤↓ · 산증 없음</td><td>인슐린이 지방 분해 억제</td><td>선천 고인슐린혈증</td></tr>
+      <tr><td>유리지방산↑ · <b>케톤↓</b></td><td>지방산 산화</td><td>MCAD 결핍 등</td></tr>
+      <tr><td><b>젖산↑</b> (산증)</td><td>포도당신생합성</td><td><b>당원병 I형</b>, FBPase 결핍</td></tr>
+      <tr><td><b>케톤↑</b> (산증)</td><td>글리코겐 저장·분해</td><td><b>당원병 III·VI·IX형</b>, 케톤성 저혈당, GH·코티솔 결핍</td></tr>
+    </table>
+    <div class="box red" style="margin-top:auto"><p style="margin:0;font-size:24px"><b>함정</b> "당원병이면 케톤이 안 오른다"는 틀림. III·VI·IX형은 <b>케톤성</b> 저혈당이다.</p></div>
+  </div>
+  <div class="src">Sperling Pediatric Endocrinology 5판 23장 그림 23.6 (p.909), p.919; Thornton PS, et al. J Pediatr 2015</div>
+</section>
+
+<!-- 21 -->
+<section class="slide" data-t="당원병">
+  <h2><span class="star">★</span> 당원병 Ia형 (von Gierke) <span class="tag">glucose-6-phosphatase · AR</span></h2>
+  <div class="body">
+    <div class="kw"><span>공복 저혈당 + 젖산산증</span><span>고요산·고지혈증</span><span>큰 간·큰 신장</span><span>인형 얼굴</span><span>코피·멍</span></div>
+    <div class="cols">
+      <div><ul>
+        <li>3~4개월: 큰 간, 저혈당 경련</li>
+        <li><b>글루카곤 줘도 혈당 안 오르고 젖산만↑</b></li>
+        <li>Ib형: 호중구 감소 → 반복 감염, 염증성 장질환</li>
+        <li>한국인 G6PC c.648G&gt;T &gt;85% → 유전자 검사로 진단</li>
+        <li>치료: 잦은 식사, <b>생옥수수 전분</b>, 과당·갈락토스 제한</li>
+      </ul></div>
+      <div class="box"><h3>III · VI · IX형</h3><ul style="font-size:22px"><li style="font-size:22px">젖산·요산 <b>정상</b>, <b>케톤성</b> 저혈당</li><li style="font-size:22px">신장 정상, 나이 들며 호전</li><li style="font-size:22px">III형: 근병증·심근비대 동반 가능</li><li style="font-size:22px">IX형 흔한 아형은 X-연관</li></ul>
+        <h3 style="margin-top:12px">II형 폼페병 (리소좀)</h3><p style="margin:0;font-size:22px">처진 아기 + 큰 혀 + 비대 심근병증 → 효소 대체요법</p></div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 p.199–202; Kishnani PS, et al. Genet Med 2014 (GSD I), 2019 (GSD VI·IX)</div>
+</section>
+
+<!-- 22 -->
+<section class="slide" data-t="갈락토스혈증">
+  <h2><span class="star">★</span> 갈락토스혈증 <span class="tag">GALT 결핍 · AR</span></h2>
+  <div class="body">
+    <div class="kw"><span>젖 먹은 뒤 구토·황달</span><span>간비대</span><span>백내장</span><span>대장균 패혈증</span><span>소변 환원당 양성</span></div>
+    <div class="cols">
+      <div><ul>
+        <li>유당 = 포도당 + <b>갈락토스</b></li>
+        <li>수유 후 황달, 간비대, 저혈당, 경련, 체중 증가 불량</li>
+        <li><b>대장균 패혈증</b>으로 먼저 진단되는 경우가 많다</li>
+        <li>의심되면 즉시 <b>유당 제거</b> (확진 기다리지 않음)</li>
+        <li>장기: 여성 난소 기능 부전, 언어·학습 문제</li>
+      </ul></div>
+      <div class="box"><h3>비슷하지만 다른 것</h3><ul style="font-size:22px">
+        <li style="font-size:22px"><b>갈락토키네이스 결핍</b>: 백내장만</li>
+        <li style="font-size:22px"><b>유전성 과당 불내증</b>: 이유식·과일 시작 후 증상, 단 음식을 싫어함 → 과당·설탕 제거</li>
+        <li style="font-size:22px">MS/MS로 못 잡음 → 별도 선별</li></ul></div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 p.202–205; Welling L, et al. J Inherit Metab Dis 2017</div>
+</section>
+
+<!-- 23 -->
+<section class="slide" data-t="리소좀 축적 질환">
+  <h2>리소좀 축적 질환: 체리 반점과 거대 비장</h2>
+  <div class="body">
+    <table>
+      <tr><th style="width:22%">질환</th><th style="width:24%">결핍 효소</th><th>키워드</th></tr>
+      <tr><td><b><span class="star">★</span> 테이-삭스</b></td><td>Hexosaminidase A</td><td>4~5개월 후 퇴행, 소리에 과다 놀람, <b>체리 반점, 간비장비대 없음</b></td></tr>
+      <tr><td>Sandhoff</td><td>Hexosaminidase A·B</td><td>테이-삭스 + 간비장비대</td></tr>
+      <tr><td>니만-피크 A</td><td>Sphingomyelinase</td><td>간비장비대 + 체리 반점 + 퇴행</td></tr>
+      <tr><td><b><span class="star">★</span> 고셔</b></td><td>Glucocerebrosidase</td><td>가장 흔함. <b>거대 비장</b>, 범혈구 감소, 뼈 통증·Erlenmeyer flask, Gaucher 세포</td></tr>
+      <tr><td><b><span class="star">★</span> 파브리</b> <span class="mut">X</span></td><td>α-galactosidase A</td><td>10대 <b>손발 작열통</b>, 땀이 안 남, 혈관각화종 → 신부전·심근병증·뇌졸중</td></tr>
+    </table>
+    <div class="box ink" style="margin-top:auto"><p style="margin:0;font-size:23px">고셔 1형은 효소 대체요법이 잘 듣지만, 정맥 효소는 <b>혈관-뇌 장벽</b>을 못 넘어 2·3형의 신경 증상은 개선되지 않는다</p></div>
+  </div>
+  <div class="src">홍창의 9장 p.193–197, 표 9-13, 9-14</div>
+</section>
+
+<!-- 24 -->
+<section class="slide" data-t="점액다당류증">
+  <h2>점액다당류증 (MPS): 헐러 vs 헌터</h2>
+  <div class="body">
+    <p style="margin:0;font-size:23px">공통: 출생 시 정상 → 거친 얼굴, 큰 혀, 관절 강직, 간비장비대, 탈장, 잦은 중이염, 저신장, 다발성 골이형성</p>
+    <div class="cols">
+      <div class="box"><h3><span class="star">★</span> 헐러 (MPS I)</h3><ul style="font-size:23px"><li style="font-size:23px">α-L-iduronidase, <b>AR</b></li><li style="font-size:23px"><b>각막 혼탁 있음</b></li><li style="font-size:23px">12~24개월 지적 장애</li><li style="font-size:23px">조혈모세포 이식 + 효소 대체요법</li></ul></div>
+      <div class="box ink"><h3><span class="star">★</span> 헌터 (MPS II)</h3><ul style="font-size:23px"><li style="font-size:23px">Iduronate 2-sulfatase, <b>X-연관</b> (MPS 중 유일)</li><li style="font-size:23px"><b>각막 맑음</b></li><li style="font-size:23px">견갑부·팔 <b>조약돌 피부</b></li><li style="font-size:23px">국내에 흔한 형, 효소 대체요법</li></ul></div>
+    </div>
+    <p class="mut" style="margin:0;font-size:21px">MPS III 산필리포: 심한 과잉행동·빠른 퇴행 · MPS IV 모르키오: 지능 정상, 심한 골격 이상, 환축추 불안정</p>
+  </div>
+  <div class="src">홍창의 9장 p.209–212, 표 9-15</div>
+</section>
+
+<!-- 25 -->
+<section class="slide" data-t="X-ALD·레쉬-니한">
+  <h2>학령기 퇴행과 자해: X-ALD · 레쉬-니한</h2>
+  <div class="body cols">
+    <div class="box"><h3><span class="star">★</span> X-연관 부신백질이영양증</h3>
+      <div class="kw"><span>5~12세 남아</span><span>VLCFA(C26)↑</span></div>
+      <ul style="font-size:22px">
+        <li style="font-size:22px">정상 발달 → 행동 변화, 주의력·성적 저하, 시력·청력·보행 장애</li>
+        <li style="font-size:22px"><b>원발성 부신 기능 부전</b> (피부 색소침착)</li>
+        <li style="font-size:22px">MRI: 측뇌실 <b>후두부</b> 주위 백질 병변</li>
+        <li style="font-size:22px">조기 조혈모세포 이식</li></ul></div>
+    <div class="box"><h3><span class="star">★</span> 레쉬-니한 증후군</h3>
+      <div class="kw"><span>자해</span><span>무도증</span><span>고요산혈증</span></div>
+      <ul style="font-size:22px">
+        <li style="font-size:22px">HPRT 결핍, X-연관 열성</li>
+        <li style="font-size:22px">발달 지연 → 무도증·근긴장 이상 → 1세 전후 <b>입술·손가락 자해</b></li>
+        <li style="font-size:22px">요산/크레아티닌 비 ↑</li>
+        <li style="font-size:22px">allopurinol은 신장만 보호, 신경 증상은 호전 안 됨</li></ul></div>
+  </div>
+  <div class="src">홍창의 9장 p.187–189, 212–213</div>
+</section>
+
+<!-- 26 -->
+<section class="slide" data-t="윌슨·멘케스">
+  <h2>구리 대사: 윌슨병 vs 멘케스병</h2>
+  <div class="body">
+    <table>
+      <tr><th style="width:20%"></th><th><span class="star">★</span> 윌슨병</th><th><span class="star">★</span> 멘케스병</th></tr>
+      <tr><td><b>유전자·유전</b></td><td>ATP7B · <b>AR</b></td><td>ATP7A · <b>X-연관</b></td></tr>
+      <tr><td><b>기전</b></td><td>간 구리가 담즙으로 배설 안 됨 → <b>축적</b></td><td>장에서 구리 흡수·운반 안 됨 → <b>결핍</b></td></tr>
+      <tr><td><b>나이</b></td><td>5세 이후 간질환, 10대 신경·정신 증상</td><td>생후 수개월, 대개 3세 전 사망</td></tr>
+      <tr><td><b>키워드</b></td><td>원인 모를 간염, 떨림·구음장애·성적 저하, <b>K-F 고리</b>, 쿰스 음성 용혈</td><td><b>꼬이고 잘 부서지는 머리카락</b>, 저체온, 근긴장 저하, 경련</td></tr>
+      <tr><td><b>검사</b></td><td>세룰로플라스민 &lt;20 mg/dL, 24시간 소변 구리 &gt;100 µg</td><td>혈청 구리·세룰로플라스민 ↓</td></tr>
+      <tr><td><b>치료</b></td><td>D-penicillamine·trientine, 저구리식, 간이식</td><td>신생아기 copper-histidine</td></tr>
+    </table>
+  </div>
+  <div class="src">홍창의 13장 p.649–650; 9장 p.214–215</div>
+</section>
+
+<!-- 27 -->
+<section class="slide" data-t="가족성 고콜레스테롤혈증">
+  <h2><span class="star">★</span> 가족성 고콜레스테롤혈증 (FH) <span class="tag">LDLR · AD</span></h2>
+  <div class="body">
+    <div class="kw"><span>소아기에 가장 흔한 고지질단백혈증</span><span>LDL ≥ 200 mg/dL</span><span>아킬레스건 황색종</span><span>조기 관상동맥질환 가족력</span></div>
+    <div class="cols">
+      <div><ul>
+        <li>이형 접합 약 1/500, LDL 2~3배</li>
+        <li>동형 접합은 4~6배, 소아기부터 황색종·동맥경화</li>
+        <li>건 황색종, 눈꺼풀 황색판종, 각막 노인환</li>
+      </ul></div>
+      <div class="box ink"><h3>치료</h3><ul style="font-size:23px"><li style="font-size:23px">저콜레스테롤 식사</li><li style="font-size:23px">담즙산 결합 수지</li><li style="font-size:23px"><b>10세 이상 statin</b></li><li style="font-size:23px">부모 중 한 명이 환자 → 자녀 50%</li></ul></div>
+    </div>
+  </div>
+  <div class="src">홍창의 9장 p.189–191, 표 9-11, 9-12</div>
+</section>
+
+<!-- 28 -->
+<section class="slide" data-t="키워드 총정리">
+  <h2>키워드 총정리</h2>
+  <div class="body">
+    <table style="font-size:21px">
+      <tr><th>단서</th><th>질환</th><th>단서</th><th>질환</th></tr>
+      <tr><td>쥐오줌 냄새, 담갈색 모발</td><td><b>PKU</b></td><td>K-F 고리 + 간 + 신경</td><td><b>윌슨병</b></td></tr>
+      <tr><td>단풍당밀 냄새</td><td><b>MSUD</b></td><td>꼬이고 부서지는 머리카락</td><td><b>멘케스병</b></td></tr>
+      <tr><td>땀에 젖은 발 냄새</td><td><b>이소발레르산혈증</b></td><td>체리 반점, 간비장비대 없음</td><td><b>테이-삭스</b></td></tr>
+      <tr><td>수정체 탈구 + 혈전</td><td><b>호모시스틴뇨증</b></td><td>거대 비장 + 뼈 통증</td><td><b>고셔병</b></td></tr>
+      <tr><td>산증 없는 고암모니아, orotic acid↑</td><td><b>OTC 결핍</b></td><td>거친 얼굴 + 각막 맑음 + 남아</td><td><b>헌터</b></td></tr>
+      <tr><td>음이온차 산증 + 케톤 + 고암모니아</td><td><b>유기산혈증</b></td><td>처진 아기 + 큰 혀 + 심근병증</td><td><b>폼페병</b></td></tr>
+      <tr><td>저케톤성 저혈당, Reye 유사</td><td><b>지방산 산화 장애</b></td><td>학령기 남아 퇴행 + 색소침착</td><td><b>X-ALD</b></td></tr>
+      <tr><td>저혈당 + 젖산·요산·TG↑ + 큰 간</td><td><b>당원병 I형</b></td><td>자해 + 무도증 + 고요산</td><td><b>레쉬-니한</b></td></tr>
+      <tr><td>수유 후 황달 + 백내장 + 대장균</td><td><b>갈락토스혈증</b></td><td>소변을 두면 검게</td><td><b>알캅톤뇨증</b></td></tr>
+    </table>
+  </div>
+  <div class="src">홍창의 9장 전체 요약 (강의록 10절)</div>
+</section>
+
+<!-- 29 -->
+<section class="slide" data-t="사례 다시 보기">
+  <h2>처음 사례로 돌아가면</h2>
+  <div class="body">
+    <div class="q" style="font-size:26px">생후 3일 남아, 잘 먹다가 처짐 · 혈당 70 mg/dL<br>→ 패혈증 검사와 함께 <b>암모니아 + 혈액가스</b></div>
+    <div class="leaves">
+      <div class="leaf box" style="border-color:var(--b3)"><div class="k">암모니아 850, pH 7.44<br>orotic acid↑</div><div class="v" style="color:var(--b3)">OTC 결핍</div></div>
+      <div class="leaf box" style="border-color:var(--b2)"><div class="k">pH 7.08, 음이온차 30<br>케톤 3+, 암모니아 280</div><div class="v" style="color:var(--b2)">유기산혈증</div></div>
+      <div class="leaf box" style="border-color:var(--b1)"><div class="k">암모니아·pH 정상<br>달콤한 냄새, DNPH 양성</div><div class="v" style="color:var(--b1)">단풍당뇨증</div></div>
+    </div>
+    <div class="box ink" style="margin-top:auto"><p style="margin:0;font-size:24px">공통 첫 처치: <b>수유 중단 · 10% 포도당 · 비타민 · 항생제 · 검체 보관</b> → 필요하면 투석</p></div>
+  </div>
+  <div class="src">홍창의 9장 그림 9-2, p.174</div>
+</section>
+
+<!-- 30 -->
+<section class="slide" data-t="복습 안내">
+  <h2>복습</h2>
+  <div class="body">
+    <div class="cols">
+      <div class="box ink"><h3>키워드 마인드맵</h3><p style="margin:0;font-size:23px">질환 40개 · 키워드→질환 색인 · 셀프 퀴즈</p><p style="margin:10px 0 0;font:500 17px var(--mono);word-break:break-all">joojang87.github.io/study-notes/<br>pediatrics/iem-keyword-map.html</p></div>
+      <div class="box"><h3>강의록 (상세본)</h3><p style="margin:0;font-size:23px">오늘 다루지 못한 질환과 근거 쪽수</p><p style="margin:10px 0 0;font:500 17px var(--mono);word-break:break-all">joojang87.github.io/study-notes/<br>pediatrics/inborn-errors-of-metabolism.html</p></div>
+    </div>
+    <div class="box warn"><p style="margin:0;font-size:24px">세 가지만 기억: <b>① 패혈증 같으면 암모니아</b> · <b>② 암모니아 + 혈액가스로 질환군</b> · <b>③ 단백 끊고 포도당</b></p></div>
+  </div>
+  <div class="src">study-notes 웹페이지</div>
+</section>
+
+<!-- 31 -->
+<section class="slide" data-t="참고문헌">
+  <h2>참고문헌</h2>
+  <div class="body">
+    <ol class="refs" style="margin:0;padding-left:28px">
+      <li>대한소아청소년과학회. 홍창의 소아과학 12판. 제9장 유전 대사 질환 p.170–217; 제13장 윌슨병 p.649–650.</li>
+      <li>Sperling MA, ed. Pediatric Endocrinology, 5th ed. Elsevier; 2021. Chapter 23, p.909, 919.</li>
+      <li>van Spronsen FJ, et al. Key European guidelines for the diagnosis and management of patients with phenylketonuria. Lancet Diabetes Endocrinol 2017;5:743–756.</li>
+      <li>Häberle J, et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. J Inherit Metab Dis 2019;42:1192–1230.</li>
+      <li>Kishnani PS, et al. Diagnosis and management of glycogen storage disease type I: ACMG guideline. Genet Med 2014;16:e1.</li>
+      <li>Kishnani PS, et al. Diagnosis and management of glycogen storage diseases type VI and IX: ACMG. Genet Med 2019;21:772–789.</li>
+      <li>Welling L, et al. International clinical guideline for the management of classical galactosemia. J Inherit Metab Dis 2017;40:171–176.</li>
+      <li>Thornton PS, et al. Recommendations from the Pediatric Endocrine Society for evaluation and management of persistent hypoglycemia. J Pediatr 2015;167:238–245.</li>
+    </ol>
+    <p class="mut" style="margin-top:auto;font-size:18px">Claude(AI)의 도움을 받아 교과서·가이드라인을 바탕으로 만든 강의 자료입니다. 환자 정보는 포함하지 않습니다.</p>
+  </div>
+</section>
+
+</div></div>
+<div id="bar"></div>
+<div id="nav"><button id="bOv" type="button" title="슬라이드 목록 (O)">목록</button><button id="bFs" type="button" title="전체화면 (F)">전체화면</button><button id="bPrev" type="button">◀</button><button id="bNext" type="button">▶</button></div>
+<div id="ov"><h3>슬라이드 목록 <span class="mut" style="font-weight:400;font-size:15px">· ←/→ 또는 스페이스로 이동, F 전체화면, O 목록, Home/End</span></h3><ol id="ovl"></ol></div>
+<script>
+const S=[...document.querySelectorAll('.slide')],deck=document.getElementById('deck'),bar=document.getElementById('bar'),ov=document.getElementById('ov');
+let i=0;
+S.forEach((s,k)=>{if(!s.classList.contains('title-slide')&&!s.classList.contains('divider')){const p=document.createElement('div');p.className='pg';p.textContent=(k+1)+' / '+S.length;s.appendChild(p)}});
+document.getElementById('ovl').innerHTML=S.map((s,k)=>`<li><a href="#${k+1}" data-k="${k}">${s.dataset.t||('슬라이드 '+(k+1))}</a></li>`).join('');
+function fit(){const sc=Math.min(innerWidth/1280,innerHeight/720);deck.style.transform=`scale(${sc})`}
+function go(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,k)=>s.classList.toggle('on',k===i));bar.style.width=((i+1)/S.length*100)+'%';if(location.hash!=='#'+(i+1))history.replaceState(null,'','#'+(i+1))}
+function fs(){try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(e){}}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;const k=e.key;
+  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(k)){e.preventDefault();go(i+1)}
+  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(k)){e.preventDefault();go(i-1)}
+  else if(k==='Home')go(0);else if(k==='End')go(S.length-1);
+  else if(k==='f'||k==='F')fs();else if(k==='o'||k==='O'||k==='Escape'&&ov.classList.contains('on'))ov.classList.toggle('on')});
+document.getElementById('stage').addEventListener('click',e=>{if(e.target.closest('a,button'))return;(e.clientX<innerWidth*0.3)?go(i-1):go(i+1)});
+document.getElementById('bPrev').onclick=()=>go(i-1);document.getElementById('bNext').onclick=()=>go(i+1);
+document.getElementById('bFs').onclick=fs;document.getElementById('bOv').onclick=()=>ov.classList.toggle('on');
+ov.addEventListener('click',e=>{const a=e.target.closest('a');if(a){e.preventDefault();go(+a.dataset.k)}ov.classList.remove('on')});
+let tx=null;addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+addEventListener('touchend',e=>{if(tx==null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(d<0?i+1:i-1);tx=null});
+fit();go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
