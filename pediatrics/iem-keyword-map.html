@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>유전대사질환 키워드맵 · Study Notes</title>
+<meta name="description" content="유전대사질환 40개를 11개 분류·핵심 키워드로 묶은 인터랙티브 마인드맵, 색인, 셀프 퀴즈">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: 상단 탭(마인드맵 / 키워드→질환 / 질환 카드 / 셀프 퀴즈 / 근거), 본문 최대 1180px, 마인드맵은 SVG + 우측(모바일은 아래) 상세 패널 */
+:root{
+  --bg:#f6f8f7; --surface:#ffffff; --surface-2:#eef2f1; --fg:#17201e; --muted:#5b6965; --line:#d5dedb;
+  --ink:#0f4c47; --ink-soft:#d9ebe8; --star:#b45309; --warn-bg:#fff4e0; --warn-fg:#7a4a06;
+  --b1:#2f7d5b; --b2:#b4552d; --b3:#7a4fb3; --b4:#b8870b; --b5:#1f6fa8; --b6:#c0436e; --b7:#5b7a1d; --b8:#8a5a3c; --b9:#2a8c94; --b10:#a33a3a; --b11:#4a5aa8;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f1514; --surface:#172120; --surface-2:#1e2a28; --fg:#e6eeec; --muted:#9db0ab; --line:#2c3a37;
+  --ink:#7fd1c4; --ink-soft:#1d3b37; --star:#f2b04b; --warn-bg:#3a2b12; --warn-fg:#f6d49a;
+  --b1:#5fc596; --b2:#ec8a60; --b3:#b391ea; --b4:#e3b84a; --b5:#6db4e8; --b6:#ef80a7; --b7:#a4c95a; --b8:#cf9a76; --b9:#5fcbd3; --b10:#ec7b7b; --b11:#8f9cf0;
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0f1514; --surface:#172120; --surface-2:#1e2a28; --fg:#e6eeec; --muted:#9db0ab; --line:#2c3a37;
+  --ink:#7fd1c4; --ink-soft:#1d3b37; --star:#f2b04b; --warn-bg:#3a2b12; --warn-fg:#f6d49a;
+  --b1:#5fc596; --b2:#ec8a60; --b3:#b391ea; --b4:#e3b84a; --b5:#6db4e8; --b6:#ef80a7; --b7:#a4c95a; --b8:#cf9a76; --b9:#5fcbd3; --b10:#ec7b7b; --b11:#8f9cf0;
+  color-scheme:dark }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+header h1{font-size:1.75rem;line-height:1.25;margin:0;letter-spacing:-.01em;text-wrap:balance}
+header p{margin:6px 0 0;color:var(--muted);max-width:70ch}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.tab{font:inherit;font-weight:600;font-size:.92rem;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.tab:focus-visible,button:focus-visible,.leaf:focus-visible{outline:3px solid var(--star);outline-offset:2px}
+.note{background:var(--warn-bg);color:var(--warn-fg);border-radius:10px;padding:10px 14px;font-size:.9rem}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font:inherit;font-size:.82rem;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:4px 10px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed="true"]{border-color:var(--fg);font-weight:600}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}
+.map-grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:18px;align-items:start}
+@media (max-width:900px){.map-grid{grid-template-columns:minmax(0,1fr)}}
+.map-box{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow-x:auto}
+.map-box svg{display:block;width:100%;min-width:640px;height:auto}
+.leaf{cursor:pointer}
+.leaf text{fill:var(--fg);font-size:15px;font-family:var(--font)}
+.leaf.core text{font-weight:700}
+.leaf:hover circle,.leaf.sel circle{stroke:var(--fg);stroke-width:3}
+.branch text{font-size:16px;font-weight:700;fill:#fff;font-family:var(--font)}
+.center text{font-family:var(--font);font-weight:700;fill:var(--bg)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;position:sticky;top:12px;min-width:0}
+.panel h3{margin:0 0 2px;font-size:1.2rem}
+.panel .en{color:var(--muted);font-size:.85rem;margin-bottom:10px}
+.kw{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.kw span{font-size:.85rem;padding:3px 9px;border-radius:7px;background:var(--ink-soft);color:var(--fg)}
+dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;font-size:.9rem}
+dt{color:var(--muted);font-weight:600;white-space:nowrap}
+dd{margin:0}
+.src{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.tag{font-size:.72rem;font-weight:700;padding:1px 6px;border-radius:5px;background:var(--surface-2);color:var(--muted);letter-spacing:.02em}
+.tag.gl{background:var(--ink-soft);color:var(--ink)}
+.star{color:var(--star);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.card .head{display:flex;align-items:center;gap:8px}
+.card h4{margin:0;font-size:1.02rem}
+.card .hook{font-size:.9rem;color:var(--muted)}
+.idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.idx section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.idx h3{margin:0 0 8px;font-size:1rem}
+.idx table{width:100%;border-collapse:collapse;font-size:.88rem}
+.idx td{padding:5px 4px;border-top:1px solid var(--line);vertical-align:top}
+.idx td:first-child{width:52%}
+.link{font:inherit;font-size:.85rem;border:0;background:none;color:var(--ink);font-weight:600;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px}
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;max-width:760px;display:flex;flex-direction:column;gap:14px}
+.quiz .q{display:flex;flex-wrap:wrap;gap:8px}
+.quiz .q span{font-size:1rem;padding:6px 12px;border-radius:8px;background:var(--ink-soft);font-weight:600}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (max-width:520px){.opts{grid-template-columns:minmax(0,1fr)}}
+.opt{font:inherit;text-align:left;border:1px solid var(--line);background:var(--surface-2);color:var(--fg);border-radius:10px;padding:10px 12px;cursor:pointer}
+.opt.right{border-color:var(--b1);background:color-mix(in srgb,var(--b1) 18%,var(--surface))}
+.opt.wrong{border-color:var(--b10);background:color-mix(in srgb,var(--b10) 16%,var(--surface))}
+.primary{font:inherit;font-weight:600;border:0;background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:999px;cursor:pointer;align-self:flex-start}
+.score{font-family:var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.ref ol{padding-left:1.2em;margin:6px 0}
+.ref li{margin-bottom:6px}
+.ref a{color:var(--ink)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.box h3{margin:0 0 8px;font-size:1rem}
+.box ul,.box ol{margin:0;padding-left:1.2em}
+.flow{display:flex;flex-direction:column;gap:6px;font-size:.88rem}
+.flow div{padding:6px 10px;border-radius:8px;background:var(--surface-2)}
+.flow b{color:var(--ink)}
+@media (prefers-reduced-motion:no-preference){.leaf circle{transition:stroke-width .15s}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header>
+  <h1>유전대사질환 키워드맵</h1>
+  <p>키워드 하나로 질환을 떠올리고, 질환 하나로 키워드 묶음을 떠올리는 연습용 지도입니다. <span class="star">★</span> 표시는 강의 핵심 질환입니다. 모든 항목에 근거(교과서 쪽수 또는 가이드라인)를 달았습니다. 자세한 설명은 <a href="https://joojang87.github.io/study-notes/pediatrics/inborn-errors-of-metabolism.html" style="color:var(--ink)">강의록</a>에 있습니다.</p>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button class="tab" role="tab" data-tab="map" aria-selected="true">마인드맵</button>
+  <button class="tab" role="tab" data-tab="index" aria-selected="false">키워드 → 질환</button>
+  <button class="tab" role="tab" data-tab="cards" aria-selected="false">질환 카드</button>
+  <button class="tab" role="tab" data-tab="quiz" aria-selected="false">셀프 퀴즈</button>
+  <button class="tab" role="tab" data-tab="basics" aria-selected="false">먼저 알아둘 것</button>
+  <button class="tab" role="tab" data-tab="refs" aria-selected="false">근거</button>
+</nav>
+
+<section id="v-map" class="view">
+  <div class="toolbar" style="margin-bottom:12px">
+    <button class="chip" id="coreToggle" aria-pressed="true">★ 핵심만 보기</button>
+    <span class="src">질환을 누르면 키워드와 근거가 열립니다. 휴대폰에서는 지도를 옆으로 밀어 보세요.</span>
+  </div>
+  <div class="map-grid">
+    <div class="map-box"><svg id="mm" viewBox="0 0 1200 1200" role="img" aria-label="유전대사질환 마인드맵"></svg></div>
+    <aside class="panel" id="panel"></aside>
+  </div>
+</section>
+
+<section id="v-index" class="view" hidden>
+  <p class="note">교과서에서 진단 단서로 쓰이는 표현을 증상·검사 소견별로 묶었습니다. 질환 이름을 누르면 마인드맵의 해당 질환이 열립니다.</p>
+  <div class="idx" id="idx" style="margin-top:14px"></div>
+</section>
+
+<section id="v-cards" class="view" hidden>
+  <div class="toolbar" id="cardFilter" style="margin-bottom:12px"></div>
+  <div class="cards" id="cards"></div>
+</section>
+
+<section id="v-quiz" class="view" hidden>
+  <div class="quiz">
+    <div class="toolbar">
+      <button class="chip" id="quizCore" aria-pressed="true">★ 핵심 질환만 출제</button>
+      <span class="score" id="score">0 / 0</span>
+    </div>
+    <div><b>이 키워드 묶음은 어떤 질환일까요?</b></div>
+    <div class="q" id="qkw"></div>
+    <div class="opts" id="qopts"></div>
+    <div id="qfb" class="src"></div>
+    <button class="primary" id="qnext">다음 문제</button>
+  </div>
+</section>
+
+<section id="v-basics" class="view" hidden>
+  <div class="two">
+    <div class="box">
+      <h3>이럴 때 유전대사질환을 의심한다</h3>
+      <ul>
+        <li>출생 시 정상이었다가 <b>수유 2~3일 후</b> 기면, 수유 거부, 구토, 경련. 신생아 패혈증과 증상이 같거나 실제로 동반될 수 있음</li>
+        <li>감염·발열·금식 같은 <b>대사 스트레스</b> 때 반복되는 구토, 의식 변화, 산증, 저혈당</li>
+        <li>특이한 냄새, 간비대·비장비대, 백내장·망막 이상, 원인 모를 발달 지연이나 퇴행</li>
+        <li>형제자매의 원인 모를 사망(대부분 상염색체 열성, 약 70%)</li>
+      </ul>
+      <p class="src">홍창의 9장 p.170–173</p>
+    </div>
+    <div class="box">
+      <h3>신생아 급성기: 암모니아부터 잰다</h3>
+      <div class="flow">
+        <div><b>암모니아↑ + pH·음이온차 정상</b> → 요소회로 이상</div>
+        <div><b>암모니아↑ 또는 정상 + 음이온차↑ 산증</b> → 유기산혈증, 젖산혈증</div>
+        <div><b>암모니아 정상 + 산증 없음</b> → 아미노산 대사 장애(단풍당뇨증 등), 갈락토스혈증</div>
+      </div>
+      <p class="src">홍창의 9장 그림 9-2, 표 9-2 (p.172–173)</p>
+    </div>
+    <div class="box">
+      <h3>급성 대사 위기의 초기 치료</h3>
+      <ol>
+        <li>원인이 밝혀질 때까지 수유(단백 섭취) 중단</li>
+        <li>10% 포도당 수액과 지방으로 충분한 열량(젖산혈증이 심한 경우는 예외)</li>
+        <li>복합 비타민(조효소) 대량 투여 <i>shot-gun therapy</i></li>
+        <li>동반 감염이 의심되면 항균제</li>
+        <li>고암모니아혈증·대사 산증이 심하면 혈액 투석</li>
+        <li>치료 전 소변·혈장·뇌척수액을 냉장 보관</li>
+      </ol>
+      <p class="src">홍창의 9장 p.173–174</p>
+    </div>
+    <div class="box">
+      <h3>신생아 선별검사</h3>
+      <ul>
+        <li>생후 3~7일 발뒤꿈치 채혈, 여과지 건조혈반</li>
+        <li>탠덤질량분석(MS/MS)으로 아미노산·유기산·요소회로·지방산 산화 장애를 한 번에 선별</li>
+        <li><b>MS/MS로 못 잡는 것</b>: 갈락토스혈증, 선천 갑상샘저하증, 선천 부신 과형성 → 별도 검사</li>
+        <li>강의록 암기법 <b>"갑·부·오·빠·가·마"</b>: 갑상샘저하증, 부신과형성증, 호모시스틴뇨증, 페닐케톤뇨증, 갈락토스혈증, 단풍당뇨증(메이플시럽뇨증)</li>
+        <li>국내에서는 2018년 10월부터 MS/MS를 포함한 신생아 선천성대사이상검사(50여 종)에 건강보험이 적용됨 <span class="tag gl">보도자료</span></li>
+      </ul>
+      <p class="src">홍창의 9장 p.176; 뉴시스 2018.8.2 보건복지부 발표 기사; 강의록(유전대사질환 배포용)</p>
+    </div>
+    <div class="box">
+      <h3>공복 저혈당: 저혈당 순간의 혈액(critical sample)으로 감별</h3>
+      <div class="flow">
+        <div><b>유리지방산↓ + 케톤↓</b>, 산증 없음 → 인슐린 과다(고인슐린혈증)</div>
+        <div><b>유리지방산↑ + 케톤↓</b> → 지방산 산화 장애(MCAD 등)</div>
+        <div><b>젖산↑</b> → 포도당신생합성 장애(당원병 I형, FBPase 결핍)</div>
+        <div><b>케톤↑</b> → 당원병 III·VI·IX형, 케톤성 저혈당, GH·코티솔 결핍</div>
+      </div>
+      <p class="src">Sperling Pediatric Endocrinology 5판 23장 그림 23.6(p.909), 원출처 Pediatric Endocrine Society 권고(2015)</p>
+    </div>
+  </div>
+</section>
+
+<section id="v-refs" class="view ref" hidden>
+  <div class="two">
+    <div class="box">
+      <h3>1차 근거: 교과서</h3>
+      <ol>
+        <li>대한소아청소년과학회. 홍창의 소아과학 12판. 제9장 유전 대사 질환, p.170–217.</li>
+        <li>같은 책, 제13장 소화기 질환. 윌슨병, p.649–650.</li>
+        <li>Sperling MA, ed. Pediatric Endocrinology, 5th ed. 2021. Chapter 23 Hypoglycemia in Infants and Children, p.909, 919.</li>
+        <li>오준석. 유전대사질환 강의록(배포용). 선별검사 암기법 인용.</li>
+      </ol>
+      <h3 style="margin-top:14px">보완 근거: 가이드라인 <span class="tag gl">가이드라인</span></h3>
+      <ol>
+        <li>van Spronsen FJ, et al. Key European guidelines for the diagnosis and management of patients with phenylketonuria. <i>Lancet Diabetes Endocrinol</i> 2017;5:743–756. <a href="https://doi.org/10.1016/S2213-8587(16)30320-5" target="_blank" rel="noopener">doi:10.1016/S2213-8587(16)30320-5</a></li>
+        <li>Häberle J, et al. Suggested guidelines for the diagnosis and management of urea cycle disorders: first revision. <i>J Inherit Metab Dis</i> 2019;42:1192–1230. <a href="https://doi.org/10.1002/jimd.12100" target="_blank" rel="noopener">doi:10.1002/jimd.12100</a></li>
+        <li>Kishnani PS, et al. Diagnosis and management of glycogen storage disease type I: ACMG practice guideline. <i>Genet Med</i> 2014;16:e1. <a href="https://doi.org/10.1038/gim.2014.128" target="_blank" rel="noopener">doi:10.1038/gim.2014.128</a></li>
+        <li>Welling L, et al. International clinical guideline for the management of classical galactosemia. <i>J Inherit Metab Dis</i> 2017;40:171–176. <a href="https://doi.org/10.1007/s10545-016-9990-5" target="_blank" rel="noopener">doi:10.1007/s10545-016-9990-5</a></li>
+        <li>Kishnani PS, et al. Glycogen storage disease type III diagnosis and management guidelines. <i>Genet Med</i> 2010;12:446–463. <a href="https://doi.org/10.1097/GIM.0b013e3181e655b6" target="_blank" rel="noopener">doi:10.1097/GIM.0b013e3181e655b6</a></li>
+        <li>Kishnani PS, et al. Diagnosis and management of glycogen storage diseases type VI and IX: ACMG clinical practice resource. <i>Genet Med</i> 2019;21:772–789. <a href="https://doi.org/10.1038/s41436-018-0364-2" target="_blank" rel="noopener">doi:10.1038/s41436-018-0364-2</a></li>
+        <li>Thornton PS, et al. Recommendations from the Pediatric Endocrine Society for evaluation and management of persistent hypoglycemia in neonates, infants, and children. <i>J Pediatr</i> 2015;167:238–245. <a href="https://doi.org/10.1016/j.jpeds.2015.03.057" target="_blank" rel="noopener">doi:10.1016/j.jpeds.2015.03.057</a></li>
+        <li>뉴시스. 10월부터 신생아 필수검사 건보 적용 (2018.8.2). <a href="https://www.newsis.com/view/NISX20180802_0000381015" target="_blank" rel="noopener">newsis.com</a></li>
+      </ol>
+    </div>
+    <div class="box">
+      <h3>사실과 편집 판단의 구분</h3>
+      <ul>
+        <li><b>사실</b>: 각 질환의 키워드, 검사, 치료는 위 교과서 쪽수에 있는 내용입니다. 가이드라인에서 가져온 수치는 <span class="tag gl">가이드라인</span>으로 따로 표시했습니다.</li>
+        <li><b>편집 판단(추론)</b>: ★ 핵심 질환 선정은 교과서 강조 내용과 의사 국가시험 평가목표(9 구역/구토, 25 발달지연, 27 발작, 51 신생아 진찰·선별검사, 68 의식변화/혼수)의 증상 중심 구성을 보고 제가 고른 것입니다. 평가목표 문서에는 질환명 목록이 없어 질환 단위의 출제 비중은 확인할 수 없습니다.</li>
+        <li><b>용어</b>: 키워드 표현은 학생이 외우기 쉽게 다듬었고, 의미는 교과서 문장을 벗어나지 않게 했습니다.</li>
+        <li><b>PKU 머리색</b>: 교과서 표현은 "담갈색 모발, 흰 피부"(p.176)입니다. 붉은 머리는 PKU 특징으로 기술되어 있지 않아 "옅은 머리색"으로 썼습니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</div>
+
+<script>
+const BR = [
+  {id:"aa",  name:"아미노산", c:"--b1"},
+  {id:"oa",  name:"유기산혈증", c:"--b2"},
+  {id:"ucd", name:"요소회로", c:"--b3"},
+  {id:"cho", name:"탄수화물", c:"--b4"},
+  {id:"fao", name:"지방산 산화", c:"--b5"},
+  {id:"lsd", name:"리소좀 축적", c:"--b6"},
+  {id:"per", name:"퍼옥시좀", c:"--b7"},
+  {id:"pur", name:"퓨린", c:"--b8"},
+  {id:"met", name:"구리·아연", c:"--b9"},
+  {id:"por", name:"포르피린증", c:"--b10"},
+  {id:"lip", name:"지질단백", c:"--b11"}
+];
+const T9 = p => "홍창의 9장 p."+p;
+const D = [
+ {id:"pku",b:"aa",core:1,short:"PKU",name:"페닐케톤뇨증",en:"Phenylketonuria · PAH 결핍 · AR",
+  kw:["쥐오줌(곰팡이) 냄새","옅은 담갈색 모발·흰 피부","습진","지능 저하·경련","염화제이철 반응 녹색"],
+  hook:"Phe가 Tyr로 못 바뀌어 축적. 생후 1개월 안에 치료를 시작하면 지능 저하가 생기지 않는다.",
+  test:"신생아 선별검사(Guthrie·효소법·MS/MS). 고전형은 혈중 Phe ≥20 mg/dL. BH4 부하검사로 BH4 결핍증·BH4 반응형 감별",
+  tx:"저페닐알라닌 분유·식이(평생 유지가 바람직). BH4 반응형은 BH4(Kuvan). 모성 PKU: 임신 전부터 Phe ≤6 mg/dL 유지해야 태아 소두증·심기형·지적장애 예방",
+  src:T9("176–178"),
+  gl:"유럽 가이드라인(2017): 치료 전 Phe >360 µmol/L(≈6 mg/dL)이면 치료, 0–12세 목표 120–360 µmol/L(≈2–6 mg/dL)",
+  note:"붉은 머리가 아니라 옅은(담갈색) 머리. 멜라닌 합성 원료인 Tyr 부족 때문"},
+ {id:"bh4",b:"aa",core:0,short:"BH4 결핍",name:"BH4(테트라하이드로바이옵테린) 결핍증",en:"Tetrahydrobiopterin deficiency",
+  kw:["저Phe 식이에도 경련·발달 지연","소변 BH4 감소","도파민·세로토닌 부족"],
+  hook:"PAH는 정상인데 조효소 BH4가 없어 Phe가 오르고 신경전달물질도 못 만든다. 국내 고페닐알라닌혈증의 약 10%.",
+  test:"BH4 부하 시 Phe 저하, 소변 pterin 분석", tx:"L-dopa + 5-hydroxytryptophan + BH4", src:T9("178")},
+ {id:"tyr1",b:"aa",core:0,short:"티로신혈증",name:"티로신혈증 I형 (간신장형)",en:"Tyrosinemia type I · FAH 결핍 · AR",
+  kw:["영아 간부전·출혈 경향","신세뇨관 장애(Fanconi)·구루병","양배추 냄새","소변 succinylacetone","II형은 각막 혼탁·손발바닥 각화증"],
+  hook:"급성형은 6개월 안에 간부전, 만성형은 간경화·간암으로 10세 전 사망할 수 있다.",
+  test:"혈중 Tyr 상승, 소변 succinylacetone 증가, 간기능 이상", tx:"NTBC(nitisinone) + 저Phe·저Tyr 식이, 간이식", src:T9("178–179")},
+ {id:"alk",b:"aa",core:1,short:"알캅톤뇨증",name:"알캅톤뇨증",en:"Alkaptonuria · Homogentisic acid dioxygenase 결핍 · AR",
+  kw:["소변을 두면 검게 변함","기저귀에 검은 얼룩","귀 연골 청회색(조직 갈변증)","성인기 관절염"],
+  hook:"Homogentisic acid가 쌓여 결체조직이 검게 착색된다. 소아기에는 소변 색 말고는 증상이 거의 없다.",
+  test:"특징적 소변 소견(알칼리 첨가 시 더 빨리 흑변). 소변 환원당 검사 양성이라 당뇨와 혼동 가능. 혈청 아미노산은 정상",
+  tx:"저Phe·저Tyr 식이, nitisinone", src:T9("179–180")},
+ {id:"alb",b:"aa",core:0,short:"백색증",name:"백색증",en:"Albinism · 멜라닌 합성 장애 · AR",
+  kw:["흰 피부·황백색 모발","투명하게 붉은 홍채","눈부심·안진"],
+  hook:"Tyrosinase 등 멜라닌 형성 과정의 장애. 햇빛에 쉽게 화상을 입는다.",
+  test:"임상 진단", tx:"자외선 차단", src:T9("179")},
+ {id:"msud",b:"aa",core:1,short:"단풍당뇨증",name:"단풍당뇨증",en:"Maple syrup urine disease · BCKD 결핍 · AR",
+  kw:["단풍당밀(달콤한) 냄새","생후 3~5일 수유 곤란·구토","경련·혼수·근긴장 변동","Leu·Ile·Val 상승","소변 DNPH 양성"],
+  hook:"분지쇄 아미노산(Leu·Ile·Val)의 α-keto산이 쌓여 신생아기에 급성 뇌병증. 치료하지 않으면 수주~수개월 안에 사망.",
+  test:"혈장·소변 Leu·Ile·Val 증가, 소변 DNPH 황색 침전, MS/MS로 Leu 선별",
+  tx:"Leu·Ile·Val 제한 식이, 중증은 혈액 투석. 일부는 티아민(B1) 반응형", src:T9("180–181, 표 9-7")},
+ {id:"hcy",b:"aa",core:1,short:"호모시스틴뇨증",name:"호모시스틴뇨증",en:"Homocystinuria · Cystathionine β-synthase 결핍 · AR",
+  kw:["수정체 탈구","마르판 유사 체형(긴 사지)","혈전색전증","지능 저하","안면 발적","가늘고 숱 적은 모발"],
+  hook:"가장 흔한 증상은 지능 장애와 눈 증상. 혈전으로 인한 사망이 많고 마르판 증후군과 감별해야 한다.",
+  test:"소변 nitroprusside 양성, 혈중 methionine·homocysteine 상승, cystine 저하, MS/MS 선별",
+  tx:"먼저 비타민 B6 대량 투여. 반응 없으면 저메티오닌·시스틴 첨가 식이 + betaine", src:T9("182–183")},
+ {id:"nkh",b:"aa",core:0,short:"NKH",name:"비케톤성 고글리신혈증",en:"Non-ketotic hyperglycinemia · Glycine cleavage enzyme 결핍",
+  kw:["생후 수일 근간대 경련","기면·딸꾹질·무호흡","케톤·산증 없음","뇌척수액 glycine 상승"],
+  hook:"대부분 신생아기에 사망하고 살아도 심한 발달 지연.",
+  test:"혈중·소변·뇌척수액 glycine 증가, 혈장 serine 감소", tx:"효과적 치료 없음. 경한 형에서 benzoate·dextromethorphan 등", src:T9("181–182")},
+ {id:"mma",b:"oa",core:1,short:"메틸말론산혈증",name:"메틸말론산혈증",en:"Methylmalonic acidemia · Methylmalonyl-CoA mutase 등",
+  kw:["음이온차 증가 대사 산증 + 케톤증","고암모니아·저혈당","호중구·혈소판 감소","비타민 B12 반응형"],
+  hook:"신생아기 구토·산증·발육 부진. 높은 이마, 삼각형 입 모양을 보이기도 한다.",
+  test:"소변 methylmalonic acid 증가, 혈중·소변 glycine 증가, acylcarnitine",
+  tx:"수액·포도당·알칼리, 비타민 B12 대량. 저단백(Ile·Val·Met·Thr 제한), L-carnitine. 간·신장 이식", src:T9("181, 표 9-7")},
+ {id:"pa",b:"oa",core:0,short:"프로피온산혈증",name:"프로피온산혈증",en:"Propionic acidemia · Propionyl-CoA carboxylase 결핍",
+  kw:["케톤성 고글리신혈증","산증·고암모니아","호중구·혈소판 감소","감염에 약함"],
+  hook:"신생아기 구토·기면·탈수·케톤증. 신생아기 사망이 많다.",
+  test:"혈중·소변 propionic acid와 glycine 증가",
+  tx:"포도당·알칼리, 저단백(Ile·Val·Met·Thr 제한), L-carnitine, 장내 세균 억제용 metronidazole, 일부 biotin", src:T9("181, 표 9-7")},
+ {id:"iva",b:"oa",core:1,short:"이소발레르산혈증",name:"이소발레르산혈증",en:"Isovaleric acidemia · Isovaleryl-CoA dehydrogenase 결핍",
+  kw:["땀에 젖은 발 냄새","케톤산증·기면·경련","Leucine 대사 이상"],
+  hook:"Leu 분해 중간 단계 결함. 냄새가 진단 단서.",
+  test:"혈중·소변 isovaleric acid 증가", tx:"저단백 + glycine + carnitine", src:T9("181, 표 9-7")},
+ {id:"otc",b:"ucd",core:1,short:"OTC 결핍",name:"OTC(오르니틴 카바모일전달효소) 결핍증",en:"Ornithine transcarbamylase deficiency · X-연관",
+  kw:["요소회로 중 유일한 X-연관","가장 흔한 요소회로 이상","남아 생후 1~2주 혼수","고암모니아 + 산증 없음","소변 orotic acid 증가"],
+  hook:"남아는 신생아기 고암모니아 혼수로, 여아(보인자)는 영유아·학령기에 단백 섭취 후 증상으로 온다.",
+  test:"혈중 암모니아 현저히 증가, citrulline 감소, 소변 orotic acid 증가(CPS 결핍은 orotic acid 정상)",
+  tx:"급성기: 단백 중단, 포도당으로 열량 공급, sodium benzoate·phenylbutyrate, arginine, 혈액 투석(암모니아 >350 µmol/L이면 준비, >500이면 응급). 유지: 저단백 식이 + citrulline, 간이식",
+  src:T9("183–186, 표 9-8·9-9"), gl:"요소회로 이상 가이드라인(2019 개정)도 고암모니아 응급 치료를 같은 순서로 권고"},
+ {id:"ucdx",b:"ucd",core:0,short:"기타 요소회로",name:"그 밖의 요소회로 이상",en:"CPS1 · NAGS · ASS · ASL · Arginase 결핍",
+  kw:["CPS1: orotic acid 정상","NAGS: carglumic acid로 정상 생활","ASA 뇨증: 잘 부서지는 모발","Arginase: 경직성 마비, arginine 금기"],
+  hook:"모두 상염색체 열성. 고암모니아 정도와 동반 소견으로 구별한다.",
+  test:"혈장 아미노산(citrulline·arginine), 소변 orotic acid·argininosuccinic acid",
+  tx:"저단백, 질소 제거제. ASS·ASL 결핍은 arginine 보충, Arginase 결핍은 arginine 금기", src:T9("183–187, 표 9-9")},
+ {id:"gsd1",b:"cho",core:1,short:"당원병 I형",name:"당원병 Ia형 (von Gierke병)",en:"Glycogen storage disease I · Glucose-6-phosphatase 결핍 · AR",
+  kw:["공복 저혈당 + 젖산산증","고요산혈증·고지혈증","큰 간(비장은 정상)·인형 얼굴","코피·멍(혈소판 기능 저하)","글루카곤 주어도 혈당 안 오름"],
+  hook:"3~4개월경 배가 불러오고 저혈당 경련으로 온다. Ib형은 호중구 감소, 잦은 감염, 염증성 장질환이 더해진다.",
+  test:"특징적 소견 + 유전자 검사. 한국인은 G6PC c.648G>T가 85% 이상이라 간생검 없이 진단 가능",
+  tx:"잦은 식사와 생옥수수 전분(uncooked cornstarch), 과당·갈락토스 제한, allopurinol. Ib형은 G-CSF. 합병증: 간선종, 신장 손상",
+  src:T9("199–200"), gl:"ACMG 가이드라인(2014): 저혈당·젖산·고지혈·고요산·성장 지연이 핵심, Ib형 호중구 감소·IBD"},
+ {id:"gsd369",b:"cho",core:0,short:"당원병 III·VI·IX",name:"간형 당원병 III·VI·IX형",en:"Debrancher(III) · Liver phosphorylase(VI) · Phosphorylase kinase(IX)",
+  kw:["공복 저혈당 + 케톤 상승(케톤성 저혈당)","간비대·간효소 상승","젖산·요산은 정상","나이 들면 호전(VI·IX)","III형: 근육·심근 침범 가능"],
+  hook:"I형과 달리 포도당신생합성은 정상이라 젖산이 오르지 않고, 지방 분해가 일어나 케톤이 오른다. IX형의 흔한 아형은 X-연관.",
+  test:"임상 소견 + 유전자 검사(간생검은 필요 시)", tx:"잦은 식사, 생옥수수 전분, 고단백 식이(III형)", src:T9("200–201")+"; Sperling 5판 23장 p.909, 919",
+  gl:"ACMG(2019): VI·IX형은 간비대, 간효소 상승, 케톤성 저혈당, 고지혈증, 성장 부진. Sperling: III형은 젖산·요산 상승 없는 케톤성 저혈당"},
+ {id:"pompe",b:"cho",core:1,short:"폼페병",name:"폼페병 (당원병 II형)",en:"Pompe disease · 리소좀 산성 α-glucosidase 결핍 · AR",
+  kw:["처진 아기(floppy infant)","큰 혀","비대 심근병증","심전도: 큰 QRS·짧은 PR","CK 상승"],
+  hook:"영아형은 2세 전 심부전으로 사망. 지발형은 근위 근력 저하와 호흡부전으로 온다.",
+  test:"효소 분석(근육 조직 PAS 양성 공포)", tx:"효소 대체요법(α-glucosidase). 영아형은 진단 즉시 시작", src:T9("201–202")},
+ {id:"mcardle",b:"cho",core:0,short:"McArdle병",name:"McArdle병 (당원병 V형)",en:"Muscle phosphorylase deficiency",
+  kw:["운동 시 근육통·경련","운동 후 미오글로빈뇨(검붉은 소변)","second wind 현상","안정 시에도 CK 상승"],
+  hook:"잠깐 쉬었다 하면 운동이 다시 쉬워지는 2차 바람 현상이 특징.",
+  test:"효소 분석, 운동 후 암모니아·요산 상승", tx:"운동 전 포도당·과당, 심한 운동 피하기", src:T9("202")},
+ {id:"gal",b:"cho",core:1,short:"갈락토스혈증",name:"갈락토스혈증 (GALT 결핍)",en:"Classic galactosemia · AR",
+  kw:["젖(유당) 먹은 뒤 구토·황달","간비대·저혈당·경련","백내장","대장균 패혈증","소변 환원당 양성"],
+  hook:"패혈증 진단이 먼저 나오는 경우가 많다. 신생아 선별검사 항목.",
+  test:"신생아 선별검사(MS/MS로는 안 됨, 별도 검사). 효소 활성 측정",
+  tx:"유당·갈락토스 제거 식이(대두 분유) → 성장·간기능 호전, 백내장 호전. 장기적으로 여성 난소부전, 발달·언어 장애가 남을 수 있음",
+  src:T9("173, 202–203"), gl:"국제 가이드라인(2017): 진단 즉시 유당 제거, 난소 기능·언어·인지 장기 추적"},
+ {id:"hfi",b:"cho",core:1,short:"과당 불내증",name:"유전성 과당 불내증 (Aldolase B 결핍)",en:"Hereditary fructose intolerance · AR",
+  kw:["이유식(과일·설탕) 시작 후 증상","구토·저혈당·간비대","단 음식을 싫어함","소변 환원당 양성"],
+  hook:"과당-1-인산이 쌓여 독성. 젖먹이 때는 괜찮다가 과당을 먹기 시작하면서 나타난다.",
+  test:"효소·유전자 분석. 경정맥 과당 부하는 위험해서 피함",
+  tx:"과당·설탕·sorbitol 완전 제거. 참고: 양성 과당뇨(과당 효소 결핍)는 증상 없음", src:T9("203, 205")},
+ {id:"mito",b:"cho",core:0,short:"미토콘드리아",name:"PDH 결핍과 미토콘드리아 질환",en:"Pyruvate dehydrogenase complex · Respiratory chain disorders",
+  kw:["젖산산증","PDH: 젖산/피루브산 비 정상, 탄수화물 섭취 후 악화","미토콘드리아: 젖산/피루브산 비 상승","모계 유전(mtDNA)","Leigh병, MELAS"],
+  hook:"뇌가 포도당 에너지에 의존해 중추신경 증상이 두드러진다. 근생검 ragged red fiber.",
+  test:"혈액·뇌척수액 젖산·피루브산, 소변 유기산, 효소·유전자 분석",
+  tx:"PDH 결핍: 케톤 생성 식이, dichloroacetate. 호흡연쇄 이상: 대증 치료", src:T9("203–206")},
+ {id:"fao",b:"fao",core:1,short:"지방산산화 장애",name:"지방산 산화 장애 (MCAD·VLCAD 등)",en:"Mitochondrial fatty acid β-oxidation disorders · AR",
+  kw:["금식·감염 때 저케톤성 저혈당","반복되는 Reye 증후군 유사 증상","영아 급사","혈장 carnitine 감소","Acylcarnitine 이상(MS/MS)"],
+  hook:"지방을 에너지로 못 써 굶으면 쓰러진다. 백인은 MCAD, 한국인은 VLCAD·MTP 결핍이 비교적 흔하다.",
+  test:"혈액·소변 아미노산, 소변 유기산(dicarboxylic aciduria), acylcarnitine(MCAD는 C6·C8·C10:1)",
+  tx:"충분한 열량, 금식 피하기, 수용성 비타민, carnitine", src:T9("187–188, 표 9-10")},
+ {id:"gaucher",b:"lsd",core:1,short:"고셔병",name:"고셔병",en:"Gaucher disease · Glucocerebrosidase 결핍 · AR",
+  kw:["거대 비장 > 간비대","혈소판 감소·빈혈","뼈 통증·Erlenmeyer flask 변형","골수 Gaucher 세포","가장 흔한 지질 축적 질환"],
+  hook:"1형(비신경형), 2형(급성 신경형, 영아), 3형(만성 신경형). 한국인 환자 2/3가 2·3형이다.",
+  test:"백혈구·섬유모세포 효소 활성, 유전자", tx:"효소 대체요법(imiglucerase, 2주 간격 정주). 전구물질 감소 요법. 효소는 뇌혈관장벽을 못 넘어 신경 증상은 개선 어려움", src:T9("193–195")},
+ {id:"np",b:"lsd",core:0,short:"니만-피크병",name:"니만-피크병",en:"Niemann-Pick disease · A/B형 sphingomyelinase 결핍, C형 NPC 유전자",
+  kw:["간비장비대 + 체리 반점(A형)","생후 수개월 발달 퇴행(A형)","C형: 수직 안구운동 마비","C형: 신생아 황달 후 진행성 실조"],
+  hook:"A형은 3세 전 사망. C형은 1~2년 정상 발달 후 서서히 신경 증상이 진행한다.",
+  test:"효소 활성(A/B), 유전자 검사(C)", tx:"C형은 miglustat(자베스카)로 진행 지연", src:T9("195–196")},
+ {id:"tay",b:"lsd",core:1,short:"테이-삭스병",name:"테이-삭스병 (GM2 gangliosidosis)",en:"Tay-Sachs disease · Hexosaminidase A 결핍 · AR",
+  kw:["소리에 깜짝 놀라는 반응","4~5개월 이후 발달 퇴행","체리 반점","큰 머리","간비장비대 없음"],
+  hook:"아쉬케나지 유대인에 많다. Sandhoff병(Hex A·B 모두 결핍)은 같은 증상에 간비장비대가 있다.",
+  test:"혈청·백혈구 hexosaminidase A 활성", tx:"근본 치료 없음. 4세경 사망", src:T9("196")},
+ {id:"leuko",b:"lsd",core:0,short:"Krabbe·MLD",name:"백질이영양증: Krabbe병, 이염색 백질이영양증",en:"Krabbe (galactocerebrosidase) · MLD (arylsulfatase A) · AR",
+  kw:["Krabbe: 심하게 보챔·과민, 강직","Krabbe: 뇌 globoid cell","MLD: 2세경 보행 장애 후 강직","MLD: 소변 metachromatic granule"],
+  hook:"수초가 파괴되어 운동 기능을 잃어가는 퇴행성 질환.",
+  test:"백혈구·섬유모세포 효소 활성", tx:"Krabbe는 조혈모세포 이식이 도움", src:T9("196–197")},
+ {id:"fabry",b:"lsd",core:1,short:"파브리병",name:"파브리병",en:"Fabry disease · α-galactosidase A 결핍 · X-연관",
+  kw:["지질 축적 질환 중 유일한 X-연관","10대 손발의 작열통","땀이 안 남","혈관각화종(배꼽~무릎)","단백뇨 → 30~40대 신부전"],
+  hook:"혈관 내피에 GL-3가 쌓여 신장·심장·뇌혈관이 손상된다.",
+  test:"백혈구·섬유모세포·혈청 효소 활성", tx:"효소 대체요법, 일부 변이는 화학적 샤페론", src:T9("197")},
+ {id:"hurler",b:"lsd",core:1,short:"헐러(MPS I)",name:"헐러 증후군 (점액다당류증 I형)",en:"Hurler syndrome · α-L-iduronidase 결핍 · AR",
+  kw:["거친 얼굴(coarse face)","각막 혼탁","간비장비대","다발성 골이형성(J자 터키안장, 노 모양 갈비뼈)","지능 퇴행"],
+  hook:"출생 땐 정상, 6~18개월부터 성장이 늦어지고 2세 전후 지적 장애가 드러난다.",
+  test:"소변 GAG(dermatan·heparan sulfate), 효소 활성", tx:"조혈모세포 이식 + 효소 대체요법", src:T9("209–211, 표 9-15")},
+ {id:"hunter",b:"lsd",core:1,short:"헌터(MPS II)",name:"헌터 증후군 (점액다당류증 II형)",en:"Hunter syndrome · Iduronate 2-sulfatase 결핍 · X-연관",
+  kw:["점액다당류증 중 유일한 X-연관(남아)","각막 혼탁 없음","등·팔 조약돌 피부(pebbling)","국내에 흔한 형"],
+  hook:"헐러와 비슷하지만 각막이 맑고 진행이 느리다. 경증은 성인까지 산다.",
+  test:"소변 GAG, 효소 활성", tx:"효소 대체요법", src:T9("211")},
+ {id:"sanf",b:"lsd",core:0,short:"산필리포(MPS III)",name:"산필리포 증후군 (점액다당류증 III형)",en:"Sanfilippo syndrome · AR",
+  kw:["신체 변화는 경미","2~6세 심한 과잉행동·수면장애","빠른 지능 퇴행","소변 heparan sulfate만 증가"],
+  hook:"외모로는 놓치기 쉽고 행동 문제가 먼저 보인다.", test:"소변 GAG, 효소 활성", tx:"대증 치료", src:T9("211")},
+ {id:"morq",b:"lsd",core:0,short:"모르키오(MPS IV)",name:"모르키오 증후군 (점액다당류증 IV형)",en:"Morquio syndrome · AR",
+  kw:["지능 정상","심한 골격 이상·저신장","치돌기 형성 저하 → 환축추 아탈구","각막 혼탁","keratan sulfate"],
+  hook:"척수 압박이 생명을 위협할 수 있다.", test:"소변 GAG, 효소 활성", tx:"효소 대체요법", src:T9("212")},
+ {id:"zell",b:"per",core:0,short:"젤웨거",name:"젤웨거 증후군",en:"Zellweger (cerebrohepatorenal) syndrome · AR",
+  kw:["신생아 심한 근긴장 저하","높은 이마·넓은 대천문","간비대","점상 연골 석회화","VLCFA 증가"],
+  hook:"퍼옥시좀 자체가 형성되지 않는 치명적 질환.", test:"혈장 VLCFA, plasmalogen 감소", tx:"대증 치료", src:T9("188")},
+ {id:"ald",b:"per",core:1,short:"X-ALD",name:"X-연관 부신백질이영양증",en:"X-linked adrenoleukodystrophy",
+  kw:["5~12세 남아 행동 변화·학업 저하","시력·청력 저하, 보행 장애","부신기능 부전(피부 색소침착)","VLCFA(C26) 증가","MRI 후두부 백질 병변"],
+  hook:"정상 발달하던 학령기 남아가 퇴행. ADHD처럼 보이다 수년 안에 식물인간 상태로 진행할 수 있다.",
+  test:"혈장 VLCFA, 뇌 MRI, 부신 기능", tx:"조혈모세포 이식(표 9-3)", src:T9("174, 188–189")},
+ {id:"lesch",b:"pur",core:1,short:"레쉬-니한",name:"레쉬-니한 증후군",en:"Lesch-Nyhan syndrome · HPRT 결핍 · X-연관",
+  kw:["입술·손가락을 물어뜯는 자해","무도증·근긴장 이상","발달 지연","고요산혈증(요로결석·통풍)","거의 모두 남아"],
+  hook:"자해는 1세 전후 시작. 원인 모를 뇌성마비 영아에서 반드시 의심.",
+  test:"혈청 요산 상승, 소변 요산/크레아티닌 비 상승, HPRT 효소 분석",
+  tx:"allopurinol(신장 보호, 신경 증상은 개선 안 됨), 행동 치료, 발치", src:T9("212–213")},
+ {id:"ada",b:"pur",core:0,short:"ADA 결핍",name:"Adenosine deaminase 결핍",en:"ADA deficiency · AR",
+  kw:["중증 복합 면역결핍(SCID)의 15%","갈비뼈 끝 이상","최초의 유전자 치료 대상"],
+  hook:"Adenosine 축적이 T세포를 죽인다.", test:"효소 분석", tx:"조혈모세포 이식, 효소 치료, 유전자 치료", src:T9("174, 213")},
+ {id:"wilson",b:"met",core:1,short:"윌슨병",name:"윌슨병",en:"Wilson disease · ATP7B · AR",
+  kw:["3세 이후 원인 모를 간염·간경화","15세 이후 떨림·구음장애·정신 증상","Kayser-Fleischer 고리","쿰스 음성 용혈빈혈","세룰로플라스민 감소"],
+  hook:"구리가 담즙으로 배설되지 못하고 간·뇌·각막·신장에 쌓인다. 국내는 R778L 변이가 흔하다.",
+  test:"세룰로플라스민 <20 mg/dL, 24시간 소변 구리 >100 µg, 간 구리 >250 µg/g 건조중량, 세극등 검사, 유전자 검사",
+  tx:"D-penicillamine 또는 trientine, 저구리 식이, 간이식", src:"홍창의 13장 p.649–650; 9장 표 9-3"},
+ {id:"menkes",b:"met",core:1,short:"멘케스병",name:"멘케스병 (kinky hair syndrome)",en:"Menkes disease · ATP7A · X-연관",
+  kw:["꼬이고 잘 부서지는 머리카락","저체온·근긴장 저하·경련","통통한 뺨","혈청 구리·세룰로플라스민 감소","3세 이전 사망"],
+  hook:"장에서 구리 흡수·운반 결함 → 구리 의존 효소 결핍. 조산 경향.",
+  test:"혈청 구리·세룰로플라스민, 모발 현미경(꼬인 모발)", tx:"Copper-histidine(신생아기 시작 시 일부 효과)", src:T9("214–215")},
+ {id:"ae",b:"met",core:0,short:"장성말단피부염",name:"장성 말단 피부염 (아연 흡수 장애)",en:"Acrodermatitis enteropathica · AR",
+  kw:["모유에서 우유로 바꿀 때 발병","입·항문 주위·손발 끝 수포성 피부염","탈모","설사","혈청 아연 감소"],
+  hook:"경구 아연으로 빠르게 좋아진다. 장기 정맥영양 때도 비슷한 피부염이 생긴다.",
+  test:"특징적 임상 + 혈청 아연 저하", tx:"경구 아연", src:T9("215")},
+ {id:"aip",b:"por",core:0,short:"AIP",name:"급성 간헐 포르피린증",en:"Acute intermittent porphyria · PBG deaminase · AD",
+  kw:["사춘기 이후 여성","심한 복통·구토·변비","말초신경병·호흡근 마비","정신 증상, 저나트륨혈증","광과민성 없음"],
+  hook:"금식, barbiturate, 성호르몬, 월경, 스트레스가 발작을 유발한다.",
+  test:"소변 PBG·ALA 증가, 적혈구 PBGD 활성 감소", tx:"고농도 포도당, hemin 정주, 유발 약물 금지", src:T9("215–216")},
+ {id:"fh",b:"lip",core:1,short:"가족성 고콜레스테롤혈증",name:"가족성 고콜레스테롤혈증 (FH)",en:"Familial hypercholesterolemia · LDL 수용체 변이 · AD",
+  kw:["소아기에 가장 흔한 고지질단백혈증","상염색체 우성(이형 접합 1/500)","LDL 200 mg/dL 이상","아킬레스건 황색종·눈꺼풀 황색판","가족력: 이른 관상동맥질환"],
+  hook:"이형 접합은 LDL이 정상의 2~3배, 동형 접합은 4~6배이고 동형 접합이 훨씬 심하다.",
+  test:"공복 지질 검사(총콜레스테롤 ≥250, LDL ≥200 mg/dL), 가족 검사",
+  tx:"저콜레스테롤 식이, cholestyramine 등 담즙산 결합 수지, 10세 이상은 statin. 동형 접합은 간이식 고려", src:T9("189–191, 표 9-3")},
+ {id:"cep",b:"por",core:0,short:"CEP",name:"선천 적혈구조혈 포르피린증",en:"Congenital erythropoietic porphyria · AR",
+  kw:["출생 때부터 기저귀가 분홍·적갈색","심한 광과민성·흉터","적갈색 치아","다모증","용혈빈혈·비장비대"],
+  hook:"햇빛을 피하는 것이 가장 중요하다.", test:"소변·적혈구 포르피린", tx:"햇빛 차단, 조혈모세포 이식", src:T9("217")}
+];
+const byId = Object.fromEntries(D.map(d=>[d.id,d]));
+const brOf = id => BR.find(b=>b.id===id);
+const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+const IDX = [
+ {t:"냄새", rows:[["쥐오줌·곰팡이 냄새","pku"],["단풍당밀(달콤한) 냄새","msud"],["땀에 젖은 발 냄새","iva"],["양배추 냄새","tyr1"]]},
+ {t:"머리카락·피부", rows:[["옅은 담갈색 모발, 흰 피부, 습진","pku"],["흰 피부·황백색 모발, 눈부심","alb"],["꼬이고 잘 부서지는 머리","menkes"],["마디처럼 부서지는 모발(trichorrhexis nodosa)","ucdx"],["가늘고 숱 적은 모발","hcy"],["혈관각화종, 땀 안 남","fabry"],["등·팔 조약돌 피부","hunter"],["입·항문·손발 끝 피부염 + 탈모","ae"],["광과민성 수포·흉터, 다모증","cep"],["피부 색소침착 + 학령기 퇴행","ald"]]},
+ {t:"눈", rows:[["수정체 탈구","hcy"],["백내장","gal"],["체리 반점","tay,np"],["각막 혼탁","hurler,morq,fabry,tyr1"],["각막 혼탁 없는 MPS","hunter"],["Kayser-Fleischer 고리","wilson"],["수직 안구운동 마비","np"],["눈부심·안진","alb"]]},
+ {t:"소변·기저귀", rows:[["두면 검게 변하는 소변","alk"],["분홍·적갈색 기저귀","cep"],["운동 후 검붉은 소변(미오글로빈뇨)","mcardle"],["소변 환원당 양성","gal,hfi,alk"],["염화제이철 녹색 반응","pku"],["DNPH 양성","msud"],["Nitroprusside 양성","hcy"],["Orotic acid 증가","otc"],["Succinylacetone","tyr1"],["PBG·ALA 증가","aip"]]},
+ {t:"혈액 검사 패턴", rows:[["고암모니아 + 산증 없음","otc,ucdx"],["음이온차 산증 + 케톤 + 고암모니아","mma,pa,iva"],["산증 + 호중구·혈소판 감소","mma,pa"],["저혈당 + 젖산 + 요산 + 중성지방","gsd1"],["저케톤성 저혈당","fao"],["젖산/피루브산 비 상승","mito"],["범혈구감소 + 거대 비장","gaucher"],["세룰로플라스민 감소","wilson,menkes"],["VLCFA 증가","ald,zell"],["LDL ≥200 mg/dL + 황색종","fh"]]},
+ {t:"공복 저혈당 패턴", rows:[["젖산 상승 + 간비대","gsd1"],["케톤 상승 + 간비대, 젖산 정상","gsd369"],["유리지방산 상승 + 케톤 저하","fao"],["단 음식 먹은 뒤 저혈당","hfi"]]},
+ {t:"장기 비대·신경 증상", rows:[["간만 크고 비장은 정상, 인형 얼굴","gsd1"],["간비장비대 + 체리 반점","np"],["큰 혀 + 심근비대 + 처진 아기","pompe"],["마르판 체형 + 혈전","hcy"],["자해 행동","lesch"],["소리에 과도하게 놀람","tay"],["손발 작열통","fabry"],["신생아 근간대 경련·딸꾹질","nkh"],["지능 정상 + 환축추 불안정","morq"],["행동 문제가 먼저, 외모는 거의 정상","sanf"],["학령기 남아의 퇴행","ald"],["떨림·구음장애·정신 증상 + 간질환","wilson"]]},
+ {t:"언제 증상이 시작되나", rows:[["젖 먹기 시작한 뒤(유당)","gal"],["이유식·과일·설탕 시작 후","hfi"],["고단백 식사 후 구토·의식 저하","otc"],["금식·감염 후 Reye 유사","fao"],["탄수화물 먹고 악화","mito"],["금식·약물·월경 후 복통","aip"],["모유를 끊고 우유로 바꿀 때","ae"],["운동 중","mcardle"]]},
+ {t:"유전 양식 함정", rows:[["X-연관 (대부분 AR인 가운데 예외)","otc,hunter,fabry,lesch,ald,menkes"],["모계 유전(mtDNA)","mito"],["상염색체 우성","aip,fh"]]},
+ {t:"치료 키워드", rows:[["비타민 B6 대량","hcy"],["비타민 B12 대량","mma"],["Biotin","pa"],["Thiamine(B1)","msud"],["BH4, L-dopa·5-HTP","bh4"],["생옥수수 전분","gsd1"],["NTBC(nitisinone)","tyr1,alk"],["Glycine + carnitine","iva"],["Benzoate·phenylbutyrate, 혈액 투석","otc"],["Carglumic acid","ucdx"],["효소 대체요법","gaucher,fabry,pompe,hurler,hunter,morq"],["Penicillamine·trientine","wilson"],["Copper-histidine","menkes"],["경구 아연","ae"],["Hemin + 포도당","aip"],["Allopurinol","lesch,gsd1"],["Statin·cholestyramine","fh"]]}
+];
+
+/* tabs */
+const tabs=[...document.querySelectorAll(".tab")];
+function show(t){tabs.forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===t));document.querySelectorAll(".view").forEach(v=>v.hidden=v.id!=="v-"+t);}
+tabs.forEach(b=>b.addEventListener("click",()=>show(b.dataset.tab)));
+
+/* detail panel */
+function detailHTML(d){
+  const br=brOf(d.b);
+  return `<div class="head" style="display:flex;gap:8px;align-items:center;margin-bottom:4px"><span class="dot" style="background:var(${br.c})"></span><span class="src">${br.name}</span>${d.core?'<span class="star">★ 핵심</span>':''}</div>
+  <h3>${d.name}</h3><div class="en">${d.en}</div>
+  <div class="kw">${d.kw.map(k=>`<span>${k}</span>`).join("")}</div>
+  <p style="margin:0 0 12px;font-size:.92rem">${d.hook}</p>
+  <dl><dt>검사</dt><dd>${d.test}</dd><dt>치료</dt><dd>${d.tx}</dd>
+  ${d.gl?`<dt><span class="tag gl">가이드라인</span></dt><dd>${d.gl}</dd>`:""}
+  ${d.note?`<dt>주의</dt><dd>${d.note}</dd>`:""}
+  <dt>근거</dt><dd class="src">${d.src}</dd></dl>`;
+}
+const panel=document.getElementById("panel");
+let sel="pku";
+function select(id){sel=id;panel.innerHTML=detailHTML(byId[id]);document.querySelectorAll(".leaf").forEach(g=>g.classList.toggle("sel",g.dataset.id===id));}
+
+/* mind map */
+let coreOnly=true;
+const svg=document.getElementById("mm"), NS="http://www.w3.org/2000/svg";
+function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;}
+function drawMap(){
+  svg.innerHTML="";
+  const cx=600,cy=600,R1=215,R2=455;
+  const groups=BR.map(b=>({b,items:D.filter(d=>d.b===b.id&&(!coreOnly||d.core))})).filter(g=>g.items.length);
+  const total=groups.reduce((s,g)=>s+g.items.length,0);
+  const slot=2*Math.PI/total; let a=-Math.PI/2 - slot/2;
+  let gi=0;
+  const layer1=el("g",{}),layer2=el("g",{});
+  groups.forEach(g=>{
+    const col=cssv(g.b.c);
+    const start=a, mid=start+slot*g.items.length/2;
+    const bx=cx+R1*Math.cos(mid), by=cy+R1*Math.sin(mid);
+    el("path",{d:`M${cx},${cy} Q${(cx+bx)/2},${(cy+by)/2} ${bx},${by}`,stroke:col,"stroke-width":6,fill:"none","stroke-linecap":"round",opacity:.85},layer1);
+    g.items.forEach((d,i)=>{
+      const ang=start+slot*(i+.5);
+      const lx=cx+R2*Math.cos(ang), ly=cy+R2*Math.sin(ang);
+      const mx=cx+(R1+R2)/2*Math.cos(ang), my=cy+(R1+R2)/2*Math.sin(ang);
+      el("path",{d:`M${bx},${by} Q${mx},${my} ${lx},${ly}`,stroke:col,"stroke-width":2.2,fill:"none",opacity:.7},layer1);
+      const gL=el("g",{class:"leaf"+(d.core?" core":""),tabindex:0,role:"button","aria-label":d.name,"data-id":d.id},layer2);
+      el("circle",{cx:lx,cy:ly,r:d.core?11:8,fill:col,stroke:cssv("--surface"),"stroke-width":2},gL);
+      const c=Math.cos(ang), s=Math.sin(ang);
+      let anchor=c>0.17?"start":c<-0.17?"end":"middle"; const k=gi++;
+      let tx=lx+(anchor==="start"?16:anchor==="end"?-16:0), ty=ly+(anchor==="middle"?(s>0?32+(k%2)*20:-20-(k%2)*20):5);
+      const t=el("text",{x:tx,y:ty,"text-anchor":anchor},gL); t.textContent=(d.core?"★ ":"")+d.short;
+      gL.addEventListener("click",()=>select(d.id));
+      gL.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(d.id);}});
+    });
+    const bg=el("g",{class:"branch"},layer2);
+    const w=Math.max(92,g.b.name.length*17+26);
+    el("rect",{x:bx-w/2,y:by-19,width:w,height:38,rx:19,fill:col},bg);
+    const bt=el("text",{x:bx,y:by+6,"text-anchor":"middle"},bg); bt.textContent=g.b.name;
+    a+=slot*g.items.length;
+  });
+  const cg=el("g",{class:"center"},layer2);
+  el("circle",{cx,cy,r:92,fill:cssv("--ink")},cg);
+  const t1=el("text",{x:cx,y:cy-6,"text-anchor":"middle","font-size":24},cg); t1.textContent="유전대사질환";
+  const t2=el("text",{x:cx,y:cy+24,"text-anchor":"middle","font-size":15,opacity:.85},cg); t2.textContent=coreOnly?"핵심 "+total+"개":"전체 "+total+"개";
+  if(!D.find(d=>d.id===sel&&(!coreOnly||d.core))) sel="pku";
+  select(sel);
+}
+const coreBtn=document.getElementById("coreToggle");
+coreBtn.addEventListener("click",()=>{coreOnly=!coreOnly;coreBtn.setAttribute("aria-pressed",coreOnly);coreBtn.textContent=coreOnly?"★ 핵심만 보기":"전체 질환 보기";drawMap();});
+drawMap();
+try{const mb=document.querySelector(".map-box");mb.scrollLeft=(mb.scrollWidth-mb.clientWidth)/2;}catch(e){}
+try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawMap);new MutationObserver(drawMap).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});}catch(e){}
+
+function jump(id){if(coreOnly&&!byId[id].core){coreOnly=false;coreBtn.setAttribute("aria-pressed",false);coreBtn.textContent="전체 질환 보기";drawMap();}select(id);show("map");panel.scrollIntoView({behavior:"smooth",block:"nearest"});}
+
+/* keyword index */
+document.getElementById("idx").innerHTML=IDX.map(g=>`<section><h3>${g.t}</h3><table>${g.rows.map(([k,ids])=>`<tr><td>${k}</td><td>${ids.split(",").map(i=>`<button class="link" data-j="${i}">${byId[i].short}</button>`).join(", ")}</td></tr>`).join("")}</table></section>`).join("");
+document.getElementById("idx").addEventListener("click",e=>{const b=e.target.closest("[data-j]");if(b)jump(b.dataset.j);});
+
+/* cards */
+let cardBr="all";
+function drawCards(){
+  const f=document.getElementById("cardFilter");
+  f.innerHTML=`<button class="chip" data-b="all" aria-pressed="${cardBr==="all"}">전체</button>`+BR.map(b=>`<button class="chip" data-b="${b.id}" aria-pressed="${cardBr===b.id}"><span class="dot" style="background:var(${b.c})"></span>${b.name}</button>`).join("");
+  document.getElementById("cards").innerHTML=D.filter(d=>cardBr==="all"||d.b===cardBr).map(d=>`<article class="card"><div class="head"><span class="dot" style="background:var(${brOf(d.b).c})"></span><h4>${d.core?'<span class="star">★</span> ':''}${d.name}</h4></div><div class="kw" style="margin:2px 0">${d.kw.map(k=>`<span>${k}</span>`).join("")}</div><div class="hook">${d.hook}</div><div class="src">${d.src}${d.gl?' · <span class="tag gl">가이드라인</span>':''}</div><button class="link" data-j="${d.id}" style="align-self:flex-start">검사·치료 보기</button></article>`).join("");
+}
+document.getElementById("cardFilter").addEventListener("click",e=>{const b=e.target.closest("[data-b]");if(b){cardBr=b.dataset.b;drawCards();}});
+document.getElementById("cards").addEventListener("click",e=>{const b=e.target.closest("[data-j]");if(b)jump(b.dataset.j);});
+drawCards();
+
+/* quiz */
+let qCore=true,right=0,asked=0,cur=null,answered=false;
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+function newQ(){
+  const pool=D.filter(d=>!qCore||d.core);
+  cur=pool[Math.floor(Math.random()*pool.length)]; answered=false;
+  const kws=shuffle(cur.kw).slice(0,3);
+  const same=shuffle(D.filter(d=>d.id!==cur.id&&d.b===cur.b)), other=shuffle(D.filter(d=>d.id!==cur.id&&d.b!==cur.b&&(!qCore||d.core)));
+  const opts=shuffle([cur,...same.slice(0,1),...other].slice(0,4));
+  document.getElementById("qkw").innerHTML=kws.map(k=>`<span>${k}</span>`).join("");
+  document.getElementById("qopts").innerHTML=opts.map(o=>`<button class="opt" data-o="${o.id}">${o.name}</button>`).join("");
+  document.getElementById("qfb").textContent="";
+}
+document.getElementById("qopts").addEventListener("click",e=>{
+  const b=e.target.closest("[data-o]"); if(!b||answered)return; answered=true; asked++;
+  const ok=b.dataset.o===cur.id; if(ok)right++;
+  document.querySelectorAll(".opt").forEach(o=>{if(o.dataset.o===cur.id)o.classList.add("right");else if(o===b)o.classList.add("wrong");});
+  document.getElementById("qfb").innerHTML=(ok?"정답. ":"오답. 정답은 "+cur.name+". ")+cur.hook+` <span>(${cur.src})</span>`;
+  document.getElementById("score").textContent=right+" / "+asked;
+});
+document.getElementById("qnext").addEventListener("click",newQ);
+const qc=document.getElementById("quizCore");
+qc.addEventListener("click",()=>{qCore=!qCore;qc.setAttribute("aria-pressed",qCore);qc.textContent=qCore?"★ 핵심 질환만 출제":"전체 질환 출제";newQ();});
+newQ();
+</script>
+
+</body>
+</html>
