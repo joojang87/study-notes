@@ -8,6 +8,8 @@
 index.html                    ← 메인 목록 페이지
 pediatrics/                   ← 소아청소년과 공부 자료 (한 폴더에 모음)
   rickets-diagnosis.html      ← 구루병 진단 접근 마인드맵
+  inborn-errors-of-metabolism.html ← 유전대사질환 강의록
+  iem-keyword-map.html        ← 유전대사질환 키워드맵
   long-read-ngs.pdf           ← Long-read NGS (PK 발표)
   non-mendelian-inheritance.pdf ← 비멘델 유전 (PK 발표)
 ```
@@ -18,11 +20,13 @@ pediatrics/                   ← 소아청소년과 공부 자료 (한 폴더�
 
 | 분야 | 자료 | 원문 |
 |---|---|---|
+| Pediatrics | [유전대사질환 강의록](https://joojang87.github.io/study-notes/pediatrics/inborn-errors-of-metabolism.html) | 홍창의 소아과학 12판 9장·13장(윌슨병) · PKU 유럽 GL 2017, UCD GL 2019, GSD I ACMG 2014, 갈락토스혈증 GL 2017 등 (페이지 하단 참고문헌) |
+| Pediatrics | [유전대사질환 키워드맵](https://joojang87.github.io/study-notes/pediatrics/iem-keyword-map.html) | 강의록과 같은 근거, 항목별 쪽수 표기 |
 | Pediatrics | [구루병 진단 접근 마인드맵](https://joojang87.github.io/study-notes/pediatrics/rickets-diagnosis.html) | Roy A, et al. Ann Pediatr Endocrinol Metab 2024;29(5):284-307. [doi:10.6065/apem.2448044.022](https://doi.org/10.6065/apem.2448044.022) |
 | Pediatrics | [Long-read NGS](https://joojang87.github.io/study-notes/pediatrics/long-read-ngs.pdf) | PK 9조 발표 · Kuroki Y, et al. Ann Pediatr Endocrinol Metab 2024;29:156-160. [doi:10.6065/apem.2448028.014](https://doi.org/10.6065/apem.2448028.014) |
 | Pediatrics | [비멘델 유전](https://joojang87.github.io/study-notes/pediatrics/non-mendelian-inheritance.pdf) | PK 9조 발표 · 참고문헌은 슬라이드 마지막에 수록 |
 
 ## 안내
 
-- 마인드맵은 Claude(AI)의 도움을 받아 만든 학습용 요약이고, 슬라이드는 소아청소년과 PK 학생 발표 자료(발표자 동의 후 게시)입니다. 진료 판단은 반드시 원문을 확인하세요.
+- 마인드맵과 강의록은 Claude(AI)의 도움을 받아 만든 학습용 요약이고, 슬라이드는 소아청소년과 PK 학생 발표 자료(발표자 동의 후 게시)입니다. 진료 판단은 반드시 원문을 확인하세요.
 - 환자 정보는 포함하지 않습니다.
