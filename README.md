@@ -8,6 +8,7 @@
 index.html                    ← 메인 목록 페이지
 pediatrics/                   ← 소아청소년과 공부 자료 (한 폴더에 모음)
   genetic-testing-counseling.html ← 유전검사와 유전상담 강의록 (3학년)
+  genetic-testing-counseling-slides.html ← 같은 강의의 빔프로젝터용 슬라이드
   rickets-diagnosis.html      ← 구루병 진단 접근 마인드맵
   inborn-errors-of-metabolism.html ← 유전대사질환 강의록
   iem-keyword-map.html        ← 유전대사질환 키워드맵
@@ -22,7 +23,7 @@ pediatrics/                   ← 소아청소년과 공부 자료 (한 폴더�
 
 | 분야 | 자료 | 원문 |
 |---|---|---|
-| Pediatrics | [유전검사와 유전상담 강의록](https://joojang87.github.io/study-notes/pediatrics/genetic-testing-counseling.html) | 홍창의 소아과학 12판 8장 · Richards S, et al. Genet Med 2015;17:405-24. [doi:10.1038/gim.2015.30](https://doi.org/10.1038/gim.2015.30) · 전체 참고문헌은 강의록 끝에 수록 |
+| Pediatrics | [유전검사와 유전상담 강의록](https://joojang87.github.io/study-notes/pediatrics/genetic-testing-counseling.html) · [슬라이드](https://joojang87.github.io/study-notes/pediatrics/genetic-testing-counseling-slides.html) | 홍창의 소아과학 12판 8장 · Richards S, et al. Genet Med 2015;17:405-24. [doi:10.1038/gim.2015.30](https://doi.org/10.1038/gim.2015.30) · 전체 참고문헌은 강의록 끝에 수록 |
 | Pediatrics | [유전대사질환 강의록](https://joojang87.github.io/study-notes/pediatrics/inborn-errors-of-metabolism.html) | 홍창의 소아과학 12판 9장·13장(윌슨병) · PKU 유럽 GL 2017, UCD GL 2019, GSD I ACMG 2014, 갈락토스혈증 GL 2017 등 (페이지 하단 참고문헌) |
 | Pediatrics | [유전대사질환 키워드맵](https://joojang87.github.io/study-notes/pediatrics/iem-keyword-map.html) | 강의록과 같은 근거, 항목별 쪽수 표기 |
 | Pediatrics | [유전대사질환 강의 슬라이드](https://joojang87.github.io/study-notes/pediatrics/iem-slides.html) | 강의록과 같은 근거, 슬라이드별 쪽수 표기 |
