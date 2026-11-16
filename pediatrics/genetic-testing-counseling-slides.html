@@ -149,19 +149,19 @@ body:hover #nav { opacity: .9; }
     <table>
       <tr><th class="c" style="width:70px">#</th><th>오늘이 끝나면 할 수 있어야 하는 것</th></tr>
       <tr><td class="c"><b>1</b></td><td><b>가계도 분석</b>: 표준 기호로 3세대 가계도를 그리고, 유전 양식을 추론하며, 의무 보인자를 찾는다</td></tr>
-      <tr><td class="c"><b>2</b></td><td><b>임상양상 분석</b>: 발달지연 소견을 HPO 용어로 정리하고 감별진단 목록을 만든다</td></tr>
+      <tr><td class="c"><b>2</b></td><td><b>임상양상 분석</b>: 어떤 유전질환이든 소견을 <b>HPO 문법</b>으로 기술하고 감별진단 목록을 만든다</td></tr>
       <tr><td class="c"><b>3</b></td><td><b>유전검사 선택</b>: 검사별 검출 범위와 한계를 비교해 검사와 순서를 고른다</td></tr>
       <tr><td class="c"><b>4</b></td><td><b>결과 해석과 유전상담</b>: ACMG/AMP 5단계로 해석하고, 재발 위험을 포함해 비지시적으로 상담한다</td></tr>
     </table>
     <p style="font-size:24px;color:var(--muted);margin-top:auto">수업 흐름: 수업 전 형성평가 5분 → <b>강의 30분</b> → 팀 활동 약 100분 → 수업 후 형성평가 10분</p>
   </div>
-  <div class="src">국시 평가목표 임상표현 25 발달지연 · 홍창의 소아과학 12판 8장</div>
+  <div class="src">홍창의 소아과학 12판 8장 · HPO (Robinson 2008, Köhler 2021) · ACMG/AMP (Richards 2015)</div>
 </section>
 
 <!-- 4 section -->
 <section class="slide section-slide">
   <div class="bar"></div>
-  <div class="big">PART 1 · 4분</div>
+  <div class="big">PART 1 · 3분</div>
   <h1>유전학 기본 용어</h1>
   <div class="sub">결과지를 읽으려면 먼저 결과지의 단어를 알아야 합니다</div>
 </section>
@@ -190,21 +190,21 @@ body:hover #nav { opacity: .9; }
   <h2>변이의 종류</h2>
   <div class="cols" style="grid-template-columns:1.25fr 1fr">
     <table>
-      <tr><th>종류</th><th>단백질에 생기는 일</th></tr>
-      <tr><td>동의 (synonymous)</td><td>아미노산 그대로</td></tr>
-      <tr><td>과오 (missense)</td><td>아미노산 하나가 바뀜</td></tr>
-      <tr><td>정지 (nonsense)</td><td>종결 코돈 → 짧아짐</td></tr>
-      <tr><td><b>틀이동 (frameshift)</b></td><td>3의 배수 아닌 삽입·결실</td></tr>
-      <tr><td>틀 내 (in-frame)</td><td>3의 배수 삽입·결실</td></tr>
-      <tr><td>스플라이스 부위</td><td>엑손 빠짐, 인트론 남음</td></tr>
+      <tr><th>종류</th><th>DNA 변화</th><th>단백질에 생기는 일</th></tr>
+      <tr><td>동의</td><td>염기 치환</td><td>아미노산 그대로</td></tr>
+      <tr><td>과오</td><td>염기 치환</td><td>아미노산 하나가 바뀜</td></tr>
+      <tr><td>정지</td><td>종결 코돈 생성</td><td>그 자리에서 끝나 짧아짐</td></tr>
+      <tr><td><b>틀이동</b></td><td>3의 배수 아닌 삽입·결실</td><td><b>뒤의 배열이 모두 무너짐</b></td></tr>
+      <tr><td>틀 내</td><td>3의 배수 삽입·결실</td><td>일부만 빠지고 나머지 그대로</td></tr>
+      <tr><td>스플라이스</td><td>엑손-인트론 경계</td><td>엑손 결손·인트론 포함</td></tr>
     </table>
     <div style="display:flex;flex-direction:column;gap:18px">
       <div class="box"><h3>문장으로 비유하면</h3>
         <p class="mono" style="font-size:25px;margin:6px 0">대한사람 대한으로 길이 보전하세</p>
-        <p class="mono" style="font-size:25px;margin:6px 0">대한사람 대한으 <span class="red">로길이 보전하세</span></p>
-        <p style="font-size:22px;color:var(--muted);margin:0">글자 하나 빠짐 → 뒤가 모두 무너짐 (틀이동)</p>
-        <p class="mono" style="font-size:25px;margin:12px 0 6px">대한 대한으로 길이 보전하세</p>
-        <p style="font-size:22px;color:var(--muted);margin:0">단어 하나 통째로 빠짐 → 나머지는 읽힘 (틀 내)</p>
+        <p class="mono" style="font-size:25px;margin:6px 0">대한사람 <span class="red">대한로길 이보 전하세</span></p>
+        <p style="font-size:22px;color:var(--muted);margin:0">글자 하나("으") 빠짐 → 뒤가 모두 무너짐 (틀이동)</p>
+        <p class="mono" style="font-size:25px;margin:12px 0 6px">대한사람 길이 보전하세</p>
+        <p style="font-size:22px;color:var(--muted);margin:0">단어 하나("대한으로") 통째로 빠짐 → 나머지는 읽힘 (틀 내)</p>
       </div>
       <div class="box warn"><p style="margin:0;font-size:24px">"모든 엑손은 단백질을 암호화한다" <b>(X)</b><br>엑손에는 번역되지 않는 UTR도 포함됩니다</p></div>
     </div>
@@ -340,74 +340,170 @@ body:hover #nav { opacity: .9; }
 <!-- 14 section -->
 <section class="slide section-slide">
   <div class="bar"></div>
-  <div class="big">PART 3 · 5분 · 학습목표 2</div>
+  <div class="big">PART 3 · 6분 · 학습목표 2</div>
   <h1>임상양상 분석</h1>
-  <div class="sub">발달지연 소아: 무엇을 묻고, 무엇을 보고, 어떻게 적을까</div>
+  <div class="sub">어떤 유전질환이든, 소견을 HPO 문법으로 기술하기</div>
 </section>
 
 <!-- 15 -->
 <section class="slide">
-  <h2>발달지연: 정의와 병력·진찰</h2>
+  <h2>왜 HPO로 적는가</h2>
   <div class="body">
-    <div class="box key"><p style="margin:0"><b>전반적 발달지연(GDD)</b>: 5세 미만, 두 영역 이상 유의한 지연 &nbsp;·&nbsp; <b>지적장애(ID)</b>: 5세 이후 진단</p></div>
     <div class="cols">
-      <div class="box"><h3>병력</h3><ul>
-        <li>임신·출생력 (노출, 재태 기간)</li>
-        <li>이정표: 어느 영역이 얼마나</li>
-        <li><b class="red">퇴행</b> → 대사질환·진행성 질환 먼저</li>
-        <li>3세대 가계도, 반복 유산</li>
-        <li>여성 친척 조기 폐경, 고령 남성 떨림 → <b>FMR1 전변이</b> 단서</li>
+      <div class="box"><h3>HPO (Human Phenotype Ontology)</h3><ul>
+        <li>사람 질환의 <b>표현형 이상</b>을 컴퓨터가 계산할 수 있게 정의한 표준 용어 (2008~)</li>
+        <li>위로 갈수록 넓고, 아래로 갈수록 구체적인 <b>계층 구조</b></li>
+        <li>희귀질환 표현형 기술의 사실상 국제 표준</li>
       </ul></div>
-      <div class="box"><h3>진찰</h3><ul>
-        <li>키·체중·<b>머리둘레</b> 백분위수</li>
-        <li>이형 특징: 얼굴, 귀, 손발, 피부</li>
-        <li>근긴장도, 반사</li>
-        <li>관절 과운동성, 평발</li>
-        <li>청력·시력·심장·갑상선</li>
+      <div class="box ok"><h3>진단과 연결</h3><ul>
+        <li>Exomiser 등은 환자의 HPO 목록과 질환별 HPO 주석을 비교해 <b>후보 변이 순위</b>를 정함</li>
+        <li>의뢰서의 HPO가 부정확하면 원인 변이가 순위에서 밀릴 수 있음</li>
       </ul></div>
     </div>
+    <table style="font-size:22px">
+      <tr><th>최상위 가지</th><th>무엇을 적나</th><th>예</th></tr>
+      <tr><td><b>Phenotypic abnormality</b> HP:0000118</td><td>소견 자체 (장기 계통별 23개 가지)</td><td>Seizure, Short stature</td></tr>
+      <tr><td><b>Clinical modifier</b> HP:0012823</td><td>중증도·측성·유발 요인, 그 아래 Clinical course(발병 시기·경과)</td><td>Neonatal onset, Severe</td></tr>
+      <tr><td>Mode of inheritance · Frequency</td><td>유전 양식 · 질환 주석의 빈도</td><td>AD, Very frequent</td></tr>
+    </table>
   </div>
-  <div class="src">Moeschler 2014 (AAP) · 국시 평가목표 25 성과 2 · 홍창의 p.146, 169 · 퇴행 항목은 강의자 해석</div>
+  <div class="src">Robinson 2008 · Köhler 2019, 2021 · Gargano 2024 · hp.obo 2026-09-01판 · "순위에서 밀릴 수 있음"은 강의자 해석</div>
 </section>
 
 <!-- 16 -->
 <section class="slide">
-  <h2>소견을 표준 용어로: HPO</h2>
-  <div class="cols" style="grid-template-columns:1.3fr 1fr">
-    <table style="font-size:23px">
-      <tr><th>진료 기록</th><th>HPO 용어</th><th>ID</th></tr>
-      <tr><td>전반적 발달지연</td><td>Global developmental delay</td><td class="mono">HP:0001263</td></tr>
-      <tr><td>전신 근긴장저하</td><td>Generalized hypotonia</td><td class="mono">HP:0001290</td></tr>
-      <tr><td>큰 귀</td><td>Macrotia</td><td class="mono">HP:0000400</td></tr>
-      <tr><td>넓은 이마</td><td>Broad forehead</td><td class="mono">HP:0000337</td></tr>
-      <tr><td>관절 과운동성</td><td>Joint hypermobility</td><td class="mono">HP:0001382</td></tr>
-      <tr><td>자폐 성향</td><td>Autistic behavior</td><td class="mono">HP:0000729</td></tr>
-      <tr><td>중등도 지적장애</td><td>Moderate intellectual disability</td><td class="mono">HP:0002342</td></tr>
+  <h2>HPO 문법 6가지</h2>
+  <div class="body">
+    <table style="font-size:22px">
+      <tr><th style="width:23%">규칙</th><th style="width:22%">이렇게 말고</th><th>이렇게 (HPO 용어 · ID)</th></tr>
+      <tr><td><b>1. 진단명 대신 소견</b></td><td>"터너 증후군 의증"</td><td>Short stature HP:0004322 · Webbed neck HP:0000465 · Primary amenorrhea HP:0000786</td></tr>
+      <tr><td><b>2. 가장 구체적인 용어</b></td><td>Abnormality of the nervous system</td><td>Seizure HP:0001250 → 확인되면 Focal-onset seizure HP:0007359</td></tr>
+      <tr><td><b>3. 수식어</b></td><td>"경련 있음"</td><td>Seizure + <b>Neonatal onset</b> · Hearing impairment + <b>Bilateral + Progressive</b></td></tr>
+      <tr><td><b>4. 수치 → 용어</b></td><td>"CK 15,000"만</td><td>Elevated circulating creatine kinase activity HP:0003236</td></tr>
+      <tr><td><b>5. 의미 있는 음성</b></td><td>(안 적음)</td><td>Hypoglycemia HP:0001943 <b class="red">excluded</b></td></tr>
+      <tr><td><b>6. 모든 계통 + 검사·영상</b></td><td>"발달지연"만</td><td>진찰 + 혈액 검사 + 영상 (예: Pachygyria HP:0001302)</td></tr>
     </table>
-    <div class="box ok" style="align-self:start"><h3>왜 HPO인가</h3><p style="margin:0">유전체 분석 검사실은 HPO 목록으로 후보 변이의 <b>우선순위</b>를 정합니다.<br><br>의뢰서에 HPO를 정확히 적는 것 = 진단율</p></div>
+    <div class="box key"><p style="margin:0;font-size:25px;text-align:center"><span class="mono">소견 용어 (HP:ID)</span> · 발병 시기 · 중증도 · 측성/경과 · [있음 | 배제]</p></div>
   </div>
-  <div class="src">ECMGG 임상응용과정 1주차(2023) · 용어명·ID는 HPO 공식 온톨로지 파일(hp.obo)로 확인</div>
+  <div class="src">Köhler 2021 (질환과 표현형 구분) · ECMGG 임상응용과정 1주차(2023) · Zhang 2019 (검사 → HPO) · Jacobsen 2022 (Phenopacket excluded)</div>
 </section>
 
 <!-- 17 -->
+<section class="slide">
+  <h2>수식어 (Clinical modifier)</h2>
+  <div class="body">
+    <table>
+      <tr><th style="width:24%">종류</th><th>HPO 용어</th></tr>
+      <tr><td><b>발병 시기</b></td><td>Antenatal · Congenital · Neonatal · Infantile · Childhood · Juvenile · Adult onset</td></tr>
+      <tr><td><b>중증도</b></td><td>Mild · Moderate · Severe · Profound</td></tr>
+      <tr><td><b>측성</b></td><td>Unilateral · Bilateral</td></tr>
+      <tr><td><b>경과</b></td><td>Progressive · Nonprogressive · Recurrent · Episodic</td></tr>
+      <tr><td><b>유발 요인</b></td><td>Triggered by exertion 등</td></tr>
+    </table>
+    <div class="box"><p style="margin:0;font-size:25px">중증도가 들어간 용어가 이미 있으면 그것을 씁니다: <b>Moderate intellectual disability</b> HP:0002342, <b>Mild global developmental delay</b> HP:0011342</p></div>
+  </div>
+  <div class="src">hp.obo 2026-09-01판 (HP:0003674 Onset, HP:0012824 Severity, HP:0012831 Laterality, HP:0003679 Pace of progression) · ECMGG 1주차(2023)</div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>모든 장기의 소견을 HPO로</h2>
+  <div class="body">
+    <table style="font-size:21px">
+      <tr><th>계통</th><th>진료 기록</th><th>HPO 용어</th><th>대표 질환 예</th></tr>
+      <tr><td>성장·생식</td><td>키 −2.5 SDS, 원발 무월경</td><td>Short stature · Primary amenorrhea</td><td>터너</td></tr>
+      <tr><td>내분비</td><td>생식기 모호, Na 124, K 7.2</td><td>Ambiguous genitalia · Hyponatremia · Hyperkalemia</td><td>선천부신과형성증</td></tr>
+      <tr><td>대사</td><td>암모니아 350, 대사산증</td><td>Hyperammonemia · Metabolic acidosis</td><td>요소회로 이상, 유기산혈증</td></tr>
+      <tr><td>심장</td><td>폐동맥판 협착</td><td>Pulmonic stenosis</td><td>누난</td></tr>
+      <tr><td>심장·눈·골격</td><td>대동맥근 확장, 수정체 탈구</td><td>Aortic root aneurysm · Ectopia lentis</td><td>마르판</td></tr>
+      <tr><td>골격·눈</td><td>반복 골절, 푸른 공막</td><td>Recurrent fractures · Blue sclerae</td><td>골형성부전증</td></tr>
+      <tr><td>피부</td><td>카페오레 반점, 겨드랑이 주근깨</td><td>Cafe-au-lait spot · Axillary freckling</td><td>신경섬유종증 1형</td></tr>
+      <tr><td>근육</td><td>Gowers 징후, 종아리 비대</td><td>Gowers sign · Calf muscle pseudohypertrophy</td><td>뒤센</td></tr>
+      <tr><td>혈액</td><td>관절 내 출혈, aPTT 연장</td><td>Joint hemorrhage · Prolonged partial thromboplastin time</td><td>혈우병 A</td></tr>
+      <tr><td>신경발달</td><td>발달지연, 근긴장저하</td><td>Global developmental delay · Generalized hypotonia</td><td>취약 X 등</td></tr>
+    </table>
+  </div>
+  <div class="src">용어명은 hp.obo 2026-09-01판으로 확인(ID는 강의록 표 참고) · 질환 예시는 강의자가 고른 대표 연결이며 소견 하나로 진단하지 않음</div>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>연습: 증례를 HPO로 기술하기</h2>
+  <div class="cols">
+    <div class="box case reveal" onclick="this.classList.toggle('shown')">
+      <h3>생후 12일 여아</h3>
+      <p style="margin:0 0 8px">출생 때 음핵 비대·생식기 모호. 생후 10일부터 구토·체중 감소. Na 124, K 7.2, 혈당 정상, 17-OHP 크게 상승. 피부가 검다.</p>
+      <ul class="hidden" style="font-size:21px">
+        <li>Ambiguous genitalia · Clitoral hypertrophy — Congenital onset</li>
+        <li>Vomiting · Weight loss — Neonatal onset</li>
+        <li>Hyponatremia · Hyperkalemia</li>
+        <li>Elevated circulating 17-hydroxyprogesterone concentration</li>
+        <li>Hyperpigmentation of the skin</li>
+        <li>Hypoglycemia <b class="red">excluded</b></li>
+      </ul>
+    </div>
+    <div class="box case reveal" onclick="this.classList.toggle('shown')">
+      <h3>5세 남아</h3>
+      <p style="margin:0 0 8px">4세부터 자주 넘어지고 계단 오르기 힘듦, 점점 심해짐. 일어날 때 손으로 다리를 짚음. 종아리 비대. CK 15,000. 외삼촌이 20대에 휠체어.</p>
+      <ul class="hidden" style="font-size:21px">
+        <li>Frequent falls — Childhood onset, Progressive</li>
+        <li>Difficulty climbing stairs — Progressive</li>
+        <li>Gowers sign</li>
+        <li>Calf muscle pseudohypertrophy — Bilateral</li>
+        <li>Elevated circulating creatine kinase activity</li>
+        <li>X-linked recessive inheritance (가계도)</li>
+      </ul>
+    </div>
+  </div>
+  <p class="hint">상자를 누르면 HPO 목록이 나타납니다. 팀 활동 증례도 같은 방식으로 기술합니다.</p>
+  <div class="src">용어는 hp.obo 2026-09-01판 · 증례는 강의용으로 만든 가상 증례</div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>병력·진찰: 모든 계통을 훑는다</h2>
+  <div class="body">
+    <div class="cols">
+      <div class="box"><h3>병력</h3><ul>
+        <li><b>발병 시기와 경과</b>: 진행·정체·삽화</li>
+        <li><b>유발 요인</b>: 금식·감염·운동 → 대사질환</li>
+        <li><b class="red">퇴행</b> → 진행성 질환 먼저</li>
+        <li>임신·출생력, 신생아 선별검사</li>
+        <li>계통별 문진: 성장·발달·사춘기·심장·감각·피부·근력·출혈</li>
+        <li>3세대 가계도: <b>가벼운 소견</b>까지</li>
+      </ul></div>
+      <div class="box"><h3>진찰과 검사</h3><ul>
+        <li>키·체중·머리둘레 SDS, 신체 비율</li>
+        <li>이형 특징: 얼굴, 귀, 손발, 피부, 생식기</li>
+        <li>심잡음, 간·비장, 눈, 관절, 척추, 사춘기 단계</li>
+        <li>근긴장도·근력·반사·보행</li>
+        <li>검사·영상 소견도 HPO로</li>
+      </ul></div>
+    </div>
+    <div class="box key"><p style="margin:0;font-size:24px"><b>발달지연이 주소라면</b>: GDD는 5세 미만 두 영역 이상 지연, ID는 5세 이후 진단. 청력·시력·갑상선 확인. 여성 친척 조기 난소기능부전·고령 남성 떨림 → FMR1 전변이 단서</p></div>
+  </div>
+  <div class="src">ECMGG 1주차(2023) · Moeschler 2014 (AAP) · 홍창의 p.146, 164-169 · 유발 요인·퇴행 항목은 강의자 해석</div>
+</section>
+
+<!-- 21 -->
 <section class="slide">
   <h2>원인별 감별의 틀</h2>
   <div class="body">
     <table style="font-size:23px">
       <tr><th>범주</th><th>예</th><th>단서</th><th>맞는 검사</th></tr>
       <tr><td>염색체 수적 이상</td><td>다운, 터너, 클라인펠터</td><td>특징적 외모, 성장·사춘기</td><td>핵형</td></tr>
-      <tr><td>미세결실·중복</td><td>22q11.2, Williams</td><td>여러 기형 + 발달지연</td><td>CMA</td></tr>
+      <tr><td>미세결실·중복</td><td>22q11.2, Williams</td><td>여러 장기 기형 + 발달 문제</td><td>CMA</td></tr>
       <tr><td><b>반복서열 확장</b></td><td><b>취약 X</b></td><td>남아, 모계 남성 이환, 큰 귀·긴 얼굴</td><td><b>FMR1 반복수</b></td></tr>
-      <tr><td>단일유전자</td><td>X-연관 지적장애 등</td><td>비특이적</td><td>ES / GS</td></tr>
+      <tr><td>단일유전자</td><td>마르판, NF1, 누난, 뒤센, CAH, 혈우병</td><td>장기 소견의 조합, 유전 양식</td><td>표적·패널, ES/GS</td></tr>
       <tr><td>각인 이상</td><td>Prader-Willi</td><td>신생아 저긴장 → 과식</td><td>메틸화 분석</td></tr>
-      <tr><td>유전 대사질환</td><td>PKU 등</td><td>퇴행, 대사 위기</td><td>대사 검사</td></tr>
+      <tr><td>유전 대사질환</td><td>PKU, 요소회로 이상</td><td>퇴행, 대사 위기</td><td>대사 검사</td></tr>
       <tr><td>비유전</td><td>선천 감염, 태아 알코올</td><td>임신·출생력</td><td>병력, 영상</td></tr>
     </table>
   </div>
   <div class="src">홍창의 8장 · Moeschler 2014 · Rodan 2025</div>
 </section>
 
-<!-- 18 -->
+<!-- 22 -->
 <section class="slide">
   <h2>취약 X 증후군</h2>
   <div class="cols">
@@ -493,7 +589,7 @@ body:hover #nav { opacity: .9; }
 
 <!-- 23 -->
 <section class="slide">
-  <h2>발달지연 소아의 유전검사 순서</h2>
+  <h2>유전검사 순서 (발달지연·선천 기형 예)</h2>
   <div class="flow" style="flex:1">
     <div class="step"><b class="s">1</b><b>특정 질환이 떠오르는가?</b> → 표적 검사 먼저: 다운 → 핵형 · 취약 X → FMR1 · PWS → 메틸화 · Duchenne → MLPA</div>
     <div class="arr">▼ 아니오 / 표적 검사 음성</div>
@@ -668,7 +764,7 @@ body:hover #nav { opacity: .9; }
       <li style="font-size:25px">가계도 3세대 이상. <b>남→남 전달은 X-연관 배제</b></li>
       <li style="font-size:25px">XLR: 이환 남성의 딸은 모두 보인자, 보인자 어머니 임신당 25%</li>
       <li style="font-size:25px">가족력 없음 ≠ 비유전, 가족성 ≠ 유전</li>
-      <li style="font-size:25px">소견은 <b>HPO</b>로, 원인은 범주별로 감별</li>
+      <li style="font-size:25px">소견은 <b>HPO 문법</b>(소견·구체적 용어·수식어·배제)으로</li>
       <li style="font-size:25px"><b>CMA는 균형 전위를, CMA·ES는 FMR1 확장을 못 본다</b></li>
       <li style="font-size:25px">의심 질환 → 표적 검사, 아니면 ES/GS부터</li>
       <li style="font-size:25px"><b>VUS는 임상 결정에 쓰지 않는다</b></li>
