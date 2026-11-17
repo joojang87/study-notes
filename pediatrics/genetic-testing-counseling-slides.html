@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>유전검사와 유전상담 슬라이드 · Study Notes</title>
-<meta name="description" content="의학과 3학년 소아청소년과 유전 강의 슬라이드 (30분, 빔프로젝터용). 방향키로 넘기고 F로 전체화면.">
+<meta name="description" content="의학과 3학년 소아청소년과 유전 강의 슬라이드 (빔프로젝터용). 방향키로 넘기고 F로 전체화면.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
@@ -23,36 +23,37 @@ html, body { margin: 0; height: 100%; background: #e9ecef; overflow: hidden; }
 body { font-family: var(--font-body); color: var(--ink); word-break: keep-all; overflow-wrap: break-word; }
 #stage { position: fixed; inset: 0; display: grid; place-items: center; }
 #deck { width: 1600px; height: 900px; position: relative; transform-origin: center center; }
-.slide { position: absolute; inset: 0; background: var(--bg); padding: 64px 84px 70px; display: none; flex-direction: column; box-shadow: 0 2px 18px rgba(0,0,0,.12); }
+.slide { position: absolute; inset: 0; background: var(--bg); padding: 56px 84px 76px; display: none; flex-direction: column; box-shadow: 0 2px 18px rgba(0,0,0,.12); }
 .slide.on { display: flex; }
 .slide h1 { font-size: 64px; line-height: 1.2; margin: 0; letter-spacing: -0.01em; }
-.slide h2 { font-size: 46px; line-height: 1.25; margin: 0 0 30px; letter-spacing: -0.01em; }
+.slide h2 { font-size: 40px; line-height: 1.25; margin: 0 0 24px; letter-spacing: -0.01em; }
 .slide h2 .num { font: 600 24px var(--font-mono); color: var(--accent); margin-right: 14px; vertical-align: 6px; }
-.slide p, .slide li { font-size: 29px; line-height: 1.55; }
-.slide ul, .slide ol { margin: 0; padding-left: 36px; }
-.slide li { margin: 6px 0; }
+.slide p, .slide li { font-size: 22px; line-height: 1.6; }
+.slide ul, .slide ol { margin: 0; padding-left: 28px; }
+.slide li { margin: 4px 0; }
 .slide li::marker { color: var(--accent); }
 b, strong { font-weight: 700; }
 .em { color: var(--accent); font-weight: 700; }
 .red { color: var(--warn); font-weight: 700; }
-.body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 22px; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; flex: 1; min-height: 0; }
+.body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 18px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; min-height: 0; align-items: start; }
 .cols3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
 .cols4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.box { border: 2px solid var(--line); border-radius: 14px; padding: 20px 26px; background: var(--surface-2); }
-.box h3 { margin: 0 0 10px; font-size: 30px; }
-.box p, .box li { font-size: 25px; }
+.box { border: 2px solid var(--line); border-radius: 12px; padding: 16px 22px; background: var(--surface-2); }
+.box h3 { margin: 0 0 8px; font-size: 25px; }
+.box p, .box li { font-size: 22px; }
+.stack { display: flex; flex-direction: column; gap: 14px; }
 .key { background: var(--key-bg); border: 0; border-left: 8px solid var(--key); }
 .warn { background: var(--warn-bg); border: 0; border-left: 8px solid var(--warn); }
 .ok { background: var(--ok-bg); border: 0; border-left: 8px solid var(--ok); }
 .infer { background: var(--infer-bg); border: 0; border-left: 8px solid var(--infer); }
 .case { background: var(--accent-soft); border: 0; border-left: 8px solid var(--accent); }
-table { border-collapse: collapse; width: 100%; font-size: 24px; line-height: 1.4; }
-th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 2px solid var(--line); }
+table { border-collapse: collapse; width: 100%; font-size: 21px; line-height: 1.45; }
+th, td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 2px solid var(--line); }
 th { background: var(--surface-2); font-weight: 700; }
 td.c, th.c { text-align: center; }
 .mono { font-family: var(--font-mono); }
-.src { position: absolute; left: 84px; right: 200px; bottom: 26px; font-size: 17px; color: var(--muted); line-height: 1.4; }
+.src { position: absolute; left: 84px; right: 200px; bottom: 24px; font-size: 15px; color: var(--muted); line-height: 1.4; }
 .src::before { content: "근거 · "; font-weight: 600; }
 .pg { position: absolute; right: 40px; bottom: 24px; font: 500 18px var(--font-mono); color: var(--muted); }
 .section-slide { justify-content: center; background: var(--bg); }
@@ -66,33 +67,33 @@ td.c, th.c { text-align: center; }
 svg.ped { width: 100%; height: auto; display: block; }
 svg.ped text { font-family: var(--font-body); }
 .pedcard { text-align: center; }
-.pedcard h3 { font-size: 28px; margin: 0 0 6px; }
+.pedcard h3 { font-size: 24px; margin: 0 0 6px; }
 .pedcard ul { text-align: left; padding-left: 26px; }
-.pedcard li { font-size: 21px; margin: 2px 0; line-height: 1.4; }
+.pedcard li { font-size: 19px; margin: 3px 0; line-height: 1.45; }
 .ladder { display: flex; flex-direction: column; gap: 18px; margin-top: 8px; }
-.rung { display: grid; grid-template-columns: 300px 1fr 230px; align-items: center; gap: 20px; font-size: 27px; }
-.rung .bar { height: 46px; border-radius: 8px; background: var(--accent); }
+.rung { display: grid; grid-template-columns: 420px 1fr 200px; align-items: center; gap: 20px; font-size: 22px; }
+.rung .bar { height: 36px; border-radius: 8px; background: var(--accent); }
 .rung .lbl { font-weight: 700; }
-.rung .res { font-family: var(--font-mono); font-size: 26px; }
+.rung .res { font-family: var(--font-mono); font-size: 22px; }
 .flow { display: flex; flex-direction: column; gap: 10px; }
-.flow .step { border: 2px solid var(--line); border-radius: 12px; padding: 12px 20px; font-size: 25px; line-height: 1.45; background: var(--surface-2); }
-.flow .step b.s { font: 700 24px var(--font-mono); color: var(--accent); margin-right: 10px; }
-.flow .arr { text-align: center; color: var(--muted); font-size: 20px; line-height: 1.1; }
+.flow .step { border: 2px solid var(--line); border-radius: 12px; padding: 10px 18px; font-size: 21px; line-height: 1.45; background: var(--surface-2); }
+.flow .step b.s { font: 700 21px var(--font-mono); color: var(--accent); margin-right: 10px; }
+.flow .arr { text-align: center; color: var(--muted); font-size: 18px; line-height: 1.1; }
 .hgvs { display: flex; flex-wrap: wrap; gap: 0; justify-content: center; font: 500 33px var(--font-mono); margin: 18px 0 6px; }
 .hgvs span { padding: 10px 14px; border-bottom: 6px solid var(--c); }
 .hgvs-legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 28px; }
-.hgvs-legend div { font-size: 24px; border-left: 8px solid var(--c); padding-left: 12px; line-height: 1.4; }
+.hgvs-legend div { font-size: 20px; border-left: 8px solid var(--c); padding-left: 12px; line-height: 1.4; }
 .reveal { cursor: pointer; }
 .reveal .hidden { visibility: hidden; }
 .reveal.shown .hidden { visibility: visible; }
-.hint { font-size: 19px; color: var(--muted); }
+.hint { font-size: 18px; color: var(--muted); }
 .timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; position: relative; margin-top: 10px; }
 .timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 34px; height: 4px; background: var(--line); }
 .tl { position: relative; padding-top: 70px; }
 .tl .yr { position: absolute; top: 12px; left: 0; font: 700 28px var(--font-mono); color: var(--accent); background: var(--bg); padding-right: 10px; }
 .tl .dot { position: absolute; top: 26px; right: 18px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); }
-.tl h4 { margin: 0 0 6px; font-size: 24px; }
-.tl p { font-size: 22px; margin: 0; line-height: 1.45; }
+.tl h4 { margin: 0 0 6px; font-size: 21px; }
+.tl p { font-size: 19px; margin: 0; line-height: 1.5; }
 .tl.now .yr, .tl.now h4 { color: var(--warn); }
 .tl.now .dot { background: var(--warn); }
 #progress { position: fixed; left: 0; bottom: 0; height: 5px; background: var(--accent); transition: width .2s; z-index: 5; }
@@ -116,13 +117,12 @@ body:hover #nav { opacity: .9; }
 <body>
 <div id="help">← → 넘기기 · F 전체화면 · <a href="genetic-testing-counseling.html">강의록</a></div>
 <div id="stage"><div id="deck">
-
 <!-- 1 -->
 <section class="slide title-slide">
   <div class="tag" style="align-self:flex-start;margin-bottom:26px">의학과 3학년 · 소아청소년과</div>
   <h1>유전검사와 유전상담</h1>
-  <p style="font-size:38px;color:var(--muted);margin:14px 0 0">가계도에서 결과 해석까지</p>
-  <div class="who">오준석 · 건양대학교병원 소아청소년과<br>강의 30분 + 팀 기반 학습(TBL)</div>
+  <p style="font-size:34px;color:var(--muted);margin:14px 0 0">가계도에서 결과 해석까지</p>
+  <div class="who">오준석 · 건양대학교병원 소아청소년과<br>강의 + 팀 기반 학습(team-based learning, TBL)</div>
 </section>
 
 <!-- 2 -->
@@ -130,15 +130,15 @@ body:hover #nav { opacity: .9; }
   <h2>오늘의 환자</h2>
   <div class="body">
     <div class="box case">
-      <p style="margin:0">생후 <b>6개월 남아</b>. 영유아 건강검진에서 <b>운동 발달지연</b>으로 의뢰.<br>엎드려 가슴을 들지 못하고, 양손을 짚어야만 앉는다.</p>
-      <p style="margin:14px 0 0">어머니의 남동생(<b>외삼촌</b>)은 학창 시절 내내 공부를 힘들어했고,<br>지금은 단순 반복 업무를 하며 실수가 잦다.</p>
+      <p style="margin:0">생후 <b>6개월 남아</b>가 영유아 건강검진에서 <b>운동 발달지연</b>이 확인되어 의뢰되었습니다. 엎드린 자세에서 가슴을 들지 못하고, 양손을 바닥에 짚어야만 앉을 수 있습니다.</p>
+      <p style="margin:12px 0 0">어머니의 남동생(<b>외삼촌</b>)은 학창 시절 내내 공부를 힘들어했고, 지금은 단순 반복 업무를 하면서도 실수가 잦다고 합니다.</p>
     </div>
-    <div class="cols3" style="margin-top:10px">
-      <div class="box"><h3>① 가계도</h3><p>어떻게 그리고,<br>무엇을 읽어낼까?</p></div>
-      <div class="box"><h3>② 검사</h3><p>무엇을,<br>어떤 순서로?</p></div>
-      <div class="box"><h3>③ 결과와 상담</h3><p>결과를 받으면<br>가족에게 무엇을?</p></div>
+    <div class="cols3">
+      <div class="box"><h3>① 가계도</h3><p style="margin:0">이 가족의 가계도를 어떻게 그리고, 가계도에서 어떤 유전 양식을 읽어낼 수 있을까요?</p></div>
+      <div class="box"><h3>② 검사</h3><p style="margin:0">어떤 유전검사를 어떤 순서로 시행해야 할까요? 각 검사가 놓치는 것은 무엇일까요?</p></div>
+      <div class="box"><h3>③ 결과와 상담</h3><p style="margin:0">결과를 받으면 어떻게 해석하고, 가족에게 무엇을 어떻게 설명해야 할까요?</p></div>
     </div>
-    <p class="hint" style="margin-top:auto">이 증례는 강의 뒤 팀 활동에서 네 단계로 나누어 공개합니다.</p>
+    <p class="hint" style="margin-top:auto">이 증례는 강의가 끝난 뒤 팀 활동에서 네 단계로 나누어 공개합니다.</p>
   </div>
 </section>
 
@@ -147,23 +147,23 @@ body:hover #nav { opacity: .9; }
   <h2>학습목표</h2>
   <div class="body">
     <table>
-      <tr><th class="c" style="width:70px">#</th><th>오늘이 끝나면 할 수 있어야 하는 것</th></tr>
-      <tr><td class="c"><b>1</b></td><td><b>가계도 분석</b>: 표준 기호로 3세대 가계도를 그리고, 유전 양식을 추론하며, 의무 보인자를 찾는다</td></tr>
-      <tr><td class="c"><b>2</b></td><td><b>임상양상 분석</b>: 발달지연 소견을 HPO 용어로 정리하고 감별진단 목록을 만든다</td></tr>
-      <tr><td class="c"><b>3</b></td><td><b>유전검사 선택</b>: 검사별 검출 범위와 한계를 비교해 검사와 순서를 고른다</td></tr>
-      <tr><td class="c"><b>4</b></td><td><b>결과 해석과 유전상담</b>: ACMG/AMP 5단계로 해석하고, 재발 위험을 포함해 비지시적으로 상담한다</td></tr>
+      <tr><th class="c" style="width:60px">번호</th><th>수업이 끝나면 할 수 있어야 하는 것</th></tr>
+      <tr><td class="c"><b>1</b></td><td><b>가계도 분석(pedigree analysis)</b>: 표준 기호로 3세대 이상의 가계도를 그리고, 가계도에서 유전 양식(inheritance pattern)을 추론하며, 의무 보인자(obligate carrier)를 찾아낸다.</td></tr>
+      <tr><td class="c"><b>2</b></td><td><b>임상양상 분석(phenotype analysis)</b>: 어떤 유전질환이든 환자의 병력·진찰·검사 소견을 인간 표현형 온톨로지(Human Phenotype Ontology, HPO)의 문법에 맞춰 기술하고, 이를 바탕으로 감별진단 목록을 만든다.</td></tr>
+      <tr><td class="c"><b>3</b></td><td><b>유전검사 선택(test selection)</b>: 각 유전검사가 찾을 수 있는 것과 찾을 수 없는 것을 비교해, 환자에게 맞는 검사와 그 순서를 고른다.</td></tr>
+      <tr><td class="c"><b>4</b></td><td><b>결과 해석과 유전상담(interpretation and genetic counseling)</b>: 미국의학유전학회·분자병리학회(ACMG/AMP)의 5단계 분류로 변이를 해석하고, 재발 위험을 포함해 비지시적(non-directive)으로 상담한다.</td></tr>
     </table>
-    <p style="font-size:24px;color:var(--muted);margin-top:auto">수업 흐름: 수업 전 형성평가 5분 → <b>강의 30분</b> → 팀 활동 약 100분 → 수업 후 형성평가 10분</p>
+    <p style="color:var(--muted);margin-top:auto">수업 흐름: 수업 전 형성평가 → <b>강의</b> → 팀 활동(4단계) → 수업 후 형성평가</p>
   </div>
-  <div class="src">국시 평가목표 임상표현 25 발달지연 · 홍창의 소아과학 12판 8장</div>
+  <div class="src">홍창의 소아과학 12판 8장 · Robinson 2008, Köhler 2021 (HPO) · Richards 2015 (ACMG/AMP)</div>
 </section>
 
 <!-- 4 section -->
 <section class="slide section-slide">
   <div class="bar"></div>
-  <div class="big">PART 1 · 4분</div>
+  <div class="big">PART 1</div>
   <h1>유전학 기본 용어</h1>
-  <div class="sub">결과지를 읽으려면 먼저 결과지의 단어를 알아야 합니다</div>
+  <div class="sub">유전검사 결과지를 읽으려면 먼저 결과지에 쓰인 용어를 알아야 합니다.</div>
 </section>
 
 <!-- 5 -->
@@ -173,43 +173,43 @@ body:hover #nav { opacity: .9; }
     <div class="hgvs">
       <span style="--c:#1f5f99">GENE</span><span style="--c:#6a3d9a">NM_000000.0</span><span style="--c:#1d6b55">:c.76A&gt;T</span><span style="--c:#b8641a">&nbsp;p.(Lys26*)</span><span style="--c:#a12a37">&nbsp;Heterozygous</span><span style="--c:#3c4196">&nbsp;Pathogenic</span>
     </div>
-    <div class="hgvs-legend" style="margin-top:24px">
-      <div style="--c:#1f5f99"><b>유전자</b><br>어느 유전자인가</div>
-      <div style="--c:#6a3d9a"><b>기준 전사체</b><br>어떤 mRNA 기준으로 번호를 매겼나</div>
-      <div style="--c:#1d6b55"><b>c. (코딩 DNA)</b><br>76번째 염기 A → T</div>
-      <div style="--c:#b8641a"><b>p. (단백질)</b><br>26번 라이신 자리에 종결 코돈<br>괄호 = 실험 아닌 <b>예측</b></div>
-      <div style="--c:#a12a37"><b>접합 상태</b><br>이형접합 / 동형접합 / 반접합</div>
-      <div style="--c:#3c4196"><b>분류</b><br>ACMG/AMP 5단계 (Part 5)</div>
+    <div class="hgvs-legend" style="margin-top:20px">
+      <div style="--c:#1f5f99"><b>유전자(gene)</b><br>변이가 있는 유전자의 공식 기호입니다.</div>
+      <div style="--c:#6a3d9a"><b>기준 전사체(reference transcript)</b><br>어떤 mRNA 서열을 기준으로 염기 번호를 매겼는지 나타냅니다.</div>
+      <div style="--c:#1d6b55"><b>코딩 DNA 표기(c.)</b><br>코딩 서열의 76번째 염기 A가 T로 바뀌었다는 뜻입니다.</div>
+      <div style="--c:#b8641a"><b>단백질 표기(p.)</b><br>26번째 아미노산인 라이신(Lys) 자리에 종결 코돈(*)이 생긴다는 뜻입니다. 괄호는 실험으로 확인한 것이 아니라 <b>예측</b>이라는 표시입니다.</div>
+      <div style="--c:#a12a37"><b>접합 상태(zygosity)</b><br>이형접합(heterozygous), 동형접합(homozygous), 반접합(hemizygous) 중 하나로 적습니다.</div>
+      <div style="--c:#3c4196"><b>분류(classification)</b><br>ACMG/AMP 5단계 분류 결과입니다(PART 5에서 다룹니다).</div>
     </div>
   </div>
-  <div class="src">den Dunnen 2016 (HGVS 명명법) · 예시 변이는 교육용 가상 예시</div>
+  <div class="src">den Dunnen 2016 (HGVS 명명법) · 예시 변이는 교육용으로 만든 가상 예시</div>
 </section>
 
 <!-- 6 -->
 <section class="slide">
   <h2>변이의 종류</h2>
-  <div class="cols" style="grid-template-columns:1.25fr 1fr">
-    <table>
-      <tr><th>종류</th><th>단백질에 생기는 일</th></tr>
-      <tr><td>동의 (synonymous)</td><td>아미노산 그대로</td></tr>
-      <tr><td>과오 (missense)</td><td>아미노산 하나가 바뀜</td></tr>
-      <tr><td>정지 (nonsense)</td><td>종결 코돈 → 짧아짐</td></tr>
-      <tr><td><b>틀이동 (frameshift)</b></td><td>3의 배수 아닌 삽입·결실</td></tr>
-      <tr><td>틀 내 (in-frame)</td><td>3의 배수 삽입·결실</td></tr>
-      <tr><td>스플라이스 부위</td><td>엑손 빠짐, 인트론 남음</td></tr>
+  <div class="cols" style="grid-template-columns:1.3fr 1fr">
+    <table style="font-size:20px">
+      <tr><th style="width:24%">종류</th><th style="width:32%">DNA에서 일어난 변화</th><th>단백질에 생기는 일</th></tr>
+      <tr><td>동의 변이(synonymous)</td><td>염기 하나가 치환됨</td><td>아미노산은 바뀌지 않습니다.</td></tr>
+      <tr><td>과오 변이(missense)</td><td>염기 하나가 치환됨</td><td>아미노산 하나가 다른 아미노산으로 바뀝니다.</td></tr>
+      <tr><td>정지 변이(nonsense)</td><td>염기 치환으로 종결 코돈이 생김</td><td>단백질이 그 자리에서 끝나 짧아집니다(대개 mRNA가 분해됨).</td></tr>
+      <tr><td><b>틀이동 변이(frameshift)</b></td><td>3의 배수가 아닌 수의 염기가 삽입되거나 결실됨</td><td>읽는 틀이 밀려 <b>그 뒤의 아미노산 배열이 모두 무너집니다.</b></td></tr>
+      <tr><td>틀 내 변이(in-frame)</td><td>3의 배수만큼 염기가 삽입되거나 결실됨</td><td>해당 아미노산만 빠지거나 더해지고 <b>나머지 배열은 그대로</b>입니다.</td></tr>
+      <tr><td>스플라이스 부위 변이(splice site)</td><td>엑손-인트론 경계의 염기가 바뀜</td><td>엑손이 빠지거나 인트론이 남아, 단백질 일부가 없어지거나 틀이동이 생깁니다.</td></tr>
     </table>
-    <div style="display:flex;flex-direction:column;gap:18px">
+    <div class="stack">
       <div class="box"><h3>문장으로 비유하면</h3>
-        <p class="mono" style="font-size:25px;margin:6px 0">대한사람 대한으로 길이 보전하세</p>
-        <p class="mono" style="font-size:25px;margin:6px 0">대한사람 대한으 <span class="red">로길이 보전하세</span></p>
-        <p style="font-size:22px;color:var(--muted);margin:0">글자 하나 빠짐 → 뒤가 모두 무너짐 (틀이동)</p>
-        <p class="mono" style="font-size:25px;margin:12px 0 6px">대한 대한으로 길이 보전하세</p>
-        <p style="font-size:22px;color:var(--muted);margin:0">단어 하나 통째로 빠짐 → 나머지는 읽힘 (틀 내)</p>
+        <p class="mono" style="margin:4px 0">대한사람 대한으로 길이 보전하세</p>
+        <p class="mono" style="margin:4px 0">대한사람 <span class="red">대한로길 이보 전하세</span></p>
+        <p style="font-size:19px;color:var(--muted);margin:0 0 8px">글자 하나("으")가 빠지면 그 뒤의 단어가 모두 무너집니다(틀이동).</p>
+        <p class="mono" style="margin:4px 0">대한사람 길이 보전하세</p>
+        <p style="font-size:19px;color:var(--muted);margin:0">단어 하나("대한으로")가 통째로 빠지면 나머지는 그대로 읽힙니다(틀 내).</p>
       </div>
-      <div class="box warn"><p style="margin:0;font-size:24px">"모든 엑손은 단백질을 암호화한다" <b>(X)</b><br>엑손에는 번역되지 않는 UTR도 포함됩니다</p></div>
+      <div class="box warn"><p style="margin:0">"모든 엑손은 단백질을 암호화한다"는 <b>틀린</b> 말입니다. 엑손에는 번역되지 않는 부위(untranslated region, UTR)도 포함됩니다.</p></div>
     </div>
   </div>
-  <div class="src">교수자 강의안(2026-07) · 홍창의 p.151</div>
+  <div class="src">홍창의 p.151, 153-154 · den Dunnen 2016 (HGVS)</div>
 </section>
 
 <!-- 7 -->
@@ -217,68 +217,94 @@ body:hover #nav { opacity: .9; }
   <h2>접합 상태와 변이의 기원</h2>
   <div class="cols">
     <table>
-      <tr><th>접합 상태</th><th>대표 상황</th></tr>
-      <tr><td>동형접합</td><td>상염색체 열성, 근친혼</td></tr>
-      <tr><td>이형접합</td><td>우성 환자, 열성 보인자, X-연관 여성 보인자</td></tr>
-      <tr><td>복합 이형접합</td><td>열성: 서로 다른 두 변이 (부모 검사로 trans 확인)</td></tr>
-      <tr><td><b class="em">반접합</b></td><td><b>남성의 X 염색체 유전자</b></td></tr>
+      <tr><th style="width:34%">접합 상태</th><th>대표적인 상황</th></tr>
+      <tr><td>동형접합(homozygous)</td><td>두 대립유전자에 같은 변이가 있는 경우입니다. 상염색체 열성 질환, 특히 근친혼 가족에서 흔합니다.</td></tr>
+      <tr><td>이형접합(heterozygous)</td><td>두 대립유전자 중 하나에만 변이가 있는 경우입니다. 우성 질환 환자, 열성 질환 보인자, X-연관 질환의 여성 보인자가 해당합니다.</td></tr>
+      <tr><td>복합 이형접합(compound heterozygous)</td><td>두 대립유전자에 서로 다른 변이가 하나씩 있는 경우입니다. 두 변이가 서로 다른 염색체에 있는지(trans)는 부모 검사로 확인합니다.</td></tr>
+      <tr><td><b class="em">반접합(hemizygous)</b></td><td><b>남성은 X 염색체가 하나뿐</b>이므로, X 염색체 유전자의 변이는 반접합으로 적습니다.</td></tr>
     </table>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="box"><h3>생식세포 변이</h3><p style="margin:0">모든 세포에 있음 · 다음 세대로 전달</p></div>
-      <div class="box"><h3>체세포 변이</h3><p style="margin:0">일부 조직에만 · 전달 안 됨 (예: 종양)</p></div>
-      <div class="box key"><h3>생식선 모자이시즘</h3><p style="margin:0">부모 혈액은 정상인데 <b>자녀 둘이 같은 변이</b><br>→ de novo여도 재발 위험이 0이 아닌 이유</p></div>
+    <div class="stack">
+      <div class="box"><h3>생식세포 변이(germline variant)</h3><p style="margin:0">수정란 단계부터 있어 몸의 모든 세포에 존재하고, 다음 세대로 전달될 수 있습니다.</p></div>
+      <div class="box"><h3>체세포 변이(somatic variant)</h3><p style="margin:0">출생 후 일부 조직에서만 생긴 변이로, 자녀에게 전달되지 않습니다(예: 종양).</p></div>
+      <div class="box key"><h3>생식선 모자이시즘(germline mosaicism)</h3><p style="margin:0">부모의 혈액 검사는 정상인데 생식세포 일부에만 변이가 있어, <b>자녀 여러 명에게 같은 변이</b>가 나타날 수 있습니다. 그래서 새로 생긴 변이(de novo)라도 다음 아이의 재발 위험이 0이 아닙니다.</p></div>
     </div>
   </div>
-  <div class="src">교수자 강의안(2026-07) · Bernkopf 2023</div>
+  <div class="src">홍창의 p.153-154, 166 · Richards 2015 (결과지의 접합 상태 표기) · Bernkopf 2023</div>
 </section>
 
 <!-- 8 -->
 <section class="slide">
   <h2>같은 변이, 다른 모습</h2>
   <div class="cols">
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="box"><h3>투과도 (penetrance)</h3><p style="margin:0">변이가 있는 사람 중 증상이 나타나는 비율<br>불완전 투과 → 세대를 건너뛴 것처럼 보임</p></div>
-      <div class="box"><h3>표현도 (expressivity)</h3><p style="margin:0">증상의 정도. 같은 가족 안에서도 다름</p></div>
-      <div class="box"><h3>유전적 이질성</h3><p style="margin:0">같은 증상, 여러 원인<br>X-연관 지적장애 원인 유전자만 <b>150개 이상</b></p></div>
+    <div class="stack">
+      <div class="box"><h3>투과도(penetrance)</h3><p style="margin:0">같은 변이를 가진 사람 중 실제로 증상이 나타나는 사람의 비율입니다. 투과도가 불완전하면 증상 없는 보유자가 생겨 질환이 한 세대를 건너뛴 것처럼 보입니다.</p></div>
+      <div class="box"><h3>표현도(expressivity)</h3><p style="margin:0">증상이 나타나는 정도입니다. 같은 변이를 가진 한 가족 안에서도 가볍게 또는 심하게 나타날 수 있습니다.</p></div>
+      <div class="box"><h3>유전적 이질성(genetic heterogeneity)</h3><p style="margin:0">같은 임상 증상이 여러 다른 유전 원인으로 생기는 현상입니다. 예를 들어 X-연관 지적장애의 원인 유전자만 <b>150개가 넘습니다.</b></p></div>
     </div>
-    <div class="box" style="align-self:start">
-      <h3>유전체 각인과 UPD: 15q11-q13</h3>
-      <table style="font-size:23px;margin-top:8px">
-        <tr><th></th><th>Prader-Willi</th><th>Angelman</th></tr>
-        <tr><td>없는 쪽 정보</td><td>부계</td><td>모계</td></tr>
-        <tr><td>결실</td><td>약 70% (부계)</td><td>약 70% (모계)</td></tr>
-        <tr><td>UPD</td><td>약 30% (모계 UPD)</td><td>약 5% (부계 UPD)</td></tr>
+    <div class="box">
+      <h3>유전체 각인(genomic imprinting)과 단일부모 이염색체성(uniparental disomy, UPD): 15q11-q13</h3>
+      <table style="font-size:20px;margin-top:6px">
+        <tr><th></th><th>프래더-윌리 증후군(Prader-Willi)</th><th>엔젤만 증후군(Angelman)</th></tr>
+        <tr><td>기능하지 않는 쪽</td><td>아버지에게서 받은 부위</td><td>어머니에게서 받은 부위</td></tr>
+        <tr><td>결실(deletion)</td><td>약 70% (아버지 쪽 결실)</td><td>약 70% (어머니 쪽 결실)</td></tr>
+        <tr><td>단일부모 이염색체성</td><td>약 30% (두 개 모두 어머니에게서 받음)</td><td>약 5% (두 개 모두 아버지에게서 받음)</td></tr>
       </table>
-      <p style="font-size:22px;color:var(--muted);margin:12px 0 0">진단: 메틸화 분석 (99% 이상 검출, Cassidy 2012)</p>
+      <p style="font-size:19px;color:var(--muted);margin:10px 0 0">각인은 DNA 메틸화로 표시되므로, 진단의 첫 검사는 메틸화 분석입니다(다음 슬라이드).</p>
     </div>
   </div>
-  <div class="src">홍창의 p.148-149, 167 · Schwartz 2023 · Cassidy 2012</div>
+  <div class="src">홍창의 p.148-149 (표 8-11), 166-167 · Schwartz 2023</div>
+</section>
+
+<!-- 8b -->
+<section class="slide">
+  <h2>각인 질환의 검사: 프래더-윌리 증후군과 엔젤만 증후군</h2>
+  <div class="cols" style="grid-template-columns:1.25fr 1fr">
+    <div class="flow">
+      <div class="step"><b class="s">1</b><b>메틸화 분석</b>(메틸화 특이 MLPA, MS-MLPA): 15q11-q13의 각인은 DNA 메틸화로 표시되어 있어, 어머니에게서 온 대립유전자는 메틸화되어 있고 아버지에게서 온 것은 메틸화되어 있지 않습니다. 프래더-윌리는 <b>메틸화된 대립유전자만</b>, 엔젤만은 <b>메틸화되지 않은 대립유전자만</b> 보입니다. 따라서 이 검사 하나로 두 질환이 구별되고, 어느 부모 쪽 정보가 없는지도 알 수 있습니다.</div>
+      <div class="arr">▼ 메틸화 이상이 확인되면, 재발 위험을 말하기 위해 원인 기전을 가립니다</div>
+      <div class="step"><b class="s">2</b><b>복제수 확인</b>: 같은 MS-MLPA(또는 FISH, 염색체 마이크로어레이)로 약 5~7 Mb의 <b>결실</b>과 각인 중추(imprinting center) 결실을 찾습니다.</div>
+      <div class="arr">▼ 결실이 없으면</div>
+      <div class="step"><b class="s">3</b><b>환자와 부모의 미세부수체 분석(microsatellite analysis)</b>으로 <b>단일부모 이염색체성</b>과 <b>각인 결함(imprinting defect)</b>을 구별합니다. 결실이나 단일부모 이염색체성이면 부모의 염색체 재배열 여부도 확인합니다.</div>
+    </div>
+    <div class="stack">
+      <div class="box key"><h3>메틸화 분석의 검출률</h3><p style="margin:0">프래더-윌리 증후군은 <b>99% 이상</b>을 찾지만, 엔젤만 증후군은 <b>약 80%</b>만 찾습니다.</p></div>
+      <div class="box warn"><h3>엔젤만이 의심되는데 메틸화가 정상이면</h3><p style="margin:0"><b><i>UBE3A</i> 염기서열 분석</b>을 합니다. 엔젤만 증후군의 약 5~10%는 메틸화에 이상이 없는 <i>UBE3A</i> 변이로 생기며, 어머니가 보인자이면 재발 위험은 50%입니다.</p></div>
+      <table style="font-size:19px">
+        <tr><th>원인 기전</th><th style="width:44%">다음 아이의 재발 위험</th></tr>
+        <tr><td>새로 생긴 결실, 단일부모 이염색체성</td><td>부모 염색체가 정상이면 매우 낮음</td></tr>
+        <tr><td>각인 중추 결실 없는 각인 결함</td><td>낮음</td></tr>
+        <tr><td>가족성 각인 중추 결실</td><td>50%</td></tr>
+        <tr><td>어머니가 보인자인 <i>UBE3A</i> 변이</td><td>50%</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="src">Beygo 2019 (EMQN/ACGS 모범 진료 지침) · Cassidy 2012 · 홍창의 p.149 표 8-11</div>
 </section>
 
 <!-- 9 section -->
 <section class="slide section-slide">
   <div class="bar"></div>
-  <div class="big">PART 2 · 6분 · 학습목표 1</div>
+  <div class="big">PART 2 · 학습목표 1</div>
   <h1>가계도 분석</h1>
-  <div class="sub">가장 값싸고 강력한 유전 검사</div>
+  <div class="sub">가계도는 가장 값싸면서도 강력한 유전 검사입니다.</div>
 </section>
 
 <!-- 10 -->
 <section class="slide">
-  <h2>표준 기호와 그리는 원칙</h2>
+  <h2>가계도의 표준 기호와 그리는 원칙</h2>
   <div class="body">
     <div style="padding:0 40px"><svg viewBox="0 0 640 70" role="img" aria-label="가계도 표준 기호" class="ped"><title>가계도 표준 기호</title><rect x="19.0" y="15.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><text x="30" y="60" font-size="11" text-anchor="middle" fill="var(--ink)">남성</text><circle cx="90" cy="26" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><text x="90" y="60" font-size="11" text-anchor="middle" fill="var(--ink)">여성</text><polygon points="150,13.0 163.0,26 150,39.0 137.0,26" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><text x="150" y="60" font-size="11" text-anchor="middle" fill="var(--ink)">성별 미상</text><rect x="199.0" y="15.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><text x="210" y="60" font-size="11" text-anchor="middle" fill="var(--ink)">이환자</text><circle cx="270" cy="26" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="270" cy="26" r="3.6" fill="var(--ink)"/><text x="270" y="60" font-size="11" text-anchor="middle" fill="var(--ink)">보인자</text><rect x="319.0" y="15.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><line x1="314.0" y1="42.0" x2="346.0" y2="10.0" stroke="var(--ink)" stroke-width="1.6"/><text x="330" y="60" font-size="11" text-anchor="middle" fill="var(--ink)">사망</text><rect x="389.0" y="15.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><line x1="373.0" y1="49.0" x2="386.0" y2="36.0" stroke="var(--ink)" stroke-width="1.6"/><polygon points="387.0,37.0 379.0,38.0 385.0,44.0" fill="var(--ink)"/><text x="365.0" y="57.0" font-size="11" fill="var(--ink)">P</text><text x="400" y="60" font-size="11" text-anchor="middle" fill="var(--ink)">발단자(P)</text><line x1="460" y1="26" x2="520" y2="26" stroke="var(--ink)" stroke-width="1.4"/><line x1="484" y1="35" x2="492" y2="17" stroke="var(--ink)" stroke-width="1.4"/><line x1="490" y1="35" x2="498" y2="17" stroke="var(--ink)" stroke-width="1.4"/><text x="490" y="60" font-size="11" text-anchor="middle" fill="var(--ink)">이혼</text><line x1="550" y1="23" x2="610" y2="23" stroke="var(--ink)" stroke-width="1.4"/><line x1="550" y1="29" x2="610" y2="29" stroke="var(--ink)" stroke-width="1.4"/><text x="580" y="60" font-size="11" text-anchor="middle" fill="var(--ink)">근친혼</text></svg></div>
-    <div class="cols" style="flex:0">
+    <div class="cols">
       <ul>
-        <li>최소 <b>3세대</b></li>
-        <li>유산·사산·사망한 가족도 그린다</li>
-        <li>이혼·재혼 → 이부·이복 형제는 각자의 혼인선에서</li>
-        <li>근친혼 여부를 묻는다</li>
+        <li>최소 <b>3세대</b>(환자, 부모, 조부모 세대)를 그립니다.</li>
+        <li>유산, 사산, 사망한 가족도 빠짐없이 그립니다.</li>
+        <li>이혼이나 재혼이 있으면, 아버지나 어머니가 다른 형제는 각자의 혼인선 아래에 그립니다.</li>
+        <li>근친혼(consanguinity) 여부를 반드시 묻습니다.</li>
       </ul>
       <ul>
-        <li>세대 I, II, III / 개인 1, 2, 3 (예: II-3)</li>
-        <li><b>발단자</b>(처음 진료받은 이환자) ≠ 피상담자일 수 있음</li>
-        <li>검사로 확인한 보인자와 <b>추론한 보인자</b>를 구분</li>
+        <li>세대는 로마 숫자(I, II, III), 개인은 아라비아 숫자로 표시합니다(예: II-3).</li>
+        <li><b>발단자(proband)</b>는 가족 중 처음 진료를 받은 이환자이며, 상담을 받는 사람(피상담자, consultand)과 다를 수 있습니다.</li>
+        <li>검사로 확인한 보인자와 가계도로 <b>추론한 보인자</b>를 구분해 표시합니다.</li>
       </ul>
     </div>
   </div>
@@ -287,12 +313,12 @@ body:hover #nav { opacity: .9; }
 
 <!-- 11 -->
 <section class="slide">
-  <h2>멘델 유전 4가지</h2>
+  <h2>멘델 유전의 네 가지 양식</h2>
   <div class="cols4" style="flex:1">
-    <div class="box pedcard"><h3>상염색체 우성</h3><svg viewBox="0 0 260 172" role="img" aria-label="상염색체 우성 가계 예시" class="ped"><title>상염색체 우성 가계 예시</title><rect x="59.0" y="11.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><text x="70" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-1</text><circle cx="130" cy="22" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><text x="130" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-2</text><line x1="81.0" y1="22" x2="119.0" y2="22" stroke="var(--ink)" stroke-width="1.4"/><line x1="100.0" y1="22" x2="100.0" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="160" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="40" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="100" y1="59.0" x2="100" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="59.0" x2="160" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><circle cx="40" cy="82" r="11.0" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><rect x="89.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><rect x="149.0" y="71.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="220" cy="82" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="190.0" y1="82" x2="190.0" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="220" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="160" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="220" y1="119.0" x2="220" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><rect x="149.0" y="131.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><line x1="133.0" y1="165.0" x2="146.0" y2="152.0" stroke="var(--ink)" stroke-width="1.6"/><polygon points="147.0,153.0 139.0,154.0 145.0,160.0" fill="var(--ink)"/><text x="125.0" y="173.0" font-size="11" fill="var(--ink)">P</text><circle cx="220" cy="142" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/></svg><ul><li>모든 세대에 나타남</li><li><b>남→남 전달 가능</b></li><li>자녀의 50%</li></ul></div>
-    <div class="box pedcard"><h3>상염색체 열성</h3><svg viewBox="0 0 240 116" role="img" aria-label="상염색체 열성 가계 예시" class="ped"><title>상염색체 열성 가계 예시</title><rect x="69.0" y="11.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="80" cy="22" r="3.6" fill="var(--ink)"/><text x="80" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-1</text><circle cx="160" cy="22" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="160" cy="22" r="3.6" fill="var(--ink)"/><text x="160" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-2</text><line x1="91.0" y1="22" x2="149.0" y2="22" stroke="var(--ink)" stroke-width="1.4"/><line x1="120.0" y1="22" x2="120.0" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="50" y1="59.0" x2="190" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="50" y1="59.0" x2="50" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="120" y1="59.0" x2="120" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="190" y1="59.0" x2="190" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><rect x="39.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="120" cy="82" r="11.0" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><line x1="93.0" y1="105.0" x2="106.0" y2="92.0" stroke="var(--ink)" stroke-width="1.6"/><polygon points="107.0,93.0 99.0,94.0 105.0,100.0" fill="var(--ink)"/><text x="85.0" y="113.0" font-size="11" fill="var(--ink)">P</text><rect x="179.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="190" cy="82" r="3.6" fill="var(--ink)"/></svg><ul><li>형제에게, 부모는 정상</li><li>보인자 부부: 이환 1/4</li><li>근친혼에서 증가</li></ul></div>
-    <div class="box pedcard" style="border-color:var(--accent);border-width:3px"><h3>X-연관 열성</h3><svg viewBox="0 0 260 172" role="img" aria-label="X-연관 열성 가계 예시" class="ped"><title>X-연관 열성 가계 예시</title><rect x="59.0" y="11.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><text x="70" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-1</text><circle cx="130" cy="22" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="130" cy="22" r="3.6" fill="var(--ink)"/><text x="130" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-2</text><line x1="81.0" y1="22" x2="119.0" y2="22" stroke="var(--ink)" stroke-width="1.4"/><line x1="100.0" y1="22" x2="100.0" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="160" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="40" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="100" y1="59.0" x2="100" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="59.0" x2="160" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><rect x="29.0" y="71.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="100" cy="82" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="160" cy="82" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="160" cy="82" r="3.6" fill="var(--ink)"/><rect x="209.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="190.0" y1="82" x2="190.0" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="220" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="160" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="220" y1="119.0" x2="220" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><rect x="149.0" y="131.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><line x1="133.0" y1="165.0" x2="146.0" y2="152.0" stroke="var(--ink)" stroke-width="1.6"/><polygon points="147.0,153.0 139.0,154.0 145.0,160.0" fill="var(--ink)"/><text x="125.0" y="173.0" font-size="11" fill="var(--ink)">P</text><circle cx="220" cy="142" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/></svg><ul><li>주로 남성</li><li>이환 남성의 딸 = <b>모두 보인자</b></li><li>보인자 어머니: 임신당 이환 남아 <b>25%</b></li></ul></div>
-    <div class="box pedcard"><h3>X-연관 우성</h3><svg viewBox="0 0 260 172" role="img" aria-label="X-연관 우성 가계 예시" class="ped"><title>X-연관 우성 가계 예시</title><rect x="59.0" y="11.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><text x="70" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-1</text><circle cx="130" cy="22" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><text x="130" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-2</text><line x1="81.0" y1="22" x2="119.0" y2="22" stroke="var(--ink)" stroke-width="1.4"/><line x1="100.0" y1="22" x2="100.0" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="160" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="40" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="100" y1="59.0" x2="100" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="59.0" x2="160" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><circle cx="40" cy="82" r="11.0" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><rect x="89.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="160" cy="82" r="11.0" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><rect x="209.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="190.0" y1="82" x2="190.0" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="220" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="160" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="220" y1="119.0" x2="220" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><rect x="149.0" y="131.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><line x1="133.0" y1="165.0" x2="146.0" y2="152.0" stroke="var(--ink)" stroke-width="1.6"/><polygon points="147.0,153.0 139.0,154.0 145.0,160.0" fill="var(--ink)"/><text x="125.0" y="173.0" font-size="11" fill="var(--ink)">P</text><circle cx="220" cy="142" r="11.0" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/></svg><ul><li>남녀 모두, 남성이 심함</li><li>이환 남성의 딸 = 모두 이환</li><li>예: X-연관 저인산혈성 구루병</li></ul></div>
+    <div class="box pedcard"><h3>상염색체 우성<br><span style="font-size:17px;font-weight:500">(autosomal dominant)</span></h3><svg viewBox="0 0 260 172" role="img" aria-label="상염색체 우성 가계 예시" class="ped"><title>상염색체 우성 가계 예시</title><rect x="59.0" y="11.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><text x="70" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-1</text><circle cx="130" cy="22" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><text x="130" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-2</text><line x1="81.0" y1="22" x2="119.0" y2="22" stroke="var(--ink)" stroke-width="1.4"/><line x1="100.0" y1="22" x2="100.0" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="160" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="40" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="100" y1="59.0" x2="100" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="59.0" x2="160" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><circle cx="40" cy="82" r="11.0" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><rect x="89.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><rect x="149.0" y="71.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="220" cy="82" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="190.0" y1="82" x2="190.0" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="220" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="160" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="220" y1="119.0" x2="220" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><rect x="149.0" y="131.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><line x1="133.0" y1="165.0" x2="146.0" y2="152.0" stroke="var(--ink)" stroke-width="1.6"/><polygon points="147.0,153.0 139.0,154.0 145.0,160.0" fill="var(--ink)"/><text x="125.0" y="173.0" font-size="11" fill="var(--ink)">P</text><circle cx="220" cy="142" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/></svg><ul><li>여러 세대에 걸쳐 나타납니다.</li><li><b>아버지에서 아들로의 전달</b>이 가능합니다.</li><li>이환된 부모의 자녀는 각각 50% 확률로 이환됩니다.</li></ul></div>
+    <div class="box pedcard"><h3>상염색체 열성<br><span style="font-size:17px;font-weight:500">(autosomal recessive)</span></h3><svg viewBox="0 0 240 116" role="img" aria-label="상염색체 열성 가계 예시" class="ped"><title>상염색체 열성 가계 예시</title><rect x="69.0" y="11.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="80" cy="22" r="3.6" fill="var(--ink)"/><text x="80" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-1</text><circle cx="160" cy="22" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="160" cy="22" r="3.6" fill="var(--ink)"/><text x="160" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-2</text><line x1="91.0" y1="22" x2="149.0" y2="22" stroke="var(--ink)" stroke-width="1.4"/><line x1="120.0" y1="22" x2="120.0" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="50" y1="59.0" x2="190" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="50" y1="59.0" x2="50" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="120" y1="59.0" x2="120" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="190" y1="59.0" x2="190" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><rect x="39.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="120" cy="82" r="11.0" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><line x1="93.0" y1="105.0" x2="106.0" y2="92.0" stroke="var(--ink)" stroke-width="1.6"/><polygon points="107.0,93.0 99.0,94.0 105.0,100.0" fill="var(--ink)"/><text x="85.0" y="113.0" font-size="11" fill="var(--ink)">P</text><rect x="179.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="190" cy="82" r="3.6" fill="var(--ink)"/></svg><ul><li>한 세대의 형제들에게 나타나고 부모는 정상입니다.</li><li>보인자 부부의 자녀는 각각 1/4 확률로 이환됩니다.</li><li>근친혼 가족에서 늘어납니다.</li></ul></div>
+    <div class="box pedcard" style="border-color:var(--accent);border-width:3px"><h3>X-연관 열성<br><span style="font-size:17px;font-weight:500">(X-linked recessive)</span></h3><svg viewBox="0 0 260 172" role="img" aria-label="X-연관 열성 가계 예시" class="ped"><title>X-연관 열성 가계 예시</title><rect x="59.0" y="11.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><text x="70" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-1</text><circle cx="130" cy="22" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="130" cy="22" r="3.6" fill="var(--ink)"/><text x="130" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-2</text><line x1="81.0" y1="22" x2="119.0" y2="22" stroke="var(--ink)" stroke-width="1.4"/><line x1="100.0" y1="22" x2="100.0" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="160" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="40" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="100" y1="59.0" x2="100" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="59.0" x2="160" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><rect x="29.0" y="71.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="100" cy="82" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="160" cy="82" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="160" cy="82" r="3.6" fill="var(--ink)"/><rect x="209.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="190.0" y1="82" x2="190.0" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="220" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="160" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="220" y1="119.0" x2="220" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><rect x="149.0" y="131.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><line x1="133.0" y1="165.0" x2="146.0" y2="152.0" stroke="var(--ink)" stroke-width="1.6"/><polygon points="147.0,153.0 139.0,154.0 145.0,160.0" fill="var(--ink)"/><text x="125.0" y="173.0" font-size="11" fill="var(--ink)">P</text><circle cx="220" cy="142" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/></svg><ul><li>주로 남성이 이환됩니다.</li><li>이환된 남성의 딸은 <b>모두 보인자</b>입니다.</li><li>보인자 어머니의 임신마다 이환된 아들이 태어날 확률은 <b>25%</b>입니다.</li></ul></div>
+    <div class="box pedcard"><h3>X-연관 우성<br><span style="font-size:17px;font-weight:500">(X-linked dominant)</span></h3><svg viewBox="0 0 260 172" role="img" aria-label="X-연관 우성 가계 예시" class="ped"><title>X-연관 우성 가계 예시</title><rect x="59.0" y="11.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><text x="70" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-1</text><circle cx="130" cy="22" r="11.0" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><text x="130" y="48.0" font-size="10.5" text-anchor="middle" fill="var(--muted)">I-2</text><line x1="81.0" y1="22" x2="119.0" y2="22" stroke="var(--ink)" stroke-width="1.4"/><line x1="100.0" y1="22" x2="100.0" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="160" y2="59.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="40" y1="59.0" x2="40" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="100" y1="59.0" x2="100" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="59.0" x2="160" y2="71.0" stroke="var(--ink)" stroke-width="1.4"/><circle cx="40" cy="82" r="11.0" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><rect x="89.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><circle cx="160" cy="82" r="11.0" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><rect x="209.0" y="71.0" width="22" height="22" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="171.0" y1="82" x2="209.0" y2="82" stroke="var(--ink)" stroke-width="1.4"/><line x1="190.0" y1="82" x2="190.0" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="220" y2="119.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="160" y1="119.0" x2="160" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><line x1="220" y1="119.0" x2="220" y2="131.0" stroke="var(--ink)" stroke-width="1.4"/><rect x="149.0" y="131.0" width="22" height="22" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/><line x1="133.0" y1="165.0" x2="146.0" y2="152.0" stroke="var(--ink)" stroke-width="1.6"/><polygon points="147.0,153.0 139.0,154.0 145.0,160.0" fill="var(--ink)"/><text x="125.0" y="173.0" font-size="11" fill="var(--ink)">P</text><circle cx="220" cy="142" r="11.0" fill="var(--ped-aff)" stroke="var(--ink)" stroke-width="1.6"/></svg><ul><li>남녀 모두 이환되며, 대개 남성이 더 심합니다.</li><li>이환된 남성의 딸은 모두 이환됩니다.</li><li>예: X-연관 저인산혈성 구루병</li></ul></div>
   </div>
   <div class="src">홍창의 p.164-165 (그림 8-28~8-31) · 그림은 교과서 설명을 바탕으로 새로 그린 예시</div>
 </section>
@@ -302,36 +328,36 @@ body:hover #nav { opacity: .9; }
   <h2>멘델 유전으로 설명되지 않을 때</h2>
   <div class="body">
     <table>
-      <tr><th style="width:26%">기전</th><th>가계도의 단서</th><th style="width:28%">예</th></tr>
-      <tr><td>미토콘드리아</td><td>어머니 → 모든 자녀, 아버지는 전달 안 함</td><td>MELAS, MERRF</td></tr>
-      <tr><td>반복서열 확장</td><td>세대가 갈수록 빨리·심하게 (표현촉진)</td><td>취약 X, 근긴장성 이영양증</td></tr>
-      <tr><td>가성상염색체</td><td>X·Y 상동 부위, 남→남 전달 가능</td><td>SHOX (터너 저신장)</td></tr>
-      <tr><td>유전체 각인</td><td>어느 부모에게서 받았는지가 중요</td><td>Prader-Willi, Angelman</td></tr>
-      <tr><td>생식선 모자이시즘</td><td>부모 혈액 정상, 자녀 여럿 이환</td><td>골형성부전증, Duchenne</td></tr>
-      <tr><td>다인자</td><td>일차 친족 재발 2~10%</td><td>신경관 결손, 구순구개열</td></tr>
+      <tr><th style="width:24%">기전</th><th>가계도에서 보이는 단서</th><th style="width:26%">대표 질환</th></tr>
+      <tr><td>미토콘드리아 유전(mitochondrial inheritance)</td><td>어머니에게서 모든 자녀에게 전달되고, 아버지는 전달하지 않습니다.</td><td>MELAS, MERRF</td></tr>
+      <tr><td>반복서열 확장(repeat expansion)</td><td>세대를 내려갈수록 더 일찍, 더 심하게 나타납니다(표현촉진, anticipation).</td><td>취약 X 증후군, 근긴장성 이영양증</td></tr>
+      <tr><td>가성상염색체 유전(pseudoautosomal inheritance)</td><td>X와 Y 염색체 끝의 같은 부위에 있는 유전자라서 아버지에서 아들로 전달될 수 있습니다.</td><td>SHOX 결핍(터너 증후군의 저신장 원인)</td></tr>
+      <tr><td>유전체 각인(genomic imprinting)</td><td>같은 변이라도 어느 부모에게서 받았는지에 따라 증상이 다릅니다.</td><td>프래더-윌리, 엔젤만 증후군</td></tr>
+      <tr><td>생식선 모자이시즘(germline mosaicism)</td><td>부모의 혈액 검사는 정상인데 자녀 여러 명이 이환됩니다.</td><td>골형성부전증, 뒤센 근디스트로피</td></tr>
+      <tr><td>다인자 유전(multifactorial inheritance)</td><td>여러 유전자와 환경이 함께 작용하며, 일차 친족의 재발 위험은 2~10%입니다.</td><td>신경관 결손, 구순구개열</td></tr>
     </table>
   </div>
-  <div class="src">홍창의 p.145-146, 148-149, 165 · 교수자 강의안(2026-07)</div>
+  <div class="src">홍창의 p.145-146, 148-149, 165-167</div>
 </section>
 
 <!-- 13 -->
 <section class="slide">
-  <h2>가계도의 함정</h2>
+  <h2>가계도를 읽을 때의 함정</h2>
   <div class="cols">
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="box warn"><h3>가족력 없음 ≠ 유전질환 아님</h3><p style="margin:0">우성은 de novo로, 열성은 자녀 수가 적으면 한 명만 이환된 것처럼 보임</p></div>
-      <div class="box warn"><h3>가족에게 모임 ≠ 모두 유전</h3><p style="margin:0">감염·기형유발물질도 가족성 경향</p></div>
-      <div class="box infer"><h3>건너뜀 ≠ 반드시 열성</h3><p style="margin:0">불완전 투과 우성도 건너뛴 것처럼 보임</p></div>
+    <div class="stack">
+      <div class="box warn"><h3>가족력이 없다고 유전질환이 아닌 것은 아닙니다</h3><p style="margin:0">우성 질환은 새로 생긴 변이(de novo)로 처음 나타날 수 있고, 열성 질환은 자녀 수가 적으면 한 명만 이환된 것처럼 보입니다.</p></div>
+      <div class="box warn"><h3>가족에게 모여 있다고 모두 유전은 아닙니다</h3><p style="margin:0">같은 감염이나 기형유발물질(teratogen)에 노출된 가족도 비슷한 질환이 모여 나타날 수 있습니다.</p></div>
+      <div class="box infer"><h3>세대를 건너뛰었다고 반드시 열성은 아닙니다</h3><p style="margin:0">투과도가 불완전한 우성 질환도 세대를 건너뛴 것처럼 보입니다.</p></div>
     </div>
-    <div>
+    <div class="stack">
       <table>
-        <tr><th>재발률 기준값</th><th class="c">형제</th></tr>
-        <tr><td>세염색체 다운</td><td class="c">약 1%</td></tr>
-        <tr><td>다인자 질환</td><td class="c">2~10%</td></tr>
-        <tr><td>상염색체 열성</td><td class="c">25%</td></tr>
-        <tr><td>상염색체 우성 (부모 이환)</td><td class="c">50%</td></tr>
+        <tr><th>형제의 재발 위험(기준값)</th><th class="c" style="width:22%">위험</th></tr>
+        <tr><td>표준형 21번 세염색체(trisomy 21) 다운 증후군: 전위가 아닌 일반적인 다운 증후군</td><td class="c">약 1%</td></tr>
+        <tr><td>다인자 질환(multifactorial disorder)</td><td class="c">2~10%</td></tr>
+        <tr><td>상염색체 열성 질환, 부모가 모두 보인자인 경우</td><td class="c">25%</td></tr>
+        <tr><td>상염색체 우성 질환, 부모 중 한 명이 이환된 경우</td><td class="c">50%</td></tr>
       </table>
-      <div class="box key" style="margin-top:20px"><p style="margin:0"><b>의무 보인자</b> (X-연관 열성)<br>이환된 아들 + 이환된 남자 형제를 가진 여성<br>이환 남성의 딸</p></div>
+      <div class="box key"><h3>X-연관 열성 질환의 의무 보인자(obligate carrier)</h3><p style="margin:0">검사 없이도 가계도만으로 보인자라고 결론지을 수 있는 여성입니다. ① 이환된 아들과 이환된 남자 형제(또는 아버지)를 함께 가진 여성, ② 이환된 남성의 딸이 해당합니다.</p></div>
     </div>
   </div>
   <div class="src">홍창의 p.164, 167 · "건너뜀" 항목과 의무 보인자 정리는 교과서 원칙에서 도출한 강의자 해석</div>
@@ -340,387 +366,491 @@ body:hover #nav { opacity: .9; }
 <!-- 14 section -->
 <section class="slide section-slide">
   <div class="bar"></div>
-  <div class="big">PART 3 · 5분 · 학습목표 2</div>
+  <div class="big">PART 3 · 학습목표 2</div>
   <h1>임상양상 분석</h1>
-  <div class="sub">발달지연 소아: 무엇을 묻고, 무엇을 보고, 어떻게 적을까</div>
+  <div class="sub">어떤 유전질환이든, 환자의 소견을 HPO 문법으로 기술합니다.</div>
 </section>
 
 <!-- 15 -->
 <section class="slide">
-  <h2>발달지연: 정의와 병력·진찰</h2>
+  <h2>왜 HPO로 기술하는가</h2>
   <div class="body">
-    <div class="box key"><p style="margin:0"><b>전반적 발달지연(GDD)</b>: 5세 미만, 두 영역 이상 유의한 지연 &nbsp;·&nbsp; <b>지적장애(ID)</b>: 5세 이후 진단</p></div>
     <div class="cols">
-      <div class="box"><h3>병력</h3><ul>
-        <li>임신·출생력 (노출, 재태 기간)</li>
-        <li>이정표: 어느 영역이 얼마나</li>
-        <li><b class="red">퇴행</b> → 대사질환·진행성 질환 먼저</li>
-        <li>3세대 가계도, 반복 유산</li>
-        <li>여성 친척 조기 폐경, 고령 남성 떨림 → <b>FMR1 전변이</b> 단서</li>
+      <div class="box"><h3>인간 표현형 온톨로지(Human Phenotype Ontology, HPO)</h3><ul>
+        <li>사람 질환의 <b>표현형 이상(phenotypic abnormality)</b>을 컴퓨터가 계산할 수 있도록 정의한 표준 용어 체계이며, 2008년에 시작되었습니다.</li>
+        <li>위로 갈수록 넓은 개념, 아래로 갈수록 구체적인 개념이 되는 <b>계층 구조</b>입니다.</li>
+        <li>지금은 희귀질환 표현형 기술의 사실상 국제 표준입니다.</li>
       </ul></div>
-      <div class="box"><h3>진찰</h3><ul>
-        <li>키·체중·<b>머리둘레</b> 백분위수</li>
-        <li>이형 특징: 얼굴, 귀, 손발, 피부</li>
-        <li>근긴장도, 반사</li>
-        <li>관절 과운동성, 평발</li>
-        <li>청력·시력·심장·갑상선</li>
+      <div class="box ok"><h3>진단과의 연결</h3><ul>
+        <li>엑소마이저(Exomiser) 같은 분석 도구는 환자의 HPO 목록과 각 질환에 달린 HPO 목록을 비교해 <b>후보 변이의 순위</b>를 정합니다.</li>
+        <li>따라서 의뢰서의 HPO가 부정확하면 원인 변이가 순위에서 밀릴 수 있습니다.</li>
       </ul></div>
     </div>
+    <table style="font-size:20px">
+      <tr><th style="width:30%">HPO의 최상위 가지</th><th>무엇을 적는가</th><th style="width:26%">예</th></tr>
+      <tr><td><b>표현형 이상(Phenotypic abnormality)</b> HP:0000118</td><td>환자의 소견 자체를 적습니다. 그 아래에 장기 계통별 가지 23개가 있습니다.</td><td>Seizure(경련), Short stature(저신장)</td></tr>
+      <tr><td><b>임상 수식어(Clinical modifier)</b> HP:0012823</td><td>중증도, 측성, 유발 요인을 적고, 그 아래의 임상 경과(Clinical course)에 발병 시기와 진행 양상을 적습니다.</td><td>Neonatal onset(신생아기 발병), Severe(중증)</td></tr>
+      <tr><td>유전 양식(Mode of inheritance) · 빈도(Frequency)</td><td>질환의 유전 양식과, 질환 설명에서 각 소견이 나타나는 빈도를 적습니다.</td><td>Autosomal dominant inheritance</td></tr>
+    </table>
   </div>
-  <div class="src">Moeschler 2014 (AAP) · 국시 평가목표 25 성과 2 · 홍창의 p.146, 169 · 퇴행 항목은 강의자 해석</div>
+  <div class="src">Robinson 2008 · Köhler 2019, 2021 · Gargano 2024 · HPO 2026-09-01 릴리스 · "순위에서 밀릴 수 있음"은 강의자 해석</div>
 </section>
 
 <!-- 16 -->
 <section class="slide">
-  <h2>소견을 표준 용어로: HPO</h2>
-  <div class="cols" style="grid-template-columns:1.3fr 1fr">
-    <table style="font-size:23px">
-      <tr><th>진료 기록</th><th>HPO 용어</th><th>ID</th></tr>
-      <tr><td>전반적 발달지연</td><td>Global developmental delay</td><td class="mono">HP:0001263</td></tr>
-      <tr><td>전신 근긴장저하</td><td>Generalized hypotonia</td><td class="mono">HP:0001290</td></tr>
-      <tr><td>큰 귀</td><td>Macrotia</td><td class="mono">HP:0000400</td></tr>
-      <tr><td>넓은 이마</td><td>Broad forehead</td><td class="mono">HP:0000337</td></tr>
-      <tr><td>관절 과운동성</td><td>Joint hypermobility</td><td class="mono">HP:0001382</td></tr>
-      <tr><td>자폐 성향</td><td>Autistic behavior</td><td class="mono">HP:0000729</td></tr>
-      <tr><td>중등도 지적장애</td><td>Moderate intellectual disability</td><td class="mono">HP:0002342</td></tr>
+  <h2>HPO 문법 6가지</h2>
+  <div class="body">
+    <table style="font-size:20px">
+      <tr><th style="width:24%">규칙</th><th style="width:22%">이렇게 적지 말고</th><th>이렇게 적습니다 (HPO 용어 · ID)</th></tr>
+      <tr><td><b>1. 진단명이 아니라 소견을 적는다</b></td><td>"터너 증후군 의증"</td><td>저신장 Short stature HP:0004322 · 물갈퀴 목 Webbed neck HP:0000465 · 원발 무월경 Primary amenorrhea HP:0000786</td></tr>
+      <tr><td><b>2. 확인된 범위에서 가장 구체적인 용어를 고른다</b></td><td>신경계 이상(Abnormality of the nervous system)</td><td>경련 Seizure HP:0001250. 발작이 한쪽 팔에서 시작한 것이 확인되면 국소 발작 Focal-onset seizure HP:0007359까지 내려갑니다.</td></tr>
+      <tr><td><b>3. 수식어를 붙인다</b></td><td>"경련 있음"</td><td>경련 Seizure + <b>신생아기 발병(Neonatal onset)</b> · 청력 저하 Hearing impairment + <b>양측(Bilateral)</b> + <b>진행성(Progressive)</b></td></tr>
+      <tr><td><b>4. 수치는 이상 소견 용어로 바꾼다</b></td><td>"CK 15,000 U/L"만 적음</td><td>혈중 크레아틴 키나아제 활성 증가 Elevated circulating creatine kinase activity HP:0003236 (수치는 따로 함께 기록)</td></tr>
+      <tr><td><b>5. 감별에 중요한 음성 소견은 "배제"로 적는다</b></td><td>없는 소견은 적지 않음</td><td>저혈당 Hypoglycemia HP:0001943 → <b class="red">배제(excluded)</b></td></tr>
+      <tr><td><b>6. 모든 장기 계통과 검사·영상까지 적는다</b></td><td>"발달지연"만 적음</td><td>진찰 소견, 혈액 검사 소견, 영상 소견을 모두 적습니다. 예: 뇌 자기공명영상의 뇌이랑 두꺼워짐 Pachygyria HP:0001302</td></tr>
     </table>
-    <div class="box ok" style="align-self:start"><h3>왜 HPO인가</h3><p style="margin:0">유전체 분석 검사실은 HPO 목록으로 후보 변이의 <b>우선순위</b>를 정합니다.<br><br>의뢰서에 HPO를 정확히 적는 것 = 진단율</p></div>
+    <div class="box key"><p style="margin:0;text-align:center">한 줄에 소견 하나: <span class="mono">소견 용어 (HP:ID)</span> · 발병 시기 · 중증도 · 측성 또는 경과 · [있음 또는 배제]</p></div>
   </div>
-  <div class="src">ECMGG 임상응용과정 1주차(2023) · 용어명·ID는 HPO 공식 온톨로지 파일(hp.obo)로 확인</div>
+  <div class="src">Köhler 2021 (질환과 표현형 구분) · Robinson 2008 (계층 구조) · Zhang 2019 (검사 결과 → HPO) · Jacobsen 2022 (Phenopacket의 excluded 항목)</div>
 </section>
 
 <!-- 17 -->
 <section class="slide">
-  <h2>원인별 감별의 틀</h2>
+  <h2>수식어(Clinical modifier)</h2>
   <div class="body">
-    <table style="font-size:23px">
-      <tr><th>범주</th><th>예</th><th>단서</th><th>맞는 검사</th></tr>
-      <tr><td>염색체 수적 이상</td><td>다운, 터너, 클라인펠터</td><td>특징적 외모, 성장·사춘기</td><td>핵형</td></tr>
-      <tr><td>미세결실·중복</td><td>22q11.2, Williams</td><td>여러 기형 + 발달지연</td><td>CMA</td></tr>
-      <tr><td><b>반복서열 확장</b></td><td><b>취약 X</b></td><td>남아, 모계 남성 이환, 큰 귀·긴 얼굴</td><td><b>FMR1 반복수</b></td></tr>
-      <tr><td>단일유전자</td><td>X-연관 지적장애 등</td><td>비특이적</td><td>ES / GS</td></tr>
-      <tr><td>각인 이상</td><td>Prader-Willi</td><td>신생아 저긴장 → 과식</td><td>메틸화 분석</td></tr>
-      <tr><td>유전 대사질환</td><td>PKU 등</td><td>퇴행, 대사 위기</td><td>대사 검사</td></tr>
-      <tr><td>비유전</td><td>선천 감염, 태아 알코올</td><td>임신·출생력</td><td>병력, 영상</td></tr>
+    <table>
+      <tr><th style="width:24%">종류</th><th>HPO 용어</th></tr>
+      <tr><td><b>발병 시기(Onset)</b></td><td>산전(Antenatal) · 출생 시(Congenital) · 신생아기(Neonatal) · 영아기(Infantile) · 소아기(Childhood) · 청소년기(Juvenile) · 성인기(Adult) 발병</td></tr>
+      <tr><td><b>중증도(Severity)</b></td><td>경도(Mild) · 중등도(Moderate) · 중증(Severe) · 최중증(Profound)</td></tr>
+      <tr><td><b>측성(Laterality)</b></td><td>한쪽(Unilateral) · 양쪽(Bilateral)</td></tr>
+      <tr><td><b>경과(Clinical course)</b></td><td>진행성(Progressive) · 비진행성(Nonprogressive) · 재발성(Recurrent) · 삽화성(Episodic)</td></tr>
+      <tr><td><b>유발 요인(Triggered by)</b></td><td>운동으로 유발됨(Triggered by exertion) 등</td></tr>
+    </table>
+    <div class="box"><p style="margin:0">중증도가 이미 용어에 들어 있는 경우에는 그 용어를 그대로 씁니다. 예: 중등도 지적장애 Moderate intellectual disability HP:0002342, 경도 전반적 발달지연 Mild global developmental delay HP:0011342</p></div>
+  </div>
+  <div class="src">HPO 2026-09-01 릴리스 (HP:0003674 Onset, HP:0012824 Severity, HP:0012831 Laterality, HP:0003679 Pace of progression) · Jacobsen 2022 (Phenopacket)</div>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>여러 장기의 소견을 HPO로 옮기기</h2>
+  <div class="body">
+    <table style="font-size:19px">
+      <tr><th style="width:11%">계통</th><th style="width:25%">진료 기록의 표현</th><th>HPO 용어</th><th style="width:19%">대표 질환 예</th></tr>
+      <tr><td>성장·생식</td><td>키 −2.5 표준편차점수(SDS), 원발 무월경</td><td>저신장 Short stature · 원발 무월경 Primary amenorrhea</td><td>터너 증후군</td></tr>
+      <tr><td>내분비</td><td>외부생식기 모호, 혈청 Na 124, K 7.2 mmol/L</td><td>외부생식기 모호 Ambiguous genitalia · 저나트륨혈증 Hyponatremia · 고칼륨혈증 Hyperkalemia</td><td>선천부신과형성증</td></tr>
+      <tr><td>대사</td><td>혈중 암모니아 350 µmol/L, 대사산증</td><td>고암모니아혈증 Hyperammonemia · 대사산증 Metabolic acidosis</td><td>요소회로 이상, 유기산혈증</td></tr>
+      <tr><td>심장</td><td>폐동맥판 협착</td><td>폐동맥판 협착 Pulmonic stenosis</td><td>누난 증후군</td></tr>
+      <tr><td>심장·눈</td><td>대동맥근 확장, 수정체 탈구</td><td>대동맥근 동맥류 Aortic root aneurysm · 수정체 탈구 Ectopia lentis</td><td>마르판 증후군</td></tr>
+      <tr><td>골격·눈</td><td>반복되는 골절, 푸른 공막</td><td>반복 골절 Recurrent fractures · 푸른 공막 Blue sclerae</td><td>골형성부전증</td></tr>
+      <tr><td>피부</td><td>카페오레 반점 여러 개, 겨드랑이 주근깨</td><td>카페오레 반점 Cafe-au-lait spot · 겨드랑이 주근깨 Axillary freckling</td><td>신경섬유종증 1형</td></tr>
+      <tr><td>근육</td><td>가워스 징후, 종아리 비대</td><td>가워스 징후 Gowers sign · 종아리 근육 가성비대 Calf muscle pseudohypertrophy</td><td>뒤센 근디스트로피</td></tr>
+      <tr><td>혈액</td><td>관절 내 출혈, 활성화 부분 트롬보플라스틴 시간 연장</td><td>관절 출혈 Joint hemorrhage · 부분 트롬보플라스틴 시간 연장 Prolonged partial thromboplastin time</td><td>혈우병 A</td></tr>
+      <tr><td>신경발달</td><td>전반적 발달지연, 근긴장저하</td><td>전반적 발달지연 Global developmental delay · 전신 근긴장저하 Generalized hypotonia</td><td>취약 X 증후군 등</td></tr>
+    </table>
+  </div>
+  <div class="src">용어명은 HPO 2026-09-01 릴리스로 확인(ID는 강의록의 표 참고) · 질환 예시는 강의자가 고른 대표적 연결이며, 소견 하나만으로 진단하지 않음</div>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>연습: 증례를 HPO로 기술하기</h2>
+  <div class="cols">
+    <div class="box case reveal" onclick="this.classList.toggle('shown')">
+      <h3>생후 12일 여아</h3>
+      <p style="margin:0 0 8px">출생 때 음핵이 크고 외부생식기가 모호했습니다. 생후 10일부터 구토와 체중 감소가 있습니다. 혈청 Na 124, K 7.2 mmol/L이고 혈당은 정상이며, 17-수산화프로게스테론(17-OHP)이 크게 높습니다. 피부가 검습니다.</p>
+      <ul class="hidden" style="font-size:19px">
+        <li>외부생식기 모호 Ambiguous genitalia, 음핵 비대 Clitoral hypertrophy · 출생 시 발병(Congenital onset)</li>
+        <li>구토 Vomiting, 체중 감소 Weight loss · 신생아기 발병(Neonatal onset)</li>
+        <li>저나트륨혈증 Hyponatremia, 고칼륨혈증 Hyperkalemia</li>
+        <li>혈중 17-수산화프로게스테론 증가 Elevated circulating 17-hydroxyprogesterone concentration</li>
+        <li>피부 과색소침착 Hyperpigmentation of the skin</li>
+        <li>저혈당 Hypoglycemia → <b class="red">배제(excluded)</b></li>
+      </ul>
+    </div>
+    <div class="box case reveal" onclick="this.classList.toggle('shown')">
+      <h3>5세 남아</h3>
+      <p style="margin:0 0 8px">4세부터 자주 넘어지고 계단을 오르기 힘들어하며 점점 심해집니다. 바닥에서 일어날 때 손으로 다리를 짚습니다. 양쪽 종아리가 단단하게 커져 있고, 크레아틴 키나아제(CK)는 15,000 U/L입니다. 외삼촌이 20대에 휠체어를 탔습니다.</p>
+      <ul class="hidden" style="font-size:19px">
+        <li>잦은 넘어짐 Frequent falls · 소아기 발병(Childhood onset) · 진행성(Progressive)</li>
+        <li>계단 오르기 어려움 Difficulty climbing stairs · 진행성(Progressive)</li>
+        <li>가워스 징후 Gowers sign</li>
+        <li>종아리 근육 가성비대 Calf muscle pseudohypertrophy · 양쪽(Bilateral)</li>
+        <li>혈중 크레아틴 키나아제 활성 증가 Elevated circulating creatine kinase activity</li>
+        <li>가계도: X-연관 열성 유전 X-linked recessive inheritance</li>
+      </ul>
+    </div>
+  </div>
+  <p class="hint" style="margin-top:auto">상자를 누르면 HPO 목록이 나타납니다. 팀 활동의 증례도 같은 방식으로 기술합니다.</p>
+  <div class="src">용어는 HPO 2026-09-01 릴리스 · 증례는 강의용으로 만든 가상 증례</div>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>병력과 진찰: 모든 장기 계통을 훑습니다</h2>
+  <div class="body">
+    <div class="cols">
+      <div class="box"><h3>병력(history)</h3><ul>
+        <li><b>발병 시기와 경과</b>: 언제 시작했는지, 진행하는지, 멈춰 있는지, 삽화적으로 반복되는지 묻습니다.</li>
+        <li><b>유발 요인</b>: 금식, 감염, 운동 뒤에 나빠지면 유전 대사질환을 의심합니다.</li>
+        <li><b class="red">퇴행(regression)</b>: 이미 할 수 있던 기능을 잃었다면 대사질환이나 레트 증후군 같은 진행성 질환을 먼저 생각합니다.</li>
+        <li>임신·출생력과 신생아 선별검사 결과를 확인합니다.</li>
+        <li>성장, 발달, 사춘기, 심장, 시력·청력, 피부, 근력, 출혈 경향을 계통별로 묻습니다.</li>
+        <li>3세대 가계도를 그리며, 같은 소견뿐 아니라 <b>가벼운 소견</b>까지 묻습니다.</li>
+      </ul></div>
+      <div class="box"><h3>진찰과 검사(examination and tests)</h3><ul>
+        <li>키, 체중, 머리둘레를 표준편차점수(SDS)나 백분위수로 기록하고 신체 비율을 봅니다.</li>
+        <li>얼굴, 귀, 손발, 피부, 생식기의 이형 특징(dysmorphic features)을 봅니다.</li>
+        <li>심잡음, 간·비장 비대, 눈(수정체, 공막), 관절, 척추, 사춘기 단계를 확인합니다.</li>
+        <li>근긴장도, 근력, 반사, 보행을 진찰합니다.</li>
+        <li>검사와 영상 소견도 HPO 용어로 옮겨 함께 적습니다.</li>
+      </ul></div>
+    </div>
+    <div class="box key"><p style="margin:0"><b>발달지연이 주소인 경우</b>: 전반적 발달지연(global developmental delay)은 5세 미만에서 두 가지 이상 발달 영역이 유의하게 늦은 경우이고, 지적장애(intellectual disability)는 5세 이후에 진단합니다. 원인과 관계없이 청력, 시력, 갑상선 기능을 확인합니다.</p></div>
+  </div>
+  <div class="src">Moeschler 2014 (AAP) · Zhang 2019 · 홍창의 p.146, 164-169 · 유발 요인·퇴행 항목은 강의자 해석</div>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <h2>원인별 감별진단의 틀</h2>
+  <div class="body">
+    <table style="font-size:20px">
+      <tr><th style="width:20%">원인 범주</th><th style="width:24%">예</th><th>임상적 단서</th><th style="width:22%">맞는 검사</th></tr>
+      <tr><td>염색체 수적 이상(aneuploidy)</td><td>다운, 터너, 클라인펠터 증후군</td><td>특징적인 외모, 성장이나 사춘기의 이상</td><td>핵형 검사(karyotype)</td></tr>
+      <tr><td>미세결실·중복(copy number variant, CNV)</td><td>22q11.2 결실, 윌리엄스 증후군</td><td>여러 장기의 기형과 발달 문제가 함께 있음</td><td>염색체 마이크로어레이(CMA)</td></tr>
+      <tr><td><b>반복서열 확장(repeat expansion)</b></td><td><b>취약 X 증후군</b></td><td>남아, 외가 쪽 남성 이환, 큰 귀와 긴 얼굴</td><td><b>FMR1 CGG 반복수 분석</b></td></tr>
+      <tr><td>단일유전자 질환(monogenic disorder)</td><td>마르판, 신경섬유종증 1형, 누난, 뒤센, 선천부신과형성증, 혈우병</td><td>특정 장기 소견들의 조합, 가족 안의 유전 양식</td><td>표적 유전자·유전자 패널, 엑솜·유전체 분석(ES/GS)</td></tr>
+      <tr><td>각인 이상(imprinting disorder)</td><td>프래더-윌리 증후군</td><td>신생아기 근긴장저하와 수유곤란, 이후 과식과 비만</td><td>메틸화 분석</td></tr>
+      <tr><td>유전 대사질환(inborn error of metabolism)</td><td>페닐케톤뇨증, 요소회로 이상</td><td>퇴행, 반복되는 대사 위기</td><td>대사 검사(신생아 선별검사 결과 확인)</td></tr>
+      <tr><td>비유전 요인</td><td>선천 감염, 태아 알코올 증후군</td><td>임신·출생력</td><td>병력, 영상 검사</td></tr>
     </table>
   </div>
   <div class="src">홍창의 8장 · Moeschler 2014 · Rodan 2025</div>
 </section>
 
-<!-- 18 -->
+<!-- 22 -->
 <section class="slide">
-  <h2>취약 X 증후군</h2>
+  <h2>취약 X 증후군(fragile X syndrome)</h2>
   <div class="cols">
     <div class="box"><h3>임상 양상</h3><ul>
-      <li>Xq27.3 <i>FMR1</i>, X-연관</li>
-      <li>남아: 지적장애, 긴 얼굴, 튀어나온 턱, <b>크고 뚜렷한 귀</b>, 큰 고환(주로 사춘기 이후)</li>
-      <li>완전변이 여성: 다양한 정도의 지적장애</li>
-      <li>전변이: 여성 조기 난소기능부전, 남성 떨림·운동실조</li>
+      <li>X 염색체 Xq27.3에 있는 <i>FMR1</i> 유전자의 이상으로 생기는 X-연관 질환입니다.</li>
+      <li>남아: 지적장애, 긴 얼굴, 튀어나온 턱, <b>크고 뚜렷한 귀</b>, 큰 고환(주로 사춘기 이후)이 나타납니다.</li>
+      <li>완전변이를 가진 여성은 대개 다양한 정도의 지적장애만 보입니다.</li>
+      <li>전변이(premutation)를 가진 여성은 이른 난소기능부전, 남성은 떨림과 운동실조를 보일 수 있습니다.</li>
     </ul></div>
-    <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="stack">
       <table>
-        <tr><th>CGG 반복수 (ACMG 2021)</th><th class="c">범주</th></tr>
-        <tr><td class="mono">5~44</td><td class="c">정상</td></tr>
-        <tr><td class="mono">45~54</td><td class="c">중간</td></tr>
-        <tr><td class="mono">55~200</td><td class="c">전변이</td></tr>
-        <tr><td class="mono">&gt;200 + 메틸화</td><td class="c"><b>완전변이</b></td></tr>
+        <tr><th>CGG 반복수 (ACMG 2021 기준)</th><th class="c">범주</th></tr>
+        <tr><td class="mono">5~44</td><td class="c">정상(normal)</td></tr>
+        <tr><td class="mono">45~54</td><td class="c">중간(intermediate)</td></tr>
+        <tr><td class="mono">55~200</td><td class="c">전변이(premutation)</td></tr>
+        <tr><td class="mono">200 초과 + 메틸화</td><td class="c"><b>완전변이(full mutation)</b></td></tr>
       </table>
-      <div class="box warn"><p style="margin:0;font-size:24px">전변이는 <b>어머니를 통해</b> 전달될 때 확장<br><b>CMA·엑솜으로는 찾을 수 없음</b> → FMR1 검사를 따로</p></div>
+      <div class="box warn"><p style="margin:0">전변이는 <b>어머니를 통해</b> 전달될 때 완전변이로 확장될 수 있습니다. 반복서열 확장은 <b>염색체 마이크로어레이나 엑솜 분석으로 찾을 수 없으므로</b> FMR1 검사를 따로 주문해야 합니다.</p></div>
     </div>
   </div>
   <div class="src">홍창의 p.145-146 (교과서 기준: 정상 약 50 미만, 전변이 50~200) · Spector 2021 (ACMG)</div>
 </section>
 
-<!-- 19 section -->
+<!-- 23 section -->
 <section class="slide section-slide">
   <div class="bar"></div>
-  <div class="big">PART 4 · 6분 · 학습목표 3</div>
+  <div class="big">PART 4 · 학습목표 3</div>
   <h1>유전검사 선택</h1>
-  <div class="sub">"무엇을 의심하는가"가 "무엇을 검사하는가"를 정한다</div>
+  <div class="sub">무엇을 의심하는지가 무엇을 검사할지를 정합니다.</div>
 </section>
 
-<!-- 20 -->
+<!-- 24 -->
 <section class="slide">
-  <h2>해상도의 사다리</h2>
+  <h2>검사의 해상도</h2>
   <div class="body">
     <div class="ladder">
-      <div class="rung"><span class="lbl">G-분염 핵형</span><div class="bar" style="width:100%;opacity:.35"></div><span class="res">5~10 Mb</span></div>
-      <div class="rung"><span class="lbl">염색체 마이크로어레이</span><div class="bar" style="width:62%;opacity:.55"></div><span class="res">50~100 kb</span></div>
-      <div class="rung"><span class="lbl">엑솜 분석 (ES)</span><div class="bar" style="width:22%;opacity:.8"></div><span class="res">1 bp</span></div>
-      <div class="rung"><span class="lbl">유전체 분석 (GS)</span><div class="bar" style="width:22%"></div><span class="res">1 bp</span></div>
+      <div class="rung"><span class="lbl">G-분염 핵형 검사(G-banded karyotype)</span><div class="bar" style="width:100%;opacity:.35"></div><span class="res">5~10 Mb</span></div>
+      <div class="rung"><span class="lbl">염색체 마이크로어레이(CMA)</span><div class="bar" style="width:62%;opacity:.55"></div><span class="res">50~100 kb</span></div>
+      <div class="rung"><span class="lbl">엑솜 분석(exome sequencing, ES)</span><div class="bar" style="width:22%;opacity:.8"></div><span class="res">1 bp</span></div>
+      <div class="rung"><span class="lbl">유전체 분석(genome sequencing, GS)</span><div class="bar" style="width:22%"></div><span class="res">1 bp</span></div>
     </div>
-    <p class="hint" style="margin:0">막대 길이 = 검출 가능한 최소 크기(로그 척도 개념도)</p>
-    <table style="font-size:23px;margin-top:6px">
-      <tr><th>1인당 발견 변이 수</th><td>핵형 0~1</td><td>CMA 수십~수백 CNV</td><td>ES 25,000~35,000</td><td>GS 400만~500만</td></tr>
+    <p class="hint" style="margin:0">막대 길이는 각 검사가 찾을 수 있는 가장 작은 이상의 크기를 개념적으로 나타낸 것입니다(로그 척도).</p>
+    <table style="margin-top:6px">
+      <tr><th>한 사람에게서 발견되는 변이의 수</th><td>핵형 0~1개</td><td>CMA 수십~수백 개의 CNV</td><td>ES 25,000~35,000개</td><td>GS 400만~500만 개</td></tr>
     </table>
-    <div class="box key"><p style="margin:0">해상도가 높을수록 <b>진단율↑</b>, 그러나 해석할 변이와 <b>이차적 소견</b>도↑</p></div>
+    <div class="box key"><p style="margin:0">해상도가 높을수록 <b>진단율이 올라가지만</b>, 해석해야 할 변이와 검사 목적과 무관한 <b>이차적 소견(secondary findings)</b>도 함께 늘어납니다.</p></div>
   </div>
   <div class="src">홍창의 p.161 표 8-15와 본문</div>
 </section>
 
-<!-- 21 -->
+<!-- 25 -->
 <section class="slide">
-  <h2>무엇을 못 보는가</h2>
+  <h2>각 검사가 찾지 못하는 것</h2>
   <div class="body">
-    <table style="font-size:24px">
-      <tr><th style="width:20%">검사</th><th>찾을 수 있는 것</th><th>못 찾는 것</th></tr>
-      <tr><td>핵형</td><td>수적 이상, 큰 구조 이상, <b>균형 전위·역위</b></td><td>미세결실·중복, 단일염기변이</td></tr>
-      <tr><td>CMA (aCGH)</td><td>50~100 kb 이상 CNV</td><td><b class="red">균형 전위</b>, UPD, 삼배체, 단일염기변이, 반복 확장</td></tr>
-      <tr><td>CMA (SNP)</td><td>CNV + <b>UPD·이형접합성 소실</b>, 삼배체</td><td>균형 전위, 저수준 모자이시즘, 단일염기변이</td></tr>
-      <tr><td>FMR1</td><td>CGG 반복수, 메틸화</td><td>다른 유전자</td></tr>
-      <tr><td>ES</td><td>엑손 단일염기변이·작은 삽입결실</td><td><b class="red">반복 확장</b>, 깊은 인트론, 대부분 구조변이</td></tr>
-      <tr><td>GS</td><td>단일염기변이 + CNV·구조변이</td><td>일부 반복 확장, 후성유전 이상</td></tr>
+    <table style="font-size:20px">
+      <tr><th style="width:22%">검사</th><th>찾을 수 있는 것</th><th>찾지 못하는 것</th></tr>
+      <tr><td>핵형 검사</td><td>염색체 수 이상, 큰 구조 이상, <b>균형 전위·역위</b></td><td>미세결실·중복, 단일염기변이</td></tr>
+      <tr><td>CMA (비교유전체보합법, aCGH 방식)</td><td>50~100 kb 이상의 복제수 변이(CNV)</td><td><b class="red">균형 전위</b>, 단일부모 이염색체성, 삼배체, 단일염기변이, 반복서열 확장</td></tr>
+      <tr><td>CMA (단일염기다형성, SNP 방식)</td><td>복제수 변이에 더해 <b>단일부모 이염색체성과 이형접합성 소실</b>, 삼배체</td><td>균형 전위, 낮은 비율의 모자이시즘, 단일염기변이</td></tr>
+      <tr><td>FMR1 검사</td><td>CGG 반복수와 메틸화 상태</td><td>다른 유전자의 이상</td></tr>
+      <tr><td>엑솜 분석(ES)</td><td>엑손의 단일염기변이와 작은 삽입·결실</td><td><b class="red">반복서열 확장</b>, 깊은 인트론 변이, 대부분의 구조변이</td></tr>
+      <tr><td>유전체 분석(GS)</td><td>단일염기변이에 더해 복제수 변이와 구조변이</td><td>일부 반복서열 확장, 후성유전 이상</td></tr>
     </table>
-    <p style="font-size:24px;margin:0">표적 검사: <b>FISH</b> (특정 부위), <b>MLPA</b> (엑손 결실·중복: DMD, SMN1), <b>Sanger</b> (알려진 변이·가족 검사)</p>
+    <p style="margin:0">표적 검사: 형광 제자리 부합법(<b>FISH</b>)은 특정 부위의 결실을, 다중결찰 탐침 증폭법(<b>MLPA</b>)은 엑손 단위의 결실·중복(예: <i>DMD</i>, <i>SMN1</i>)을, <b>생어 염기서열 분석(Sanger sequencing)</b>은 이미 알려진 변이와 가족 검사를 확인합니다.</p>
   </div>
   <div class="src">홍창의 p.155-157, 161 · 소아내분비학 p.59, 61 · Miller 2010 · Spector 2021 · GS 행은 강의자 해석 포함</div>
 </section>
 
-<!-- 22 -->
+<!-- 26 -->
 <section class="slide">
   <h2>가이드라인은 어떻게 바뀌었나</h2>
   <div class="body">
     <div class="timeline">
-      <div class="tl"><span class="yr">2010</span><span class="dot"></span><h4>ISCA 합의문</h4><p>CMA를 1차 검사로<br>진단율 15~20%<br>(핵형 약 3%)</p></div>
-      <div class="tl"><span class="yr">2014</span><span class="dot"></span><h4>AAP</h4><p>CMA와<br>취약 X 검사</p></div>
-      <div class="tl"><span class="yr">2019</span><span class="dot"></span><h4>메타분석</h4><p>ES 진단율 <b>36%</b><br>(동반 질환 있으면 53%)</p></div>
-      <div class="tl"><span class="yr">2021</span><span class="dot"></span><h4>ACMG</h4><p><b>ES/GS를 1차 또는<br>2차 검사로</b> 강하게 권고</p></div>
-      <div class="tl now"><span class="yr">2025</span><span class="dot"></span><h4>AAP</h4><p>의심 질환 있으면 표적 검사,<br>없으면 ES/GS(또는 CMA)부터</p></div>
+      <div class="tl"><span class="yr">2010</span><span class="dot"></span><h4>ISCA 합의문</h4><p>염색체 마이크로어레이를 1차 검사로 권고했습니다. 진단율은 15~20%로, 핵형 검사(약 3%)보다 높았습니다.</p></div>
+      <div class="tl"><span class="yr">2014</span><span class="dot"></span><h4>미국소아과학회(AAP)</h4><p>염색체 마이크로어레이와 취약 X 검사를 기본 평가로 제시했습니다.</p></div>
+      <div class="tl"><span class="yr">2019</span><span class="dot"></span><h4>메타분석</h4><p>엑솜 분석의 진단율은 <b>36%</b>였고, 동반 질환이 있으면 53%였습니다.</p></div>
+      <div class="tl"><span class="yr">2021</span><span class="dot"></span><h4>ACMG</h4><p>선천 기형·발달지연·지적장애에서 <b>엑솜·유전체 분석을 1차 또는 2차 검사로</b> 강하게 권고했습니다.</p></div>
+      <div class="tl now"><span class="yr">2025</span><span class="dot"></span><h4>AAP</h4><p>의심되는 질환이 있으면 표적 검사를, 없으면 엑솜·유전체 분석(또는 CMA)부터 시행하도록 권고했습니다.</p></div>
     </div>
   </div>
   <div class="src">Miller 2010 · Moeschler 2014 · Srivastava 2019 · Manickam 2021 · Rodan 2025 (세부 단계는 초록과 해설 기사로 확인)</div>
 </section>
 
-<!-- 23 -->
+<!-- 27 -->
 <section class="slide">
-  <h2>발달지연 소아의 유전검사 순서</h2>
+  <h2>유전검사의 순서: 원인 미상의 발달지연·선천 기형을 예로</h2>
   <div class="flow" style="flex:1">
-    <div class="step"><b class="s">1</b><b>특정 질환이 떠오르는가?</b> → 표적 검사 먼저: 다운 → 핵형 · 취약 X → FMR1 · PWS → 메틸화 · Duchenne → MLPA</div>
-    <div class="arr">▼ 아니오 / 표적 검사 음성</div>
-    <div class="step"><b class="s">2</b><b>ES 또는 GS</b> (가능하면 부모와 함께 trio) · ES가 CNV를 못 보면 CMA 병행</div>
-    <div class="arr">▼ 남아 · X-연관 가족력 · 취약 X 특징</div>
-    <div class="step"><b class="s">3</b><b>FMR1 반복수 분석</b>을 함께 주문 (ES/CMA로는 못 찾음)</div>
-    <div class="arr">▼ 모두 음성 또는 VUS</div>
-    <div class="step"><b class="s">4</b>표현형 재정리 · 일정 기간 뒤 <b>재분석</b> · GS나 다른 기술. <span class="red">음성 ≠ 유전 원인 배제</span></div>
+    <div class="step"><b class="s">1</b>병력, 진찰, 가계도에서 <b>특정 질환이 떠오르면</b> 그 질환의 표적 검사를 먼저 합니다. 예: 다운 증후군은 핵형 검사, 취약 X 증후군은 FMR1 검사, 프래더-윌리 증후군은 메틸화 분석, 뒤센 근디스트로피는 <i>DMD</i> MLPA.</div>
+    <div class="arr">▼ 떠오르는 질환이 없거나 표적 검사가 음성이면</div>
+    <div class="step"><b class="s">2</b><b>엑솜 또는 유전체 분석</b>을 합니다. 가능하면 부모와 함께(trio) 검사합니다. 검사실의 엑솜 분석이 복제수 변이를 충분히 보지 못하면 염색체 마이크로어레이를 함께 하거나 먼저 합니다.</div>
+    <div class="arr">▼ 의심되는 질환이 반복서열 확장(repeat expansion) 질환이면</div>
+    <div class="step"><b class="s">3</b>그 질환의 <b>반복서열 검사를 따로 주문</b>합니다. 반복서열 확장은 엑솜 분석이나 염색체 마이크로어레이로 찾을 수 없기 때문입니다.</div>
+    <div class="arr">▼ 모두 음성이거나 의미 불명 변이(VUS)만 나오면</div>
+    <div class="step"><b class="s">4</b>표현형을 다시 정리하고, 일정 기간 뒤 <b>데이터를 재분석</b>하거나 유전체 분석 등 다른 기술을 고려합니다. <span class="red">결과가 음성이어도 유전 원인이 배제된 것은 아닙니다.</span></div>
   </div>
   <div class="src">Manickam 2021 (ACMG) · Rodan 2025 (AAP) · 흐름은 두 지침을 강의용으로 단순화한 강의자 해석</div>
 </section>
 
-<!-- 24 -->
+<!-- 28 -->
 <section class="slide">
   <h2>검사 전 상담과 동의</h2>
   <div class="cols">
     <div class="box"><h3>검사 전에 설명할 것</h3><ul>
-      <li>검사의 목적</li>
-      <li>예상 결과 3가지: <b>원인 확인 · 음성 · VUS</b></li>
-      <li>검사의 한계</li>
-      <li><b>이차적 소견</b> 가능성과 수신 여부</li>
-      <li>가족에게 미치는 의미</li>
-      <li>비용, 기간, 결과 통보 방법</li>
+      <li>검사를 하는 목적</li>
+      <li>예상되는 결과 세 가지: <b>원인 확인, 음성, 의미 불명 변이(VUS)</b></li>
+      <li>검사가 찾지 못하는 것(검사의 한계)</li>
+      <li>검사 목적과 무관한 <b>이차적 소견</b>이 나올 수 있다는 점과, 그 결과를 받을지 여부</li>
+      <li>결과가 다른 가족에게 갖는 의미</li>
+      <li>비용, 소요 기간, 결과를 알려 주는 방법</li>
     </ul></div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="box key"><h3>생명윤리법 제51조</h3><p style="margin:0">유전자검사는 <b>서면 동의</b><br>(미성년자는 법정대리인)</p></div>
-      <div class="box key"><h3>생명윤리법 제50조</h3><p style="margin:0">배아·태아 유전자검사는 <b>법령이 정한 질환</b>만<br>→ 산전 검사 안내 전 시행령 확인</p></div>
+    <div class="stack">
+      <div class="box key"><h3>생명윤리 및 안전에 관한 법률 제51조</h3><p style="margin:0">유전자검사를 하려면 검사 대상자의 <b>서면 동의</b>를 받아야 합니다. 미성년자는 법정대리인이 동의합니다.</p></div>
+      <div class="box key"><h3>같은 법 제50조</h3><p style="margin:0">배아나 태아를 대상으로 한 유전자검사는 <b>법령이 정한 질환</b>에 대해서만 할 수 있습니다. 산전 검사를 안내하기 전에 시행령의 질환 목록을 확인해야 합니다.</p></div>
     </div>
   </div>
-  <div class="src">홍창의 p.169 · 허정원 2026 강의 · 생명윤리 및 안전에 관한 법률 제50조·제51조</div>
-</section>
-
-<!-- 25 section -->
-<section class="slide section-slide">
-  <div class="bar"></div>
-  <div class="big">PART 5 · 4분 · 학습목표 4</div>
-  <h1>결과 해석: ACMG/AMP</h1>
-  <div class="sub">"VUS" 세 글자를 어떻게 읽고, 어떻게 말할까</div>
-</section>
-
-<!-- 26 -->
-<section class="slide">
-  <h2>5단계 분류</h2>
-  <div class="body">
-    <table>
-      <tr><th style="width:30%">분류</th><th>의미</th><th style="width:34%">임상에서</th></tr>
-      <tr><td><b>Pathogenic</b></td><td>병원성 확립</td><td>진단 확정, 가족 검사, 산전 진단</td></tr>
-      <tr><td><b>Likely pathogenic</b></td><td>병원성일 가능성 매우 높음 (약 90% 이상)</td><td>대개 P처럼 사용</td></tr>
-      <tr style="background:var(--warn-bg)"><td><b>VUS</b></td><td>어느 쪽으로도 판단할 근거 부족</td><td><b class="red">임상 결정에 쓰지 않음</b></td></tr>
-      <tr><td>Likely benign</td><td>양성일 가능성 매우 높음</td><td>대개 보고 안 함</td></tr>
-      <tr><td>Benign</td><td>양성</td><td>보고 안 함</td></tr>
-    </table>
-    <div class="cols3">
-      <div class="box warn"><p style="margin:0;font-size:24px">VUS = 병원성 50% <b>(X)</b></p></div>
-      <div class="box warn"><p style="margin:0;font-size:24px">de novo VUS = 원인 확정 <b>(X)</b></p></div>
-      <div class="box ok"><p style="margin:0;font-size:24px">VUS → 가족 검사 · 재분석 <b>(O)</b></p></div>
-    </div>
-  </div>
-  <div class="src">Richards 2015 (ACMG/AMP) · "possibly pathogenic" 같은 범주는 없음</div>
-</section>
-
-<!-- 27 -->
-<section class="slide">
-  <h2>근거 코드와 합산</h2>
-  <div class="cols" style="grid-template-columns:1.15fr 1fr">
-    <table style="font-size:22px">
-      <tr><th>코드</th><th>뜻</th></tr>
-      <tr><td class="mono">PVS1</td><td>LoF 기전 유전자의 무효 변이 (정지, 틀이동 등)</td></tr>
-      <tr><td class="mono">PS2</td><td>부모 확인 de novo (PM6 = 확인 없이 추정)</td></tr>
-      <tr><td class="mono">PS3</td><td>기능 연구에서 손상</td></tr>
-      <tr><td class="mono">PM2</td><td>인구 DB에 없음 → 현재 <b>Supporting</b>으로</td></tr>
-      <tr><td class="mono">PM5</td><td>같은 코돈에 <b>병원성</b> 과오 변이가 확립</td></tr>
-      <tr><td class="mono">PP1</td><td>이환 가족에서 동분리</td></tr>
-      <tr><td class="mono">PP3</td><td>보정된 예측 도구가 손상 시사</td></tr>
-      <tr><td class="mono">BA1</td><td>인구 빈도 &gt;5% → 단독 Benign</td></tr>
-    </table>
-    <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="box"><h3>점수로 생각하기</h3>
-        <p style="margin:0;font-size:24px">Supporting 1 · Moderate 2 · Strong 4 · Very strong 8</p>
-        <table style="font-size:22px;margin-top:10px">
-          <tr><td>≥10</td><td>P</td><td>6~9</td><td>LP</td></tr>
-          <tr><td>0~5</td><td><b>VUS</b></td><td>≤ −1</td><td>LB / B</td></tr>
-        </table>
-      </div>
-      <div class="box key"><p style="margin:0;font-size:23px">예: PVS1 + PS 1개 = <b>Pathogenic</b><br>PS 1 + PP 2개 = <b>Likely pathogenic</b></p></div>
-    </div>
-  </div>
-  <div class="src">Richards 2015 Table 3-5 · Tavtigian 2018, 2020 · ClinGen SVI PM2 v1.0 (2020) · Pejaver 2022</div>
-</section>
-
-<!-- 28 -->
-<section class="slide">
-  <h2>함께 풀어 보기</h2>
-  <div class="body">
-    <div class="box case"><p style="margin:0">3세 남아, 전반적 발달지연. 부모와 함께 한 엑솜 분석(trio)에서<br>상염색체 우성 신경발달질환 유전자 X에 <b>이형접합 정지 변이</b>.<br>이 유전자는 <b>기능 소실이 질병 기전</b>으로 확립 · gnomAD에 <b>없음</b> · 부모 모두 변이 없고 <b>친자 확인</b>.</p></div>
-    <p style="font-size:34px;margin:6px 0 0"><b>분류는?</b></p>
-    <div class="box ok reveal" onclick="this.classList.toggle('shown')" style="margin-top:4px">
-      <p class="hint" style="margin:0 0 6px">클릭하면 풀이가 보입니다</p>
-      <p class="hidden" style="margin:0">PVS1 (8) + PS2 (4) + PM2_Supporting (1) = <b>13점 → Pathogenic</b><br>규칙으로도 PVS1 + PS 1개 = Pathogenic</p>
-    </div>
-  </div>
-  <div class="src">Richards 2015 · Tavtigian 2020 · 교육용 가상 예시</div>
+  <div class="src">홍창의 p.169 · Lee 2025 (ACMG SF v3.3) · 생명윤리 및 안전에 관한 법률 제50조·제51조</div>
 </section>
 
 <!-- 29 section -->
 <section class="slide section-slide">
   <div class="bar"></div>
-  <div class="big">PART 6 · 2분 · 학습목표 4</div>
-  <h1>유전상담</h1>
-  <div class="sub">원칙만 짚고, 실제 상담은 팀 활동 역할극에서</div>
+  <div class="big">PART 5 · 학습목표 4</div>
+  <h1>결과 해석: ACMG/AMP 변이 분류</h1>
+  <div class="sub">"의미 불명 변이(VUS)"를 어떻게 읽고, 가족에게 어떻게 설명할까요?</div>
 </section>
 
 <!-- 30 -->
 <section class="slide">
+  <h2>변이의 5단계 분류</h2>
+  <div class="body">
+    <table>
+      <tr><th style="width:30%">분류</th><th>의미</th><th style="width:32%">임상에서의 활용</th></tr>
+      <tr><td><b>병원성(Pathogenic, P)</b></td><td>질환의 원인이라는 근거가 확립된 변이입니다.</td><td>진단을 확정하고, 가족 검사와 산전 진단에 사용합니다.</td></tr>
+      <tr><td><b>병원성 가능성 높음(Likely pathogenic, LP)</b></td><td>원인일 가능성이 매우 높은 변이입니다(약 90% 이상).</td><td>대개 병원성 변이처럼 사용합니다.</td></tr>
+      <tr style="background:var(--warn-bg)"><td><b>의미 불명 변이(Variant of uncertain significance, VUS)</b></td><td>원인인지 아닌지 판단할 근거가 부족한 변이입니다.</td><td><b class="red">임상 결정에 사용하지 않습니다.</b></td></tr>
+      <tr><td>양성 가능성 높음(Likely benign, LB)</td><td>양성일 가능성이 매우 높은 변이입니다.</td><td>대개 보고하지 않습니다.</td></tr>
+      <tr><td>양성(Benign, B)</td><td>양성으로 확립된 변이입니다.</td><td>보고하지 않습니다.</td></tr>
+    </table>
+    <div class="cols3">
+      <div class="box warn"><p style="margin:0">"의미 불명 변이는 병원성일 확률이 50%다"는 <b>틀린</b> 설명입니다.</p></div>
+      <div class="box warn"><p style="margin:0">"새로 생긴(de novo) 의미 불명 변이는 원인으로 확정된다"도 <b>틀린</b> 설명입니다.</p></div>
+      <div class="box ok"><p style="margin:0">의미 불명 변이는 가족 검사와 재분석으로 <b>재분류를 시도</b>하는 것이 맞습니다.</p></div>
+    </div>
+  </div>
+  <div class="src">Richards 2015 (ACMG/AMP) · "possibly pathogenic" 같은 범주는 없음</div>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <h2>근거 코드와 합산</h2>
+  <div class="cols" style="grid-template-columns:1.2fr 1fr">
+    <table style="font-size:19px">
+      <tr><th style="width:16%">코드</th><th>뜻</th></tr>
+      <tr><td class="mono">PVS1</td><td>기능 소실(loss of function)이 질병 기전인 유전자에서 단백질을 만들지 못하게 하는 변이(정지, 틀이동 등)</td></tr>
+      <tr><td class="mono">PS2</td><td>부모 검사와 친자 관계로 확인된 새로 생긴 변이(de novo). 확인 없이 추정만 하면 PM6</td></tr>
+      <tr><td class="mono">PS3</td><td>신뢰할 만한 기능 연구에서 단백질 기능이 손상됨</td></tr>
+      <tr><td class="mono">PM2</td><td>인구 데이터베이스에 없거나 매우 드묾. 현재는 <b>보조(Supporting) 강도</b>로 낮춰 사용</td></tr>
+      <tr><td class="mono">PM5</td><td>같은 아미노산 자리에 다른 <b>병원성</b> 과오 변이가 이미 확립됨</td></tr>
+      <tr><td class="mono">PP1</td><td>가족 안에서 변이가 질환과 함께 전달됨(동분리, cosegregation)</td></tr>
+      <tr><td class="mono">PP3</td><td>보정된 예측 프로그램이 손상을 시사함</td></tr>
+      <tr><td class="mono">BA1</td><td>인구 빈도가 5%를 넘음. 이것 하나만으로 양성(Benign)</td></tr>
+    </table>
+    <div class="stack">
+      <div class="box"><h3>점수로 생각하기</h3>
+        <p style="margin:0">근거 강도별 점수: 보조(Supporting) 1점, 중등도(Moderate) 2점, 강함(Strong) 4점, 매우 강함(Very strong) 8점</p>
+        <table style="margin-top:8px">
+          <tr><td>10점 이상</td><td>병원성(P)</td><td>6~9점</td><td>병원성 가능성 높음(LP)</td></tr>
+          <tr><td>0~5점</td><td><b>의미 불명(VUS)</b></td><td>−1점 이하</td><td>양성 쪽(LB/B)</td></tr>
+        </table>
+      </div>
+      <div class="box key"><p style="margin:0">규칙의 예: 매우 강함(PVS1) 1개 + 강함(PS) 1개 = <b>병원성</b>. 강함(PS) 1개 + 보조(PP) 2개 = <b>병원성 가능성 높음</b>.</p></div>
+    </div>
+  </div>
+  <div class="src">Richards 2015 Table 3-5 · Tavtigian 2018, 2020 · ClinGen SVI PM2 v1.0 (2020) · Pejaver 2022</div>
+</section>
+
+<!-- 32 -->
+<section class="slide">
+  <h2>함께 풀어 보기</h2>
+  <div class="body">
+    <div class="box case"><p style="margin:0">3세 남아가 전반적 발달지연으로 왔습니다. 부모와 함께 한 엑솜 분석(trio)에서 상염색체 우성 신경발달질환 유전자 X에 <b>이형접합 정지 변이</b>가 발견되었습니다. 이 유전자는 <b>기능 소실이 질병 기전</b>으로 확립되어 있고, 변이는 인구 데이터베이스(gnomAD)에 <b>없으며</b>, 부모 모두 이 변이가 없고 <b>친자 관계도 확인</b>되었습니다.</p></div>
+    <p style="font-size:28px;margin:6px 0 0"><b>이 변이는 어떻게 분류할까요?</b></p>
+    <div class="box ok reveal" onclick="this.classList.toggle('shown')" style="margin-top:4px">
+      <p class="hint" style="margin:0 0 6px">누르면 풀이가 보입니다</p>
+      <p class="hidden" style="margin:0">PVS1(8점) + PS2(4점) + PM2 보조 강도(1점) = <b>13점으로 병원성(Pathogenic)</b>입니다. 조합 규칙으로 보아도 PVS1 1개와 PS 1개가 있으므로 병원성입니다.</p>
+    </div>
+  </div>
+  <div class="src">Richards 2015 · Tavtigian 2020 · 교육용 가상 예시</div>
+</section>
+
+<!-- 33 section -->
+<section class="slide section-slide">
+  <div class="bar"></div>
+  <div class="big">PART 6 · 학습목표 4</div>
+  <h1>유전상담</h1>
+  <div class="sub">원칙만 짚고, 실제 상담은 팀 활동의 역할극에서 연습합니다.</div>
+</section>
+
+<!-- 34 -->
+<section class="slide">
   <h2>유전상담의 원칙과 목표</h2>
   <div class="cols">
-    <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="stack">
       <div class="box key"><h3>원칙</h3><ul>
-        <li><b>비지시성</b></li>
-        <li>비밀·사생활, <b>자율성</b></li>
-        <li>알 권리와 <b>모를 권리</b></li>
-        <li>개인의 이익 우선</li>
+        <li><b>비지시성(non-directiveness)</b>: 상담자가 결정을 대신 내리지 않습니다.</li>
+        <li>비밀과 사생활을 지키고, <b>자율성(autonomy)</b>을 존중합니다.</li>
+        <li>알 권리와 함께 <b>모를 권리</b>도 존중합니다.</li>
+        <li>사회의 이익보다 개인의 이익을 우선합니다.</li>
       </ul></div>
-      <div class="box"><h3>소아 검사의 윤리</h3><p style="margin:0;font-size:24px">진단 검사는 이익이 있으면 시행<br><b>보인자 검사</b>·성인기 질환 예측 검사는<br>스스로 결정할 수 있을 때까지 미룸</p></div>
+      <div class="box"><h3>소아 유전검사의 윤리</h3><p style="margin:0">지금 의학적 이익이 있는 진단 검사는 시행합니다. 그러나 <b>보인자 검사</b>나 성인기에 발병하는 질환의 예측 검사는 아이가 스스로 결정할 수 있을 때까지 미루는 것이 원칙입니다.</p></div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="box"><h3>정의 (NSGC)</h3><p style="margin:0;font-size:24px">유전적 기여의 의학적·심리적·가족적 의미를 <b>이해하고 적응</b>하도록 돕는 과정</p></div>
-      <div class="box infer"><h3>교과서의 목적 ③ 읽는 법</h3><p style="margin:0;font-size:24px">"산전 진단을 통한 출생 예방"<br>→ 선택지에 대한 <b>정보 제공</b>으로 읽기<br>목표는 출생 예방이 아니라 <b>자율적 결정</b></p></div>
+    <div class="stack">
+      <div class="box"><h3>정의: 미국유전상담사협회(NSGC)</h3><p style="margin:0">유전상담은 질환에 대한 유전적 기여의 의학적·심리적·가족적 의미를 사람들이 <b>이해하고 적응</b>하도록 돕는 과정입니다.</p></div>
+      <div class="box infer"><h3>교과서가 말하는 목적 ③ 읽는 법</h3><p style="margin:0">교과서의 "산전 진단을 통한 출생 예방"이라는 목적은, 선택지에 대한 <b>정보를 제공</b>한다는 뜻으로 읽어야 합니다. 상담의 목표는 출생 예방이 아니라 가족의 <b>자율적인 결정</b>입니다.</p></div>
     </div>
   </div>
   <div class="src">홍창의 p.167-169 · Resta 2006 (NSGC) · Botkin 2015 (ASHG) · 목적 ③ 해석은 강의자 해석</div>
 </section>
 
-<!-- 31 -->
+<!-- 35 -->
 <section class="slide">
-  <h2>재발 위험 말하기</h2>
+  <h2>재발 위험을 설명하기</h2>
   <div class="body">
-    <table style="font-size:25px">
-      <tr><th>상황</th><th style="width:44%">형제 재발 위험</th></tr>
-      <tr><td>상염색체 열성, 부모 모두 보인자</td><td>임신당 25%</td></tr>
-      <tr><td>X-연관 열성, 어머니 보인자</td><td>아들 50% 이환 · 딸 50% 보인자 (임신당 25%)</td></tr>
-      <tr><td>병원성 <b>de novo</b>, 부모 혈액 정상</td><td>흔히 1~2%, 가족별 0.1% 미만~5~12% <b class="red">(0 아님)</b></td></tr>
-      <tr><td>세염색체 다운</td><td>약 1%</td></tr>
-      <tr><td>전위형 다운, 어머니 t(14;21) 보인자</td><td>약 10% (아버지면 2% 미만, 21/21이면 100%)</td></tr>
-      <tr><td>원인 불명 자폐 스펙트럼 장애</td><td>18.7%</td></tr>
+    <table>
+      <tr><th>상황</th><th style="width:46%">다음 아이(형제)의 재발 위험</th></tr>
+      <tr><td>상염색체 열성 질환, 부모가 모두 보인자인 경우</td><td>임신마다 25%</td></tr>
+      <tr><td>X-연관 열성 질환, 어머니가 보인자인 경우</td><td>아들은 50%가 이환되고 딸은 50%가 보인자입니다(임신마다 이환아 25%).</td></tr>
+      <tr><td>병원성 변이가 <b>새로 생긴 것(de novo)</b>이고 부모의 혈액 검사가 정상인 경우</td><td>흔히 1~2%로 설명하지만 가족마다 0.1% 미만에서 5~12%까지 다릅니다. <b class="red">0%가 아닙니다.</b></td></tr>
+      <tr><td>표준형 21번 세염색체(trisomy 21) 다운 증후군</td><td>약 1%</td></tr>
+      <tr><td>전위형 다운 증후군, 어머니가 t(14;21) 균형 전위 보인자인 경우</td><td>약 10%. 아버지가 보인자이면 2% 미만이고, 21/21 전위이면 100%입니다.</td></tr>
+      <tr><td>원인을 모르는 자폐 스펙트럼 장애</td><td>18.7%</td></tr>
     </table>
   </div>
   <div class="src">홍창의 p.138, 164, 167 · Bernkopf 2023 · Ozonoff 2011</div>
 </section>
 
-<!-- 32 -->
+<!-- 36 -->
 <section class="slide">
   <h2>이렇게 말하지 마세요</h2>
   <div class="body">
-    <div class="box case"><p style="margin:0">"아이가 자폐예요. 엑솜에서 <b>VUS</b>가 나왔는데 부모에게는 없는 <b>de novo</b>래요. 둘째를 계획 중인데 괜찮을까요?"</p></div>
+    <div class="box case"><p style="margin:0">"아이가 자폐예요. 엑솜 분석에서 <b>의미 불명 변이(VUS)</b>가 나왔는데, 부모에게는 없는 <b>새로 생긴 변이(de novo)</b>래요. 둘째를 계획하고 있는데 괜찮을까요?"</p></div>
     <div class="cols">
-      <div class="box warn"><h3>피해야 할 답</h3><p style="margin:0">"de novo이니 <b>안심하고 둘째 낳으셔도 됩니다</b>."</p>
-        <ul style="margin-top:10px"><li style="font-size:22px">VUS를 원인으로 확정</li><li style="font-size:22px">재발 위험을 0으로</li><li style="font-size:22px">결정을 대신 내림 (비지시성 위반)</li></ul></div>
-      <div class="box ok"><h3>권하는 답</h3><p style="margin:0;font-size:23px">"새 변이라는 것은 원인일 가능성을 높이지만 아직 확정은 아닙니다. 원인 불명 자폐에서 동생의 진단 가능성은 약 19%로 보고되었고, 원인이 확정되더라도 위험이 완전히 없지는 않습니다. 재분석을 계속 확인하고, 선택지를 함께 설명드리겠습니다. <b>결정은 두 분이 하시도록</b> 돕겠습니다."</p></div>
+      <div class="box warn"><h3>피해야 할 답</h3><p style="margin:0">"새로 생긴 변이이니 <b>안심하고 둘째를 가지셔도 됩니다.</b>"</p>
+        <ul style="margin-top:8px"><li>의미 불명 변이를 원인으로 확정했습니다.</li><li>재발 위험을 0으로 설명했습니다.</li><li>결정을 대신 내렸습니다(비지시성 위반).</li></ul></div>
+      <div class="box ok"><h3>권하는 답</h3><p style="margin:0">"부모님께 없는 새 변이라는 점은 원인일 가능성을 높이지만, 아직 원인으로 확정된 것은 아닙니다. 원인을 모르는 자폐에서 동생이 진단받을 가능성은 약 19%로 보고되었고, 원인이 확정되더라도 위험이 완전히 없어지지는 않습니다. 재분석 결과를 계속 확인하고 선택지를 함께 설명드리겠습니다. <b>결정은 두 분이 내리시도록</b> 돕겠습니다."</p></div>
     </div>
   </div>
   <div class="src">Richards 2015 · Ozonoff 2011 · Bernkopf 2023 · 홍창의 p.167 · 소아내분비학 p.61</div>
 </section>
 
-<!-- 33 -->
+<!-- 37 -->
 <section class="slide">
   <h2>핵심 정리</h2>
   <div class="body">
-    <ol style="columns:2;column-gap:56px">
-      <li style="font-size:25px">변이 한 줄 = 유전자 · 전사체 · c./p. · 접합 상태 · 분류</li>
-      <li style="font-size:25px">남성 X 유전자 변이 = <b>반접합</b></li>
-      <li style="font-size:25px">가계도 3세대 이상. <b>남→남 전달은 X-연관 배제</b></li>
-      <li style="font-size:25px">XLR: 이환 남성의 딸은 모두 보인자, 보인자 어머니 임신당 25%</li>
-      <li style="font-size:25px">가족력 없음 ≠ 비유전, 가족성 ≠ 유전</li>
-      <li style="font-size:25px">소견은 <b>HPO</b>로, 원인은 범주별로 감별</li>
-      <li style="font-size:25px"><b>CMA는 균형 전위를, CMA·ES는 FMR1 확장을 못 본다</b></li>
-      <li style="font-size:25px">의심 질환 → 표적 검사, 아니면 ES/GS부터</li>
-      <li style="font-size:25px"><b>VUS는 임상 결정에 쓰지 않는다</b></li>
-      <li style="font-size:25px">비지시적 상담 · de novo도 재발 위험 0 아님 · 서면 동의</li>
+    <ol style="columns:2;column-gap:48px">
+      <li>결과지의 변이 한 줄은 유전자, 기준 전사체, c./p. 표기, 접합 상태, 분류로 읽습니다.</li>
+      <li>남성의 X 염색체 유전자 변이는 <b>반접합(hemizygous)</b>입니다.</li>
+      <li>가계도는 3세대 이상 그립니다. <b>아버지에서 아들로의 전달은 X-연관 유전을 배제</b>합니다.</li>
+      <li>X-연관 열성: 이환된 남성의 딸은 모두 보인자이고, 보인자 어머니의 임신마다 이환된 아들의 확률은 25%입니다.</li>
+      <li>가족력이 없어도 유전질환일 수 있고, 가족에게 모여 있어도 유전이 아닐 수 있습니다.</li>
+      <li>어떤 유전질환이든 소견은 <b>HPO 문법</b>(진단명 대신 소견, 구체적 용어, 수식어, 배제 소견)으로 적습니다.</li>
+      <li><b>염색체 마이크로어레이는 균형 전위를, 마이크로어레이와 엑솜 분석은 반복서열 확장(repeat expansion)을 찾지 못합니다.</b></li>
+      <li>의심되는 질환이 있으면 표적 검사, 없으면 엑솜·유전체 분석부터 시작합니다.</li>
+      <li><b>의미 불명 변이(VUS)는 임상 결정에 쓰지 않습니다.</b></li>
+      <li>상담은 비지시적으로 하고, 새로 생긴 변이도 재발 위험이 0이 아니며, 유전자검사는 서면 동의가 필요합니다.</li>
     </ol>
   </div>
 </section>
 
-<!-- 34 -->
+<!-- 38 -->
 <section class="slide section-slide">
   <div class="bar"></div>
-  <div class="big">NEXT · 팀 활동 약 100분</div>
+  <div class="big">NEXT · 팀 활동</div>
   <h1>이제 오늘의 환자를 풀어 봅시다</h1>
-  <div class="cols4" style="margin-top:44px;flex:0">
-    <div class="box"><h3>1단계</h3><p style="margin:0;font-size:24px">가계도 그리기<br>유전 양식 추론</p></div>
-    <div class="box"><h3>2단계</h3><p style="margin:0;font-size:24px">임상양상 분석<br>감별진단</p></div>
-    <div class="box"><h3>3단계</h3><p style="margin:0;font-size:24px">검사 선택<br>1차 결과 해석</p></div>
-    <div class="box"><h3>4단계</h3><p style="margin:0;font-size:24px">유전체 결과 해석<br>상담 역할극</p></div>
+  <div class="cols4" style="margin-top:40px;flex:0">
+    <div class="box"><h3>1단계</h3><p style="margin:0">가계도를 그리고 유전 양식을 추론합니다.</p></div>
+    <div class="box"><h3>2단계</h3><p style="margin:0">임상양상을 HPO로 기술하고 감별진단 목록을 만듭니다.</p></div>
+    <div class="box"><h3>3단계</h3><p style="margin:0">검사를 고르고 1차 결과를 해석합니다.</p></div>
+    <div class="box"><h3>4단계</h3><p style="margin:0">유전체 분석 결과를 해석하고 상담 역할극을 합니다.</p></div>
   </div>
-  <p class="hint" style="margin-top:30px;font-size:22px">각 단계 마지막 질문은 팀별로 답 카드를 <b>동시에</b> 듭니다</p>
+  <p class="hint" style="margin-top:30px;font-size:20px">각 단계의 마지막 질문에는 팀별로 답 카드를 <b>동시에</b> 듭니다.</p>
 </section>
 
-<!-- 35 -->
+<!-- 39 -->
 <section class="slide">
   <h2>주요 참고문헌</h2>
-  <div class="cols" style="font-size:19px;line-height:1.45">
+  <div class="cols">
     <ol style="padding-left:24px">
-      <li style="font-size:19px">홍창의 소아과학 12판, 제8장 유전 (p.136-169)</li>
-      <li style="font-size:19px">대한소아내분비학회. 소아내분비학 제1장 (p.59, 61)</li>
-      <li style="font-size:19px">Richards S, et al. Genet Med 2015;17:405-24 (ACMG/AMP)</li>
-      <li style="font-size:19px">Riggs ER, et al. Genet Med 2020;22:245-57 (CNV)</li>
-      <li style="font-size:19px">Manickam K, et al. Genet Med 2021;23:2029-37 (ACMG ES/GS)</li>
-      <li style="font-size:19px">Moeschler JB, Shevell M. Pediatrics 2014;134:e903-18 (AAP)</li>
-      <li style="font-size:19px">Rodan LH, et al. Pediatrics 2025;156(1):e2025072219 (AAP)</li>
-      <li style="font-size:19px">Srivastava S, et al. Genet Med 2019;21:2413-21</li>
-      <li style="font-size:19px">Miller DT, et al. Am J Hum Genet 2010;86:749-64 (ISCA)</li>
-      <li style="font-size:19px">Spector E, et al. Genet Med 2021;23:799-812 (FMR1)</li>
+      <li style="font-size:16px">홍창의 소아과학 12판, 제8장 유전 (p.136-169)</li>
+      <li style="font-size:16px">대한소아내분비학회. 소아내분비학 제1장 (p.59, 61)</li>
+      <li style="font-size:16px">Richards S, et al. Genet Med 2015;17:405-24 (ACMG/AMP)</li>
+      <li style="font-size:16px">Riggs ER, et al. Genet Med 2020;22:245-57 (CNV)</li>
+      <li style="font-size:16px">Manickam K, et al. Genet Med 2021;23:2029-37 (ACMG ES/GS)</li>
+      <li style="font-size:16px">Moeschler JB, Shevell M. Pediatrics 2014;134:e903-18 (AAP)</li>
+      <li style="font-size:16px">Rodan LH, et al. Pediatrics 2025;156(1):e2025072219 (AAP)</li>
+      <li style="font-size:16px">Srivastava S, et al. Genet Med 2019;21:2413-21</li>
+      <li style="font-size:16px">Miller DT, et al. Am J Hum Genet 2010;86:749-64 (ISCA)</li>
+      <li style="font-size:16px">Spector E, et al. Genet Med 2021;23:799-812 (FMR1)</li>
+      <li style="font-size:16px">Bennett RL, et al. J Genet Couns 2022;31:1238-48 (가계도)</li>
+      <li style="font-size:16px">den Dunnen JT, et al. Hum Mutat 2016;37:564-9 (HGVS)</li>
+      <li style="font-size:16px">Tavtigian SV, et al. Hum Mutat 2020;41:1734-7</li>
+      <li style="font-size:16px">Pejaver V, et al. Am J Hum Genet 2022;109:2163-77</li>
     </ol>
-    <ol start="11" style="padding-left:24px">
-      <li style="font-size:19px">Bennett RL, et al. J Genet Couns 2022;31:1238-48 (가계도)</li>
-      <li style="font-size:19px">Tavtigian SV, et al. Hum Mutat 2020;41:1734-7</li>
-      <li style="font-size:19px">Pejaver V, et al. Am J Hum Genet 2022;109:2163-77</li>
-      <li style="font-size:19px">Lee K, et al. Genet Med 2025;27:101454 (ACMG SF v3.3)</li>
-      <li style="font-size:19px">Botkin JR, et al. Am J Hum Genet 2015;97:6-21 (ASHG)</li>
-      <li style="font-size:19px">Resta R, et al. J Genet Couns 2006;15:77-83 (NSGC)</li>
-      <li style="font-size:19px">Bernkopf M, et al. Nat Commun 2023;14:853</li>
-      <li style="font-size:19px">Ozonoff S, et al. Pediatrics 2011;128:e488-95</li>
-      <li style="font-size:19px">Cassidy SB, et al. Genet Med 2012;14:10-26 (PWS)</li>
-      <li style="font-size:19px">생명윤리 및 안전에 관한 법률 제50조·제51조</li>
+    <ol start="15" style="padding-left:24px">
+      <li style="font-size:16px">Lee K, et al. Genet Med 2025;27:101454 (ACMG SF v3.3)</li>
+      <li style="font-size:16px">Botkin JR, et al. Am J Hum Genet 2015;97:6-21 (ASHG)</li>
+      <li style="font-size:16px">Resta R, et al. J Genet Couns 2006;15:77-83 (NSGC)</li>
+      <li style="font-size:16px">Bernkopf M, et al. Nat Commun 2023;14:853</li>
+      <li style="font-size:16px">Ozonoff S, et al. Pediatrics 2011;128:e488-95</li>
+      <li style="font-size:16px">Cassidy SB, et al. Genet Med 2012;14:10-26 (PWS)</li>
+      <li style="font-size:16px">Beygo J, et al. Eur J Hum Genet 2019;27:1326-40 (PWS/AS 분자 검사)</li>
+      <li style="font-size:16px">Robinson PN, et al. Am J Hum Genet 2008;83:610-5 (HPO)</li>
+      <li style="font-size:16px">Köhler S, et al. Nucleic Acids Res 2019;47:D1018-27; 2021;49:D1207-17 (HPO)</li>
+      <li style="font-size:16px">Gargano MA, et al. Nucleic Acids Res 2024;52:D1333-46 (HPO)</li>
+      <li style="font-size:16px">Jacobsen JOB, et al. Nat Biotechnol 2022;40:817-20 (Phenopacket)</li>
+      <li style="font-size:16px">Zhang XA, et al. NPJ Digit Med 2019;2:32 (검사 결과 → HPO)</li>
+      <li style="font-size:16px">Human Phenotype Ontology, release 2026-09-01</li>
+      <li style="font-size:16px">생명윤리 및 안전에 관한 법률 제50조·제51조</li>
     </ol>
   </div>
-  <p class="hint" style="margin-top:auto">전체 참고문헌과 DOI는 강의록 마지막 장에 있습니다.</p>
+  <p class="hint" style="margin-top:auto">전체 참고문헌과 DOI는 강의록의 마지막 장에 있습니다.</p>
 </section>
 
 </div></div>
