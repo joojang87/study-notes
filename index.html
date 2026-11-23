@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Study Notes · Jun Suk Oh</title>
+<meta name="description" content="소아청소년과·소아내분비 공부 자료 모음 — 논문 요약, 마인드맵, 교육 자료">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg: #f2f4f6; --surface: #ffffff; --ink: #18212b; --muted: #5b6776; --line: #d3dae2; --accent: #3d7fae;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #11161c; --surface: #19212a; --ink: #e5eaf0; --muted: #9ba8b7; --line: #2e3946; --accent: #6fb2df; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #11161c; --surface: #19212a; --ink: #e5eaf0; --muted: #9ba8b7; --line: #2e3946; --accent: #6fb2df; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.6 var(--font-body); }
+.wrap { max-width: 820px; margin: 0 auto; padding: 48px 16px 64px; }
+h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: -0.01em; }
+.who { color: var(--muted); margin: 0 0 4px; }
+.who a { color: inherit; }
+h2 { font: 600 13px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 40px 0 12px; }
+.card { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; color: inherit; text-decoration: none; }
+.card:hover { border-color: var(--accent); }
+.card .t { font-weight: 600; font-size: 16.5px; }
+.card .d { color: var(--muted); font-size: 14px; margin-top: 2px; }
+.card .src { font-size: 13px; margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.card .src a { color: var(--accent); }
+.tag { font: 500 11px var(--font-mono); color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; margin-left: 6px; vertical-align: 2px; }
+footer { margin-top: 48px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Study Notes</h1>
+  <p class="who">Jun Suk Oh (오준석) · 소아청소년과 / 소아내분비 · 건양대학교병원</p>
+  <p class="who">공부하며 정리한 논문 요약과 학습 자료를 모아 둡니다. 의대생·전공의 학습용입니다.</p>
+
+  <h2>Pediatrics</h2>
+
+  <div class="card">
+    <a href="pediatrics/pediatric-infection.pdf" style="color:inherit;text-decoration:none">
+      <div class="t">소아 감염학: 총론과 세균 감염 <span class="tag">slides</span></div>
+      <div class="d">의학과 3학년 강의 슬라이드 (배포용 PDF)</div>
+    </a>
+    <div class="src">
+      <span>주 교재: 홍창의 소아과학 12판</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <a href="pediatrics/genetic-testing-counseling.pdf" style="color:inherit;text-decoration:none">
+      <div class="t">유전검사와 유전상담: 가계도에서 결과 해석까지 <span class="tag">slides</span></div>
+      <div class="d">의학과 3학년 강의 슬라이드 (배포용 PDF)</div>
+    </a>
+    <div class="src">
+      <span>주 교재: 홍창의 소아과학 12판 8장</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <a href="pediatrics/inborn-errors-of-metabolism.pdf" style="color:inherit;text-decoration:none">
+      <div class="t">유전대사질환 <span class="tag">slides</span></div>
+      <div class="d">의학과 3학년 강의 슬라이드 (배포용 PDF)</div>
+    </a>
+    <div class="src">
+      <span>주 교재: 홍창의 소아과학 12판 9장(p.170–217)</span>
+    </div>
+  </div>
+
+  <footer>
+    의학과 3학년 강의 자료(배포용 PDF)입니다. 학습용 자료이며 진료 지침을 대신하지 않으니, 진료 판단은 원문을 확인하세요.
+  </footer>
+</div>
+</body>
+</html>
